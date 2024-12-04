@@ -80,7 +80,6 @@ model VerificationToken {
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
   type       TokenType
-
   @@unique([token, identifier])
 }
 

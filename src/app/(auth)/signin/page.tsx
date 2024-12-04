@@ -46,12 +46,8 @@ export default function Component() {
 						}}
 						className='text-3xl cursor-pointer font-bold tracking-tight mb-2'
 					>
-						Product Name
+						Moeny Mingle
 					</h1>
-
-					<h2 className='text-2xl font-semibold mt-6'>
-						This is sample login page.
-					</h2>
 					<p className='text-sm text-gray-400'>
 						Don&apos;t have an account?{' '}
 						<Link href='signup' className='text-blue-500 hover:underline'>
@@ -64,7 +60,7 @@ export default function Component() {
 						className='w-full bg-[#222] hover:bg-[#333] text-white'
 						variant='outline'
 						onClick={() => {
-							signIn('google', { callbackUrl: '/' });
+							signIn('google', { callbackUrl: '/add-number' });
 						}}
 					>
 						<FcGoogle className='mr-2 h-4 w-4' />

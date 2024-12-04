@@ -101,7 +101,7 @@ export const authOptions: NextAuthOptions = {
 					// Store user ID in token
 					user.id = UserExist.id;
 					user.role = UserExist.role;
-					user.number = UserExist.MobileNumber as string;
+					user.MobileNumber = UserExist.MobileNumber as string;
 				} else {
 					const NewUser = await prisma.user.create({
 						data: {
@@ -109,12 +109,13 @@ export const authOptions: NextAuthOptions = {
 							Name: profile?.name as string,
 							picture: profile?.image,
 							iSGoogle: true,
+							MobileNumber:""
 						},
 					});
 					// Store new user's ID in token
 					user.id = NewUser.id;
 					user.role = NewUser.role;
-					user.number = NewUser.MobileNumber as string;
+					user.MobileNumber = NewUser.MobileNumber as string;
 				
 				}
 			}
@@ -124,7 +125,7 @@ export const authOptions: NextAuthOptions = {
 				token.id = user.id;
 				token.name = user.name;
 				token.email = user.email;
-				token.number = user.number;
+				token.MobileNumber = user.MobileNumber;
 				token.picture = user.image;
 				token.role = user.role;
 			}
@@ -135,7 +136,7 @@ export const authOptions: NextAuthOptions = {
 				session.user.id = token.id;
 				session.user.name = token.name;
 				session.user.email = token.email;
-				session.user.number = token.number;
+				session.user.MobileNumber = token.MobileNumber;
 				session.user.image = token.picture;
 				session.user.role = token.role;
 			}
@@ -163,6 +164,7 @@ export const authOptions: NextAuthOptions = {
 								Name: profile.name,
 								picture: profile.picture,
 								iSGoogle: true,
+								MobileNumber:''
 							},
 						});
 						token.id = NewUser.id;

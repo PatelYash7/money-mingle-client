@@ -53,7 +53,7 @@ export const FloatingNav = ({
 				))}
 
 				{session.data?.user.name ?
-					<button onClick={()=>{}} className='border text-sm font-semibold  relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full'>
+					<button onClick={()=>{router.push('/signin')}} className='border text-sm font-semibold  relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full'>
 						<span>{session.data.user.name}</span>
 					</button>
 				:	<button onClick={()=>{router.push('/signin')}} className='border text-sm font-semibold relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full'>

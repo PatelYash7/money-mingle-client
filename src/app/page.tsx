@@ -1,3 +1,4 @@
+import LandingPage from '@/components/Landing';
 import { AuroraBackground } from '@/components/ui/aurora-background';
 import { FloatingNav } from '@/components/ui/floating-navbar';
 import { IconHome, IconMessage, IconUser } from '@tabler/icons-react';
@@ -18,7 +19,7 @@ export default async function Home() {
 	return (
 		<>
 			<FloatingNav navItems={navItems} />
-			<AuroraBackground className='px-48'>
+			{/* <AuroraBackground className='px-48'>
 				<div className='text-3xl md:text-5xl font-bold dark:text-white text-center'>
 					Effortless NextJS Starter Kit for Developers
 				</div>
@@ -26,7 +27,8 @@ export default async function Home() {
 					This template is designed for modern developers who want to focus on
 					business logic while minimizing setup time.
 				</p>
-			</AuroraBackground>
+			</AuroraBackground> */}
+			<LandingPage />
 		</>
 	);
 }
