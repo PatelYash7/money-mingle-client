@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                   String         @id @default(cuid())
+  Email                String         @unique
+  Name                 String
+  Password             String?
+  MobileNumber         String         @unique
+  picture              String?
+  role                 Role           @default(User)
+  iSGoogle             Boolean        @default(false)
+  isVerified           Boolean        @default(false)
+  Wallet               Wallet?
+  SentTransactions     Transactions[] @relation(name: "Sender")
+  ReceivedTransactions Transactions[] @relation(name: "Receiver")
+}
+
+enum Role {
+  Admin
+  User
+}
+
+model Wallet {
+  id               String             @id @default(cuid())
+  userId           String             @unique
+  user             User               @relation(fields: [userId], references: [id])
+  Balance          BigInt             @default(0)
+  BankToWalletTrxn BankToWalletTrxn[]
+}
+
+model Transactions {
+  id         String @id @default(cuid())
+  SenderId   String
+  ReceiverId String
+  Sender     User   @relation(fields: [SenderId], references: [id], name: "Sender")
+  Receiver   User   @relation(fields: [ReceiverId], references: [id], name: "Receiver")
+  Amount     Int
+}
+
+model BankToWalletTrxn {
+  id       String      @id @default(cuid())
+  Amount   Int
+  Locked   Int  
+  Token    String?
+  otp      String?
+  BankId   String
+  WalletId String
+  Bank     BankAccount @relation(fields: [BankId], references: [id])
+  Wallet   Wallet      @relation(fields: [WalletId], references: [id])
+}
+
+
+model BankAccount {
+  id               String             @id @default(cuid())
+  MobileNumber     String             @unique
+  Name             String
+  AccountNumber    Int                @unique //8-digit
+  Email            String             @unique
+  Balance          BigInt             @default(2000000)
+  isVerified       Boolean            @default(false)
+  BankTowalletTrxn BankToWalletTrxn[]
+}
+
+model VerificationToken {
+  token      String
+  identifier String
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  type       TokenType
+
+  @@unique([token, identifier])
+}
+
+enum TokenType {
+  BANK_VERIFICATION
+  RESET_PASSWORD
+  WALLET_VERIFICATION
+}
