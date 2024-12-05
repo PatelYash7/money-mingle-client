@@ -45,6 +45,7 @@ model Transactions {
   id         String @id @default(cuid())
   SenderId   String
   ReceiverId String
+  timestamp  DateTime   @default(now())
   Sender     User   @relation(fields: [SenderId], references: [id], name: "Sender")
   Receiver   User   @relation(fields: [ReceiverId], references: [id], name: "Receiver")
   Amount     Int

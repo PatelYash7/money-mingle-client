@@ -1,297 +1,248 @@
-import { Card } from './ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
-import Link from 'next/link';
+import Image from 'next/image'
+import Link from 'next/link'
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { ArrowRight, Shield, Zap, DollarSign, Smartphone, Star } from 'lucide-react'
 
 export default function LandingPage() {
-	return (
-		<div className='flex flex-col min-h-[100dvh]'>
-			<main className='flex-1'>
-				<section className='w-full py-12 md:py-24 lg:py-32'>
-					<div className='container px-4 md:px-6'>
-						<div className='grid gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_600px]'>
-							<div className='flex flex-col justify-center space-y-4'>
-								<div className='space-y-2'>
-									<h1 className='text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none'>
-										Secure and Seamless Online Payments
-									</h1>
-									<p className='max-w-[600px] text-muted-foreground md:text-xl'>
-										Accept payments from your customers with ease and
-										confidence. Our platform offers a range of payment options,
-										robust security features, and real-time analytics to help
-										your business thrive.
-									</p>
-								</div>
-							</div>
-							<img
-								src='/placeholder.svg'
-								width='550'
-								height='550'
-								alt='Hero'
-								className='object-cover mx-auto overflow-hidden aspect-video rounded-xl sm:w-full lg:aspect-square'
-							/>
-						</div>
-					</div>
-				</section>
-				<section className='w-full py-12 md:py-24 lg:py-32 bg-muted'>
-					<div className='container px-4 md:px-6'>
-						<div className='flex flex-col items-center justify-center space-y-4 text-center'>
-							<div className='space-y-2'>
-								<div className='inline-block px-3 py-1 text-sm rounded-lg bg-muted'>
-									Key Features
-								</div>
-								<h2 className='text-3xl font-bold tracking-tighter sm:text-5xl'>
-									Powerful Features to Grow Your Business
-								</h2>
-								<p className='max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed'>
-									Our payment platform offers a range of features to help you
-									accept payments securely, streamline your operations, and gain
-									valuable insights into your business.
-								</p>
-							</div>
-						</div>
-						<div className='grid items-center max-w-5xl gap-6 py-12 mx-auto lg:grid-cols-2 lg:gap-12'>
-							<div className='flex flex-col justify-center space-y-4'>
-								<ul className='grid gap-6'>
-									<li>
-										<div className='grid gap-1'>
-											<h3 className='text-xl font-bold'>
-												Multiple Payment Options
-											</h3>
-											<p className='text-muted-foreground'>
-												Accept payments through credit/debit cards, digital
-												wallets, and more.
-											</p>
-										</div>
-									</li>
-									<li>
-										<div className='grid gap-1'>
-											<h3 className='text-xl font-bold'>Robust Security</h3>
-											<p className='text-muted-foreground'>
-												Protect your customers' data with advanced encryption
-												and fraud prevention tools.
-											</p>
-										</div>
-									</li>
-									<li>
-										<div className='grid gap-1'>
-											<h3 className='text-xl font-bold'>Real-time Reporting</h3>
-											<p className='text-muted-foreground'>
-												Gain valuable insights into your business with
-												comprehensive reporting and analytics.
-											</p>
-										</div>
-									</li>
-								</ul>
-							</div>
-							<img
-								src='/placeholder.svg'
-								width='550'
-								height='310'
-								alt='Features'
-								className='object-cover object-center mx-auto overflow-hidden aspect-video rounded-xl sm:w-full lg:order-last'
-							/>
-						</div>
-					</div>
-				</section>
-				<section className='w-full py-12 md:py-24 lg:py-32'>
-					<div className='container px-4 md:px-6'>
-						<div className='flex flex-col items-center justify-center space-y-4 text-center'>
-							<div className='space-y-2'>
-								<div className='inline-block px-3 py-1 text-sm rounded-lg bg-muted'>
-									Payment Methods
-								</div>
-								<h2 className='text-3xl font-bold tracking-tighter sm:text-5xl'>
-									Accept Payments Your Customers Love
-								</h2>
-								<p className='max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed'>
-									Our platform supports a wide range of payment methods, so you
-									can offer your customers the flexibility they need.
-								</p>
-							</div>
-						</div>
-						<div className='grid items-center max-w-5xl gap-6 py-12 mx-auto lg:grid-cols-2 lg:gap-12'>
-							<img
-								src='/placeholder.svg'
-								width='550'
-								height='310'
-								alt='Payment Methods'
-								className='object-cover object-center mx-auto overflow-hidden aspect-video rounded-xl sm:w-full lg:order-last'
-							/>
-							<div className='flex flex-col justify-center space-y-4'>
-								<ul className='grid gap-6'>
-									<li>
-										<div className='grid gap-1'>
-											<h3 className='text-xl font-bold'>Credit/Debit Cards</h3>
-											<p className='text-muted-foreground'>
-												Accept payments from all major credit and debit card
-												providers.
-											</p>
-										</div>
-									</li>
-									<li>
-										<div className='grid gap-1'>
-											<h3 className='text-xl font-bold'>Digital Wallets</h3>
-											<p className='text-muted-foreground'>
-												Offer your customers the convenience of mobile and
-												digital wallet payments.
-											</p>
-										</div>
-									</li>
-									<li>
-										<div className='grid gap-1'>
-											<h3 className='text-xl font-bold'>Bank Transfers</h3>
-											<p className='text-muted-foreground'>
-												Accept direct bank transfers for larger or recurring
-												payments.
-											</p>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</section>
-				<section className='w-full py-12 md:py-24 lg:py-32 bg-muted'>
-					<div className='container px-4 md:px-6'>
-						<div className='flex flex-col items-center justify-center space-y-4 text-center'>
-							<div className='space-y-2'>
-								<div className='inline-block px-3 py-1 text-sm rounded-lg bg-muted'>
-									Security
-								</div>
-								<h2 className='text-3xl font-bold tracking-tighter sm:text-5xl'>
-									Secure Payments You Can Trust
-								</h2>
-								<p className='max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed'>
-									Our payment platform is built with industry-leading security
-									features to protect your business and your customers' data.
-								</p>
-							</div>
-						</div>
-						<div className='grid items-center max-w-5xl gap-6 py-12 mx-auto lg:grid-cols-2 lg:gap-12'>
-							<div className='flex flex-col justify-center space-y-4'>
-								<ul className='grid gap-6'>
-									<li>
-										<div className='grid gap-1'>
-											<h3 className='text-xl font-bold'>Encryption</h3>
-											<p className='text-muted-foreground'>
-												All payment data is encrypted using the latest
-												industry-standard protocols.
-											</p>
-										</div>
-									</li>
-									<li>
-										<div className='grid gap-1'>
-											<h3 className='text-xl font-bold'>Fraud Prevention</h3>
-											<p className='text-muted-foreground'>
-												Our advanced fraud detection and prevention tools
-												protect your business from unauthorized transactions.
-											</p>
-										</div>
-									</li>
-									<li>
-										<div className='grid gap-1'>
-											<h3 className='text-xl font-bold'>PCI Compliance</h3>
-											<p className='text-muted-foreground'>
-												Our platform is fully PCI-DSS compliant, ensuring the
-												highest standards of data security.
-											</p>
-										</div>
-									</li>
-								</ul>
-							</div>
-							<img
-								src='/placeholder.svg'
-								width='550'
-								height='310'
-								alt='Security'
-								className='object-cover object-center mx-auto overflow-hidden aspect-video rounded-xl sm:w-full lg:order-last'
-							/>
-						</div>
-					</div>
-				</section>
-				<section className='w-full py-12 md:py-24 lg:py-32'>
-					<div className='container px-4 md:px-6'>
-						<div className='flex flex-col items-center justify-center space-y-4 text-center'>
-							<div className='space-y-2'>
-								<div className='inline-block px-3 py-1 text-sm rounded-lg bg-muted'>
-									Testimonials
-								</div>
-								<h2 className='text-3xl font-bold tracking-tighter sm:text-5xl'>
-									What Our Customers Say
-								</h2>
-								<p className='max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed'>
-									Hear from our satisfied customers about their experience with
-									our payment platform.
-								</p>
-							</div>
-						</div>
-						<div className='grid items-center max-w-5xl gap-6 py-12 mx-auto lg:grid-cols-2 lg:gap-12'>
-							<Card className='p-6 shadow-sm bg-muted'>
-								<div className='space-y-4'>
-									<div className='flex items-center space-x-4'>
-										<Avatar>
-											<AvatarImage src='/placeholder-user.jpg' />
-											<AvatarFallback>JD</AvatarFallback>
-										</Avatar>
-										<div>
-											<h4 className='text-lg font-semibold'>John Doe</h4>
-											<p className='text-sm text-muted-foreground'>
-												CEO, Acme Inc.
-											</p>
-										</div>
-									</div>
-									<p className='text-muted-foreground'>
-										"Acme Payments has been a game-changer for our business.\n
-										The platform is easy to use, secure, and has helped us\n
-										streamline our payment processing. We highly recommend it!"
-									</p>
-								</div>
-							</Card>
-							<Card className='p-6 shadow-sm bg-muted'>
-								<div className='space-y-4'>
-									<div className='flex items-center space-x-4'>
-										<Avatar>
-											<AvatarImage src='/placeholder-user.jpg' />
-											<AvatarFallback>JS</AvatarFallback>
-										</Avatar>
-										<div>
-											<h4 className='text-lg font-semibold'>Jane Smith</h4>
-											<p className='text-sm text-muted-foreground'>
-												CFO, Widgets Inc.
-											</p>
-										</div>
-									</div>
-									<p className='text-muted-foreground'>
-										"We've been using Acme Payments for over a year now, and\n
-										it's been a seamless experience. The reporting and\n
-										analytics have been invaluable in helping us make informed\n
-										business decisions."
-									</p>
-								</div>
-							</Card>
-						</div>
-					</div>
-				</section>
-				<section className='w-full py-12 border-t md:py-24 lg:py-32'>
-					<div className='container px-4 md:px-6'>
-						<div className='grid gap-10 sm:px-10 md:gap-16 md:grid-cols-2'>
-							<div className='space-y-4'>
-								<div className='inline-block px-3 py-1 text-sm rounded-lg bg-muted'>
-									Get Started
-								</div>
-								<h2 className='lg:leading-tighter text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem]'>
-									Start Accepting Payments Today
-								</h2>
-								<Link
-									href='#'
-									className='inline-flex items-center justify-center px-4 py-2 text-sm font-medium transition-colors rounded-md shadow h-9 bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:'
-									prefetch={false}
-								/>
-							</div>
-						</div>
-					</div>
-				</section>
-			</main>
-		</div>
-	);
+  return (
+    <div className="flex flex-col min-h-screen bg-background text-foreground">
+      <header className="px-4 lg:px-6 h-20 flex items-center border-b">
+        <Link className="flex items-center justify-center" href="#">
+          <Image
+            src="/placeholder.svg?height=40&width=40"
+            alt="MoneyMingle logo"
+            width={40}
+            height={40}
+            className="rounded-lg"
+          />
+          <span className="ml-2 text-2xl font-bold text-primary">MoneyMingle</span>
+        </Link>
+        <nav className="ml-auto flex gap-4 sm:gap-6">
+          <Link className="text-sm font-medium hover:text-primary transition-colors" href="#features">
+            Features
+          </Link>
+          <Link className="text-sm font-medium hover:text-primary transition-colors" href="#how-it-works">
+            How It Works
+          </Link>
+          <Link className="text-sm font-medium hover:text-primary transition-colors" href="#testimonials">
+            Testimonials
+          </Link>
+        </nav>
+      </header>
+      <main className="flex-1">
+        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gradient-to-r from-purple-100 via-pink-100 to-orange-100">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col lg:flex-row items-center justify-between space-y-12 lg:space-y-0 lg:space-x-12">
+              <div className="space-y-8 text-center lg:text-left lg:w-1/2">
+                <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl/none">
+                  Mingle Your Money, <span className="text-primary">Simplify Your Transfers</span>
+                </h1>
+                <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
+                  MoneyMingle: The user-friendly and secure P2P wallet for seamless money transfers between individuals.
+                </p>
+                <div className="space-x-4">
+                  <Button className="inline-flex items-center justify-center" size="lg">
+                    Start Mingling
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                  <Button variant="outline" size="lg">Learn More</Button>
+                </div>
+              </div>
+              <div className="lg:w-1/2">
+                <Image
+                  src="/placeholder.svg?height=400&width=600"
+                  alt="MoneyMingle App Interface"
+                  width={600}
+                  height={400}
+                  className="rounded-lg shadow-xl"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="features" className="w-full py-12 md:py-24 lg:py-32 bg-secondary">
+          <div className="container px-4 md:px-6">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-12 text-primary">Core Features</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <Card className="bg-white dark:bg-gray-800">
+                <CardHeader>
+                  <Zap className="h-12 w-12 mb-4 text-primary" />
+                  <CardTitle>Instant Transfers</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>Send money in seconds, with no delays.</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-white dark:bg-gray-800">
+                <CardHeader>
+                  <DollarSign className="h-12 w-12 mb-4 text-primary" />
+                  <CardTitle>Low/No Fees</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>Enjoy zero transaction fees for domestic transfers.</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-white dark:bg-gray-800">
+                <CardHeader>
+                  <Shield className="h-12 w-12 mb-4 text-primary" />
+                  <CardTitle>Top-Notch Security</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>Your transactions are protected with industry-leading encryption and two-factor authentication.</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-white dark:bg-gray-800">
+                <CardHeader>
+                  <Smartphone className="h-12 w-12 mb-4 text-primary" />
+                  <CardTitle>Intuitive Interface</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>Simple design for a smooth, hassle-free experience.</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-white dark:bg-gray-800">
+                <CardHeader>
+                  <Star className="h-12 w-12 mb-4 text-primary" />
+                  <CardTitle>Cross-Platform Access</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>Available on web, iOS, and Android—transfer anytime, anywhere.</p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+        <section id="how-it-works" className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-r from-orange-100 via-pink-100 to-purple-100">
+          <div className="container px-4 md:px-6">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-12 text-primary">How It Works</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <Card className="bg-white dark:bg-gray-800">
+                <CardHeader>
+                  <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-2xl font-bold mb-4">1</div>
+                  <CardTitle>Sign Up</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>Create a secure account in minutes.</p>
+                  <Image
+                    src="/placeholder.svg?height=150&width=150"
+                    alt="Sign Up Illustration"
+                    width={150}
+                    height={150}
+                    className="mt-4 mx-auto"
+                  />
+                </CardContent>
+              </Card>
+              <Card className="bg-white dark:bg-gray-800">
+                <CardHeader>
+                  <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-2xl font-bold mb-4">2</div>
+                  <CardTitle>Connect</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>Link your bank account or card effortlessly.</p>
+                  <Image
+                    src="/placeholder.svg?height=150&width=150"
+                    alt="Connect Illustration"
+                    width={150}
+                    height={150}
+                    className="mt-4 mx-auto"
+                  />
+                </CardContent>
+              </Card>
+              <Card className="bg-white dark:bg-gray-800">
+                <CardHeader>
+                  <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-2xl font-bold mb-4">3</div>
+                  <CardTitle>Send & Receive</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>Choose your recipient, enter the amount, and transfer with one tap.</p>
+                  <Image
+                    src="/placeholder.svg?height=150&width=150"
+                    alt="Send & Receive Illustration"
+                    width={150}
+                    height={150}
+                    className="mt-4 mx-auto"
+                  />
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+        <section id="testimonials" className="w-full py-12 md:py-24 lg:py-32 bg-secondary">
+          <div className="container px-4 md:px-6">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-12 text-primary">What Our Users Say</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <Card className="bg-white dark:bg-gray-800">
+                <CardContent className="p-6 flex items-start space-x-4">
+                  <Image
+                    src="/placeholder.svg?height=60&width=60"
+                    alt="Sarah T."
+                    width={60}
+                    height={60}
+                    className="rounded-full"
+                  />
+                  <div>
+                    <p className="mb-2 italic">"MoneyMingle has revolutionized how I send money to friends and family. It's so easy and quick!"</p>
+                    <p className="font-bold text-primary">- Sarah T.</p>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="bg-white dark:bg-gray-800">
+                <CardContent className="p-6 flex items-start space-x-4">
+                  <Image
+                    src="/placeholder.svg?height=60&width=60"
+                    alt="Michael R."
+                    width={60}
+                    height={60}
+                    className="rounded-full"
+                  />
+                  <div>
+                    <p className="mb-2 italic">"I love the security features. I feel confident using MoneyMingle for all my transfers."</p>
+                    <p className="font-bold text-primary">- Michael R.</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Ready to Start Mingling?</h2>
+                <p className="mx-auto max-w-[700px] md:text-xl">
+                  Join thousands of satisfied users and experience the easiest way to transfer money.
+                </p>
+              </div>
+              <div className="space-x-4">
+                <Button className="inline-flex items-center justify-center bg-white text-primary hover:bg-gray-100" size="lg">
+                  Download MoneyMingle Now
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
+        <p className="text-xs text-muted-foreground">© 2024 MoneyMingle. All rights reserved.</p>
+        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+          <Link className="text-xs hover:underline underline-offset-4" href="#">
+            Terms of Service
+          </Link>
+          <Link className="text-xs hover:underline underline-offset-4" href="#">
+            Privacy
+          </Link>
+          <Link className="text-xs hover:underline underline-offset-4" href="#">
+            Support
+          </Link>
+        </nav>
+        <div className="flex items-center space-x-4">
+          <Image src="/placeholder.svg?height=32&width=100" alt="PCI DSS Compliant" width={100} height={32} className="mr-2" />
+          <Image src="/placeholder.svg?height=32&width=100" alt="SSL Secure" width={100} height={32} />
+        </div>
+      </footer>
+    </div>
+  )
 }
+

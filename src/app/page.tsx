@@ -11,6 +11,11 @@ export default async function Home() {
 			icon: <IconHome className='h-4 w-4 text-neutral-500 dark:text-white' />,
 		},
 		{
+			name: 'Dashboard',
+			link: '/dashboard',
+			icon: <IconHome className='h-4 w-4 text-neutral-500 dark:text-white' />,
+		},
+		{
 			name: 'Docs',
 			link: 'https://github.com/PatelYash7/saas-template',
 			icon: <FcDocument className='h-4 w-4 text-neutral-500 dark:text-white' />,
