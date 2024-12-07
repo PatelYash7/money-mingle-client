@@ -21,12 +21,18 @@ model User {
   MobileNumber         String         @unique
   picture              String?
   pin                  Int?
+  AccountType          AccountType    @default(CLIENT)
   role                 Role           @default(User)
   iSGoogle             Boolean        @default(false)
   isVerified           Boolean        @default(false)
   Wallet               Wallet?
   SentTransactions     Transactions[] @relation(name: "Sender")
   ReceivedTransactions Transactions[] @relation(name: "Receiver")
+}
+
+enum AccountType {
+  CLIENT
+  MERCHANT
 }
 
 enum Role {
@@ -70,6 +76,7 @@ model BankAccount {
   id               String             @id @default(cuid())
   MobileNumber     String             @unique
   Name             String
+  Password         String     
   AccountNumber    Int                @unique //8-digit
   Email            String             @unique
   Balance          BigInt             @default(2000000)
