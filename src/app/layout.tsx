@@ -6,6 +6,7 @@ import { Providers } from '@/components/providers';
 import { Space_Mono } from 'next/font/google';
 
 import { Bricolage_Grotesque } from 'next/font/google';
+import { Toaster } from '@/components/ui/toaster';
 
 const fontHeading = Bricolage_Grotesque({
 	subsets: ['latin'],
@@ -40,6 +41,7 @@ export default function RootLayout({
 					disableTransitionOnChange
 				>
 					{children}
+					<Toaster/>
 				</Providers>
 			</body>
 		</html>

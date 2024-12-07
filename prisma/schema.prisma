@@ -20,6 +20,7 @@ model User {
   Password             String?
   MobileNumber         String         @unique
   picture              String?
+  pin                  Int?
   role                 Role           @default(User)
   iSGoogle             Boolean        @default(false)
   isVerified           Boolean        @default(false)
@@ -45,6 +46,7 @@ model Transactions {
   id         String @id @default(cuid())
   SenderId   String
   ReceiverId String
+  Note       String
   timestamp  DateTime   @default(now())
   Sender     User   @relation(fields: [SenderId], references: [id], name: "Sender")
   Receiver   User   @relation(fields: [ReceiverId], references: [id], name: "Receiver")

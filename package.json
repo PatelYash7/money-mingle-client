@@ -1,5 +1,5 @@
 {
-	"name": "next-saas-template",
+	"name": "money-mingle",
 	"version": "0.1.0",
 	"private": false,
 	"scripts": {
@@ -20,9 +20,12 @@
 		"@radix-ui/react-label": "^2.1.0",
 		"@radix-ui/react-separator": "^1.1.0",
 		"@radix-ui/react-slot": "^1.1.0",
+		"@radix-ui/react-toast": "^1.2.2",
 		"@radix-ui/react-tooltip": "^1.1.4",
 		"@tabler/icons-react": "^3.19.0",
 		"@types/bcrypt": "^5.0.2",
+		"@types/recoil": "^0.0.1",
+		"axios": "^1.7.9",
 		"bcrypt": "^5.1.1",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",

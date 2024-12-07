@@ -6,8 +6,8 @@ import { ArrowRight, Shield, Zap, DollarSign, Smartphone, Star } from 'lucide-re
 
 export default function LandingPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground">
-      <header className="px-4 lg:px-6 h-20 flex items-center border-b">
+    <div className="flex flex-col bg-background text-foreground">
+      {/* <header className="px-4 lg:px-6 h-20 flex items-center border-b">
         <Link className="flex items-center justify-center" href="#">
           <Image
             src="/placeholder.svg?height=40&width=40"
@@ -29,9 +29,9 @@ export default function LandingPage() {
             Testimonials
           </Link>
         </nav>
-      </header>
+      </header> */}
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gradient-to-r from-purple-100 via-pink-100 to-orange-100">
+        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-36 bg-gradient-to-r from-purple-100 via-pink-100 to-orange-100">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col lg:flex-row items-center justify-between space-y-12 lg:space-y-0 lg:space-x-12">
               <div className="space-y-8 text-center lg:text-left lg:w-1/2">

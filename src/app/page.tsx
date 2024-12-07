@@ -24,15 +24,6 @@ export default async function Home() {
 	return (
 		<>
 			<FloatingNav navItems={navItems} />
-			{/* <AuroraBackground className='px-48'>
-				<div className='text-3xl md:text-5xl font-bold dark:text-white text-center'>
-					Effortless NextJS Starter Kit for Developers
-				</div>
-				<p className='text-xl md:text-xl px-24 py-8 font-semibold dark:text-gray-400 text-gray-400  text-center'>
-					This template is designed for modern developers who want to focus on
-					business logic while minimizing setup time.
-				</p>
-			</AuroraBackground> */}
 			<LandingPage />
 		</>
 	);

@@ -3,14 +3,12 @@ import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
-		<div className='py-8 bg-black text-white'>
-			<SidebarProvider className=''>
-				<AppSidebar />
-				<main className=''>
-					<SidebarTrigger />
-					{children}
-				</main>
-			</SidebarProvider>
-		</div>
+		<SidebarProvider className=''>
+			<AppSidebar />
+			<main className='text-white  w-full '>
+				<SidebarTrigger className='absolute top-4 z-10' />
+				<div className='px-10 min-h-screen py-10  '>{children}</div>
+			</main>
+		</SidebarProvider>
 	);
 }
