@@ -19,16 +19,16 @@ export const addNumber = async ({
 				MobileNumber: MobileNumber,
 			},
 		});
-        if(response){
-            return {
-                code:1,
-                message:"Number Added Successfully"
-            }
-        }
+		if (response) {
+			return {
+				code: 1,
+				message: 'Number Added Successfully',
+			};
+		}
 	} catch (error) {
 		return {
-            code:0,
-            message:"Error Adding the Nummber"
-        }
+			code: 0,
+			message: 'Error Adding the Nummber',
+		};
 	}
 };

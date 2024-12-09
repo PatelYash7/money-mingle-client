@@ -35,6 +35,7 @@
 		"next-auth": "^4.24.7",
 		"next-sitemap": "^4.2.3",
 		"next-themes": "^0.3.0",
+		"nodemailer": "^6.9.16",
 		"prettier": "^3.3.3",
 		"react": "^18",
 		"react-dom": "^18",
@@ -43,10 +44,12 @@
 		"recoil": "^0.7.7",
 		"tailwind-merge": "^2.5.2",
 		"tailwindcss-animate": "^1.0.7",
+		"uuid": "^11.0.3",
 		"zod": "^3.23.8"
 	},
 	"devDependencies": {
 		"@types/node": "^20",
+		"@types/nodemailer": "^6.4.17",
 		"@types/react": "^18",
 		"@types/react-dom": "^18",
 		"eslint": "^8",

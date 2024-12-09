@@ -10,17 +10,24 @@ import { useState } from 'react';
 
 export default function Page() {
 	const router = useRouter();
-    const session = useSession();
-    const [mobile,setMobileNumber]=useState("")
+	const session = useSession();
+	const [mobile, setMobileNumber] = useState('');
 	const handleSubmit = async () => {
-        if(session.data?.user.id){
-            const response = await addNumber({id:session.data?.user.id,MobileNumber:mobile});
-            if(response){
-                router.push('/')
-                handleToast({title:"Success",description:response.message,className:"bg-green-700"})
-            }
-        }
-    };
+		if (session.data?.user.id) {
+			const response = await addNumber({
+				id: session.data?.user.id,
+				MobileNumber: mobile,
+			});
+			if (response) {
+				router.push('/');
+				handleToast({
+					title: 'Success',
+					description: response.message,
+					className: 'bg-green-700',
+				});
+			}
+		}
+	};
 	return (
 		<div className='min-h-screen flex items-center justify-center bg-black bg-[linear-gradient(rgba(0,0,0,.5)_2px,transparent_2px),linear-gradient(90deg,rgba(0,0,0,.5)_2px,transparent_2px)] bg-[size:50px_50px]'>
 			<Card className='w-full max-w-md bg-[#111] text-white border-none shadow-2xl'>
@@ -33,10 +40,13 @@ export default function Page() {
 					>
 						Moeny Mingle
 					</h1>
-                    <p className='text-sm text-gray-400'>Mobile Number is required for Wallet Transfer.<br/> Please Add Mobile Number</p>
+					<p className='text-sm text-gray-400'>
+						Mobile Number is required for Wallet Transfer.
+						<br /> Please Add Mobile Number
+					</p>
 				</CardHeader>
 				<CardContent className='space-y-4'>
-					<div className='space-y-4' >
+					<div className='space-y-4'>
 						<div className='space-y-2'>
 							<label
 								htmlFor='number'
@@ -46,9 +56,9 @@ export default function Page() {
 							</label>
 							<div className='relative'>
 								<Input
-                                    onChange={(e)=>{
-                                        setMobileNumber(e.target.value)
-                                    }}
+									onChange={(e) => {
+										setMobileNumber(e.target.value);
+									}}
 									id='email'
 									placeholder='+91 940XXXXXX0 '
 									className='bg-[#222] border-gray-700 text-white'
@@ -57,7 +67,7 @@ export default function Page() {
 						</div>
 						<Button
 							type='submit'
-                            onClick={handleSubmit}
+							onClick={handleSubmit}
 							className='w-full bg-blue-600 hover:bg-blue-700 text-white'
 						>
 							Add Number

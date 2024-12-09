@@ -1,10 +1,5 @@
 'use client';
-import {
-	Card,
-	CardContent,
-	CardHeader,
-	CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { userAtom } from '@/store/user';
 import { ArrowDownFromLine, ArrowUp, ArrowUpFromLine } from 'lucide-react';
@@ -62,9 +57,14 @@ export default function Page() {
 										<Skeleton className='w-20 h-2' />
 									</div>
 								</div>
-                                <div>
-                                    <Link href={'/wallet-transfer'} className='px-4 py-2 bg-green-500 rounded-2xl font-bold'>Pay Now</Link>
-                                </div>
+								<div>
+									<Link
+										href={'/wallet-transfer'}
+										className='px-4 py-2 bg-green-500 rounded-2xl font-bold'
+									>
+										Pay Now
+									</Link>
+								</div>
 							</div>
 							<div className='flex justify-between'>
 								<div className='flex items-center gap-4'>
@@ -76,9 +76,14 @@ export default function Page() {
 										<Skeleton className='w-20 h-2' />
 									</div>
 								</div>
-                                <div>
-                                    <Link href={'/wallet-transfer'} className='px-4 py-2 bg-green-500 rounded-2xl font-bold'>Pay Now</Link>
-                                </div>
+								<div>
+									<Link
+										href={'/wallet-transfer'}
+										className='px-4 py-2 bg-green-500 rounded-2xl font-bold'
+									>
+										Pay Now
+									</Link>
+								</div>
 							</div>
 							<div className='flex justify-between'>
 								<div className='flex items-center gap-4'>
@@ -90,9 +95,14 @@ export default function Page() {
 										<Skeleton className='w-20 h-2' />
 									</div>
 								</div>
-                                <div>
-                                    <Link href={'/wallet-transfer'} className='px-4 py-2 bg-green-500 rounded-2xl font-bold'>Pay Now</Link>
-                                </div>
+								<div>
+									<Link
+										href={'/wallet-transfer'}
+										className='px-4 py-2 bg-green-500 rounded-2xl font-bold'
+									>
+										Pay Now
+									</Link>
+								</div>
 							</div>
 						</CardContent>
 					</Card>

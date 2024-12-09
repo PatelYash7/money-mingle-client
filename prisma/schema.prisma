@@ -76,7 +76,8 @@ model BankAccount {
   id               String             @id @default(cuid())
   MobileNumber     String             @unique
   Name             String
-  Password         String     
+  Password         String
+  pin              Int?     
   AccountNumber    Int                @unique //8-digit
   Email            String             @unique
   Balance          BigInt             @default(2000000)

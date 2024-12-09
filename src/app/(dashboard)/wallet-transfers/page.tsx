@@ -38,16 +38,18 @@ export default function Page() {
 			alert('Insufficient funds!');
 		}
 	};
-    const closeModal = ()=>{
-        setIsModalOpen(false)
-    }
+	const closeModal = () => {
+		setIsModalOpen(false);
+	};
 
 	return (
 		<div className='w-full py-4'>
 			<h1 className='text-4xl py-4 font-bold'>Wallet Transfer</h1>
 
 			{isModalOpen ?
-				<div className='w-1/3 flex justify-start'>{<TransferForm setIsModalOpen={closeModal} />}</div>
+				<div className='w-1/3 flex justify-start'>
+					{<TransferForm setIsModalOpen={closeModal} />}
+				</div>
 			:	<div className='grid grid-cols-3  space-x-4 '>
 					<Card className='col-span-2'>
 						<CardHeader>
@@ -189,7 +191,7 @@ export default function Page() {
 		</div>
 	);
 }
-function TransferForm({setIsModalOpen}:{setIsModalOpen:()=>void}) {
+function TransferForm({ setIsModalOpen }: { setIsModalOpen: () => void }) {
 	const [amount, setAmount] = useState('');
 	const [note, setNote] = useState('');
 	const [isConfirmOpen, setIsConfirmOpen] = useState(false);
@@ -232,7 +234,7 @@ function TransferForm({setIsModalOpen}:{setIsModalOpen:()=>void}) {
 					</div>
 					<div className='flex gap-2'>
 						<Button type='submit'>Send Transfer</Button>
-						<Button  onClick={setIsModalOpen}>Cancel Transfer</Button>
+						<Button onClick={setIsModalOpen}>Cancel Transfer</Button>
 					</div>
 				</form>
 				<Dialog open={isConfirmOpen} onOpenChange={setIsConfirmOpen}>

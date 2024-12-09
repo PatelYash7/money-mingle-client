@@ -5,7 +5,9 @@ import { atom, selector } from 'recoil';
 const userSelector = selector({
 	key: 'UserSelector',
 	get: async () => {
-		const result = await axios.get<{user:User,code:number}>('/api/get-user');
+		const result = await axios.get<{ user: User; code: number }>(
+			'/api/get-user',
+		);
 		return result.data.user;
 	},
 });
