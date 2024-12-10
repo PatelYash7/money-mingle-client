@@ -1,5 +1,4 @@
 'use client';
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -8,24 +7,25 @@ import { useForm } from 'react-hook-form';
 import { BankDetailsSchema, BankDetailsSchemaType } from '@/zod/authentication';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 export default function CreateAccountPage() {
 	const {
 		register,
 		handleSubmit,
-		watch,
 		formState: { errors },
 	} = useForm<BankDetailsSchemaType>({
 		mode: 'onChange',
 		resolver: zodResolver(BankDetailsSchema),
 	});
 	const [isLoading, setIsLoading] = useState(false);
+	const router = useRouter();
 	const onSubmit = async (e: BankDetailsSchemaType) => {
 		setIsLoading(true);
 		const response = await axios.post('/api/create-bankAccount', e);
 		if (response.data.code == 1) {
 			setIsLoading(false);
-			alert(response.data.message);
+			router.push('/bank-account');
 		}
 	};
 	return (

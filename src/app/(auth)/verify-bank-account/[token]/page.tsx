@@ -21,14 +21,6 @@ export default async function Page({ params }: { params: { token: string } }) {
 							</span>
 						</div>
 						<EnterPin id={result.data.id} />
-						<div className='flex justify-center py-4'>
-							<Link
-								href={'/bank-dashboard'}
-								className='bg-blue-500 px-3 py-2 text-sm font-semibold rounded-3xl'
-							>
-								Click to Dashboard
-							</Link>
-						</div>
 					</CardContent>
 				</Card>
 			</div>
@@ -47,7 +39,7 @@ export default async function Page({ params }: { params: { token: string } }) {
 							href={'/bank-dashboard'}
 							className='bg-blue-500 px-2 py-1 rounded-3xl'
 						>
-							Click to Dashboard
+							Login Now
 						</Link>
 					</div>
 				</CardContent>

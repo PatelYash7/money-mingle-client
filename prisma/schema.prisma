@@ -64,7 +64,6 @@ model BankToWalletTrxn {
   Amount   Int
   Locked   Int  
   Token    String?
-  otp      String?
   BankId   String
   WalletId String
   Bank     BankAccount @relation(fields: [BankId], references: [id])
