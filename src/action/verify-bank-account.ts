@@ -1,8 +1,6 @@
 'use server';
-
 import prisma from '@/db';
-
-export const updateBankAccount = async ({ token }: { token: string }) => {
+export const VerifyBankAccount = async ({ token }: { token: string }) => {
 	try {
 		const response = await prisma.$transaction(async (txn) => {
 			const Verification = await txn.verificationToken.findFirst({
@@ -41,7 +39,6 @@ export const updateBankAccount = async ({ token }: { token: string }) => {
 			};
 		}
 	} catch (error) {
-		console.log(error);
 		return {
 			code: 0,
 			message: 'InValid Verification Token',

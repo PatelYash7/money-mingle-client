@@ -2,7 +2,7 @@
 import { User } from '@/types/type';
 import axios, { AxiosResponse } from 'axios';
 import { atom, selector } from 'recoil';
-const userSelector = selector({
+export const userSelector = selector<User>({
 	key: 'UserSelector',
 	get: async () => {
 		const result = await axios.get<{ user: User; code: number }>(

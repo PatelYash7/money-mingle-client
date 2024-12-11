@@ -61,7 +61,7 @@ export const POST = async (req: NextRequest) => {
 				await sendEmail(response.Email, confirmationLink, Verification.type);
 				return {
 					code: 1,
-					message: 'Verification Mail Sent to Application',
+					message: 'Verification Mail Sent!!',
 				};
 			},
 			{

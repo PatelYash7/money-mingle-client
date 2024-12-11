@@ -1,13 +1,13 @@
 'use client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
-import { userAtom } from '@/store/user';
+import { userSelector } from '@/store/user';
 import { ArrowDownFromLine, ArrowUp, ArrowUpFromLine } from 'lucide-react';
 import Link from 'next/link';
 import { useRecoilValueLoadable } from 'recoil';
 
 export default function Page() {
-	const user = useRecoilValueLoadable(userAtom);
+	const user = useRecoilValueLoadable(userSelector);
 	return (
 		<div className='py-4 w-full '>
 			<div className=' grid grid-cols-5 space-x-8 '>

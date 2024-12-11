@@ -5,7 +5,6 @@ import { NextResponse } from 'next/server';
 
 export const GET = async () => {
 	const session = await getServerSession(authOptions);
-	console.log(session?.user);
 	try {
 		if (session?.user) {
 			const response = await prisma.user.findFirst({

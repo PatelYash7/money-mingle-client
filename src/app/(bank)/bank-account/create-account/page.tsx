@@ -31,7 +31,15 @@ export default function CreateAccountPage() {
 	return (
 		<div className='flex justify-center items-center h-screen'>
 			<div className='container mx-auto max-w-lg py-10 border-2 rounded-lg'>
-				<h1 className='text-3xl font-bold mb-6'>Create Bank Account</h1>
+				<h1 className='text-3xl font-bold'>Create Bank Account</h1>
+				<h1
+					className='text-xl mb-3 pt-4 text-fuchsia-400 cursor-pointer'
+					onClick={() => {
+						router.push('/bank-account');
+					}}
+				>
+					Money Mingle Payments Banks
+				</h1>
 				<form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
 					<div className='space-y-2'>
 						<Label htmlFor='mobileNumber'>Mobile Number</Label>

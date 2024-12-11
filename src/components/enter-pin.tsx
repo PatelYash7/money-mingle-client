@@ -1,26 +1,35 @@
 'use client';
-
 import { useState } from 'react';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Button } from './ui/button';
-import { addPin } from '@/action/add-pin';
-import { toast } from '@/hooks/use-toast';
+import { addBankPin, addWalletPin } from '@/action/add-pin';
 import { handleToast } from './handle-toast';
-import { title } from 'process';
 import Link from 'next/link';
 
-export const EnterPin = ({ id }: { id: string }) => {
+export const EnterPin = ({
+	id,
+	type,
+}: {
+	id: string;
+	type: 'Wallet' | 'Bank';
+}) => {
 	const [pin, setpin] = useState('');
 	const [showModal, setShowModal] = useState(false);
 
 	const submit = async () => {
 		if (Number(pin) > 99999) {
-			console.log('first');
-			const response = await addPin(Number(pin), id);
-			console.log(response);
-			if (response.code == 1) {
-				setShowModal(true);
+			if (type == 'Bank') {
+				const response = await addBankPin(Number(pin), id);
+				if (response.code == 1) {
+					setShowModal(true);
+				}
+			}
+			if(type=='Wallet'){
+				const response = await addWalletPin(Number(pin), id);
+				if (response.code == 1) {
+					setShowModal(true);
+				}
 			}
 		} else {
 			handleToast({
@@ -56,12 +65,22 @@ export const EnterPin = ({ id }: { id: string }) => {
 			<div className='text-center py-4 font-bold text-lg'>
 				Pin Updated Successfully!
 				<div className='flex justify-center py-4'>
-					<Link
-						href={'/bank-login'}
-						className='bg-blue-500 px-3 py-2 text-sm font-semibold rounded-3xl'
-					>
-						Click to Dashboard
-					</Link>
+					{type == 'Bank' && (
+						<Link
+							href={'/bank-login'}
+							className='bg-blue-500 px-3 py-2 text-sm font-semibold rounded-3xl'
+						>
+							Click to Dashboard
+						</Link>
+					)}
+					{type == 'Wallet' && (
+						<Link
+							href={'/wallet-transfers'}
+							className='bg-blue-500 px-3 py-2 text-sm font-semibold rounded-3xl'
+						>
+							Go to Wallet Transfer
+						</Link>
+					)}
 				</div>
 			</div>
 		);
