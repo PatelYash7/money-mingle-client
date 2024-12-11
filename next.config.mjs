@@ -3,6 +3,12 @@ const nextConfig = {
 	output: 'standalone',
 	images: {
 		unoptimized: true,
+		remotePatterns:[
+			{
+				protocol: 'https',
+				hostname: '"lh3.googleusercontent.com"',
+			},
+		]
 	},
 	// Header for all the Inbuilt API Routes.
 	async headers() {

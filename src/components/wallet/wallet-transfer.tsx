@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
 	Card,
 	CardContent,
@@ -21,31 +21,42 @@ import {
 } from '@/components/ui/dialog';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Label } from '@/components/ui/label';
-export  function WalletTransfer() {
-	const [selectedUser, setSelectedUser] = useState(null);
+import { useDedounce } from '@/hooks/use-debounce';
+import { User } from '@prisma/client';
+import { searchUser } from '@/action/search-user';
+import Image from 'next/image';
+export function WalletTransfer() {
 	const [balance, setBalance] = useState(1000); // Mock balance
 	const [isOpen, setIsOpen] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	const handleTransfer = (amount: number, note: string) => {
-		// Mock transfer logic
-		if (amount <= balance) {
-			setBalance(balance - amount);
-			// Here you would typically call an API to process the transfer
-		} else {
-			alert('Insufficient funds!');
-		}
-	};
 	const closeModal = () => {
 		setIsModalOpen(false);
 	};
-
+	const [searchValue, setSearchValue] = useState('');
+	const debouncedValue = useDedounce({ value: searchValue, timer: 1000 });
+	const [userData, setUserData] = useState<User[]>();
+	const [selectedUser, setSelectedUser] = useState<User>();
+	useEffect(() => {
+		const search = async () => {
+			setIsOpen(true);
+			const result = await searchUser({ value: debouncedValue });
+			if (result.code == 1 && result.data?.length) {
+				setUserData(result.data);
+			}
+		};
+		if (debouncedValue) {
+			search();
+		} else {
+			setIsOpen(false);
+		}
+	}, [debouncedValue]);
 	return (
 		<div className='w-full py-4'>
 			<h1 className='text-4xl py-4 font-bold'>Wallet Transfer</h1>
 
-			{isModalOpen ?
+			{selectedUser ?
 				<div className='w-1/3 flex justify-start'>
-					{<TransferForm setIsModalOpen={closeModal} />}
+					{<TransferForm User={selectedUser} setIsModalOpen={closeModal} />}
 				</div>
 			:	<div className='grid grid-cols-3  space-x-4 '>
 					<Card className='col-span-2'>
@@ -58,120 +69,163 @@ export  function WalletTransfer() {
 									type='text'
 									placeholder='Search by name or email'
 									// value={searchTerm}
-									onChange={(e) => setIsOpen(true)}
+									onChange={(e) => setSearchValue(e.target.value)}
 								/>
 							</div>
 							<div className={`${isOpen ? 'block' : 'hidden'} space-y-2`}>
-								<div className='flex justify-between'>
-									<div className='flex items-center gap-4'>
-										<div>
-											<Skeleton className='h-12 w-12 rounded-full' />
-										</div>
-										<div className='w-full space-y-2'>
-											<Skeleton className='w-48 h-4' />
-											<Skeleton className='w-20 h-2' />
-										</div>
-									</div>
-									<div>
-										<Button
-											onClick={() => {
-												setIsOpen(false);
-												setIsModalOpen(true);
-											}}
-											className=' bg-green-500 rounded-2xl font-bold'
+								{userData?.length ?
+									userData.map((item: User, key) => (
+										<div
+											key={key}
+											className='flex justify-between border-2 px-2 py-2 items-center rounded-md'
 										>
-											Pay Now
-										</Button>
-									</div>
-								</div>
-								<div className='flex justify-between'>
-									<div className='flex items-center gap-4'>
-										<div>
-											<Skeleton className='h-12 w-12 rounded-full' />
+											<div className='flex items-center gap-4'>
+												<div>
+													{item.picture ?
+														<Image
+															src={item.picture}
+															width={48}
+															height={48}
+															className='h-12 w-16 rounded-full'
+															alt='Profile'
+														/>
+													:	<div></div>}
+												</div>
+												<div className='w-full space-y-4'>
+													{/* <Skeleton className='w-48 h-4' /> */}
+													<div className=' text-xl font-semibold w-48 h-4'>
+														{item.Name}
+													</div>
+													<div className='text-sm'>{item.MobileNumber}</div>
+												</div>
+											</div>
+											<div>
+												<Button
+													onClick={() => {
+														setIsOpen(false);
+														setIsModalOpen(true);
+														setSelectedUser(item);
+													}}
+													className=' bg-green-500 rounded-2xl font-bold'
+												>
+													Pay Now
+												</Button>
+											</div>
 										</div>
-										<div className='w-full space-y-2'>
-											<Skeleton className='w-48 h-4' />
-											<Skeleton className='w-20 h-2' />
+									))
+								:	<>
+										<div className='flex justify-between'>
+											<div className='flex items-center gap-4'>
+												<div>
+													<Skeleton className='h-12 w-12 rounded-full' />
+												</div>
+												<div className='w-full space-y-2'>
+													<Skeleton className='w-48 h-4' />
+													<Skeleton className='w-20 h-2' />
+												</div>
+											</div>
+											<div>
+												<Button
+													onClick={() => {
+														setIsOpen(false);
+														setIsModalOpen(true);
+													}}
+													className=' bg-green-500 rounded-2xl font-bold'
+												>
+													Pay Now
+												</Button>
+											</div>
 										</div>
-									</div>
-									<div>
-										<Button
-											onClick={() => {
-												setIsOpen(false);
-												setIsModalOpen(true);
-											}}
-											className='px-4 py-1 bg-green-500 rounded-2xl font-bold'
-										>
-											Pay Now
-										</Button>
-									</div>
-								</div>
-								<div className='flex justify-between'>
-									<div className='flex items-center gap-4'>
-										<div>
-											<Skeleton className='h-12 w-12 rounded-full' />
+										<div className='flex justify-between'>
+											<div className='flex items-center gap-4'>
+												<div>
+													<Skeleton className='h-12 w-12 rounded-full' />
+												</div>
+												<div className='w-full space-y-2'>
+													<Skeleton className='w-48 h-4' />
+													<Skeleton className='w-20 h-2' />
+												</div>
+											</div>
+											<div>
+												<Button
+													onClick={() => {
+														setIsOpen(false);
+														setIsModalOpen(true);
+													}}
+													className='px-4 py-1 bg-green-500 rounded-2xl font-bold'
+												>
+													Pay Now
+												</Button>
+											</div>
 										</div>
-										<div className='w-full space-y-2'>
-											<Skeleton className='w-48 h-4' />
-											<Skeleton className='w-20 h-2' />
+										<div className='flex justify-between'>
+											<div className='flex items-center gap-4'>
+												<div>
+													<Skeleton className='h-12 w-12 rounded-full' />
+												</div>
+												<div className='w-full space-y-2'>
+													<Skeleton className='w-48 h-4' />
+													<Skeleton className='w-20 h-2' />
+												</div>
+											</div>
+											<div>
+												<Button
+													onClick={() => {
+														setIsOpen(false);
+														setIsModalOpen(true);
+													}}
+													className='px-4 py-1 bg-green-500 rounded-2xl font-bold'
+												>
+													Pay Now
+												</Button>
+											</div>
 										</div>
-									</div>
-									<div>
-										<Button
-											onClick={() => {
-												setIsOpen(false);
-												setIsModalOpen(true);
-											}}
-											className='px-4 py-1 bg-green-500 rounded-2xl font-bold'
-										>
-											Pay Now
-										</Button>
-									</div>
-								</div>
-								<div className='flex justify-between'>
-									<div className='flex items-center gap-4'>
-										<div>
-											<Skeleton className='h-12 w-12 rounded-full' />
+										<div className='flex justify-between'>
+											<div className='flex items-center gap-4'>
+												<div>
+													<Skeleton className='h-12 w-12 rounded-full' />
+												</div>
+												<div className='w-full space-y-2'>
+													<Skeleton className='w-48 h-4' />
+													<Skeleton className='w-20 h-2' />
+												</div>
+											</div>
+											<div>
+												<Button
+													onClick={() => {
+														setIsOpen(false);
+														setIsModalOpen(true);
+													}}
+													className='px-4 py-1 bg-green-500 rounded-2xl font-bold'
+												>
+													Pay Now
+												</Button>
+											</div>
 										</div>
-										<div className='w-full space-y-2'>
-											<Skeleton className='w-48 h-4' />
-											<Skeleton className='w-20 h-2' />
+										<div className='flex justify-between'>
+											<div className='flex items-center gap-4'>
+												<div>
+													<Skeleton className='h-12 w-12 rounded-full' />
+												</div>
+												<div className='w-full space-y-2'>
+													<Skeleton className='w-48 h-4' />
+													<Skeleton className='w-20 h-2' />
+												</div>
+											</div>
+											<div>
+												<Button
+													onClick={() => {
+														setIsOpen(false);
+														setIsModalOpen(true);
+													}}
+													className='px-4 py-1 bg-green-500 rounded-2xl font-bold'
+												>
+													Pay Now
+												</Button>
+											</div>
 										</div>
-									</div>
-									<div>
-										<Button
-											onClick={() => {
-												setIsOpen(false);
-												setIsModalOpen(true);
-											}}
-											className='px-4 py-1 bg-green-500 rounded-2xl font-bold'
-										>
-											Pay Now
-										</Button>
-									</div>
-								</div>
-								<div className='flex justify-between'>
-									<div className='flex items-center gap-4'>
-										<div>
-											<Skeleton className='h-12 w-12 rounded-full' />
-										</div>
-										<div className='w-full space-y-2'>
-											<Skeleton className='w-48 h-4' />
-											<Skeleton className='w-20 h-2' />
-										</div>
-									</div>
-									<div>
-										<Button
-											onClick={() => {
-												setIsOpen(false);
-												setIsModalOpen(true);
-											}}
-											className='px-4 py-1 bg-green-500 rounded-2xl font-bold'
-										>
-											Pay Now
-										</Button>
-									</div>
-								</div>
+									</>
+								}
 							</div>
 						</CardContent>
 					</Card>
@@ -188,7 +242,13 @@ export  function WalletTransfer() {
 		</div>
 	);
 }
-function TransferForm({ setIsModalOpen }: { setIsModalOpen: () => void }) {
+function TransferForm({
+	setIsModalOpen,
+	User,
+}: {
+	User: User;
+	setIsModalOpen: () => void;
+}) {
 	const [amount, setAmount] = useState('');
 	const [note, setNote] = useState('');
 	const [isConfirmOpen, setIsConfirmOpen] = useState(false);
@@ -202,12 +262,13 @@ function TransferForm({ setIsModalOpen }: { setIsModalOpen: () => void }) {
 		<Card className=''>
 			<CardHeader>
 				<CardTitle>Transfer Details</CardTitle>
-				<CardDescription className='pt-4'>
+				<CardContent className='pt-4'>
 					<div>
-						Paying to <span className='underline'>Tirath Bhavani</span>
+						Paying to{' '}
+						<span className='underline font-bold text-lg'>{User.Name}</span>
 					</div>
-					<div>9943576410</div>
-				</CardDescription>
+					<div className='font-bold'>9943576410</div>
+				</CardContent>
 			</CardHeader>
 			<CardContent>
 				<form onSubmit={handleSubmit} className='space-y-4'>

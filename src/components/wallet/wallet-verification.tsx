@@ -16,7 +16,7 @@ export const WalletVerification = () => {
 		};
 		const response = await axios.post('/api/verify-wallet', data);
 		if (response.data.code == 1) {
-			console.log(response.data.code);
+			
 			setLoading(false);
 		} else {
 			setLoading(false);

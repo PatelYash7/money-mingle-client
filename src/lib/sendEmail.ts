@@ -8,7 +8,7 @@ export async function sendEmail(email: string, link: string, type: TokenType) {
 			port: 465,
 			auth: {
 				user: 'yashpate0101@gmail.com',
-				pass: 'cfnzgvzrscahaohq',
+				pass: process.env.MAIL_PASSWORD,
 			},
 		});
 		if (type === 'BANK_VERIFICATION') {
