@@ -1,34 +1,32 @@
-'use server'
+'use server';
 import prisma from '@/db';
-
+import { authOptions } from '@/lib/auth';
+import { getServerSession } from 'next-auth';
 
 export const searchUser = async ({ value }: { value: string }) => {
+	const session = await getServerSession(authOptions);
+	console.log(value);
 	const result = await prisma.user.findMany({
 		where: {
-			OR: [
+			AND: [
+				{
+					OR: [
+						{ MobileNumber: { startsWith: value } },
+						{ Name: { startsWith: value } },
+						{ Email: { startsWith: value } },
+					],
+				},
 				{
 					isVerified: true,
 				},
-				{
-					OR: [
-						{
-							MobileNumber: {
-								startsWith: value,
-							},
-							Name: {
-								startsWith: value,
-							},
-                            Email:{
-                                startsWith:value
-                            }
-						},
-					],
-				},
 			],
+			NOT: {
+				id: session?.user.id,
+			},
 		},
-        include:{
-            Wallet:true
-        }
+		include: {
+			Wallet: true,
+		},
 	});
 	if (result) {
 		return {

@@ -30,7 +30,6 @@ export const addBankPin = async (pin: number, id: string) => {
 	}
 };
 
-
 export const addWalletPin = async (pin: number, id: string) => {
 	try {
 		const result = await prisma.wallet.update({

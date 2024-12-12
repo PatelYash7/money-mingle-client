@@ -4,6 +4,7 @@ import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { addBankPin, addWalletPin } from '@/action/add-pin';
+import { handleToast } from '../handle-toast';
 
 export const UpdatePin = ({ id }: { id: string }) => {
 	const [isSubmitting, setIsSubmitting] = useState(false);
@@ -19,6 +20,11 @@ export const UpdatePin = ({ id }: { id: string }) => {
 			if (response.code == 1) {
 				setError(response.message);
 				setIsSubmitting(false);
+				handleToast({
+					title: 'Pin Updated',
+					description: 'Your Pin has been Updated!!!',
+					className: 'bg=green-600 text-white font-bold',
+				});
 			}
 		} else {
 			setError('Pin is not Same');

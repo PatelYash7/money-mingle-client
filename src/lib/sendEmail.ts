@@ -21,7 +21,7 @@ export async function sendEmail(email: string, link: string, type: TokenType) {
 			};
 			await transporter.sendMail(mailOptions);
 		}
-		if(type==='WALLET_VERIFICATION'){
+		if (type === 'WALLET_VERIFICATION') {
 			const mailOptions = {
 				from: 'yashpate0101@gmail.com',
 				to: email,

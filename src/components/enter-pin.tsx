@@ -25,7 +25,7 @@ export const EnterPin = ({
 					setShowModal(true);
 				}
 			}
-			if(type=='Wallet'){
+			if (type == 'Wallet') {
 				const response = await addWalletPin(Number(pin), id);
 				if (response.code == 1) {
 					setShowModal(true);

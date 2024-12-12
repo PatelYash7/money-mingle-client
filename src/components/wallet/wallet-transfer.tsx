@@ -26,22 +26,26 @@ import { User } from '@prisma/client';
 import { searchUser } from '@/action/search-user';
 import Image from 'next/image';
 export function WalletTransfer() {
-	const [balance, setBalance] = useState(1000); // Mock balance
+	const [balance, setBalance] = useState(300); // Mock balance
 	const [isOpen, setIsOpen] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const closeModal = () => {
 		setIsModalOpen(false);
 	};
+	const [error, setError] = useState('');
 	const [searchValue, setSearchValue] = useState('');
 	const debouncedValue = useDedounce({ value: searchValue, timer: 1000 });
 	const [userData, setUserData] = useState<User[]>();
 	const [selectedUser, setSelectedUser] = useState<User>();
 	useEffect(() => {
 		const search = async () => {
-			setIsOpen(true);
 			const result = await searchUser({ value: debouncedValue });
 			if (result.code == 1 && result.data?.length) {
 				setUserData(result.data);
+				setError('');
+			} else {
+				setUserData(undefined);
+				setError('Error finding verified users with this value');
 			}
 		};
 		if (debouncedValue) {
@@ -56,7 +60,14 @@ export function WalletTransfer() {
 
 			{selectedUser ?
 				<div className='w-1/3 flex justify-start'>
-					{<TransferForm User={selectedUser} setIsModalOpen={closeModal} />}
+					{
+						<TransferForm
+							User={selectedUser}
+							SetUser={() => {
+								setSelectedUser(undefined);
+							}}
+						/>
+					}
 				</div>
 			:	<div className='grid grid-cols-3  space-x-4 '>
 					<Card className='col-span-2'>
@@ -69,7 +80,11 @@ export function WalletTransfer() {
 									type='text'
 									placeholder='Search by name or email'
 									// value={searchTerm}
-									onChange={(e) => setSearchValue(e.target.value)}
+									onChange={(e) => {
+										setError('');
+										setSearchValue(e.target.value);
+										setIsOpen(true);
+									}}
 								/>
 							</div>
 							<div className={`${isOpen ? 'block' : 'hidden'} space-y-2`}>
@@ -89,7 +104,10 @@ export function WalletTransfer() {
 															className='h-12 w-16 rounded-full'
 															alt='Profile'
 														/>
-													:	<div></div>}
+													:	<div className='px-5 py-3 rounded-full bg-blue-600 text-3xl font-bold'>
+															{item.Name.charAt(0)}
+														</div>
+													}
 												</div>
 												<div className='w-full space-y-4'>
 													{/* <Skeleton className='w-48 h-4' /> */}
@@ -113,6 +131,8 @@ export function WalletTransfer() {
 											</div>
 										</div>
 									))
+								: error ?
+									<div className='text-center'>{error}</div>
 								:	<>
 										<div className='flex justify-between'>
 											<div className='flex items-center gap-4'>
@@ -242,13 +262,7 @@ export function WalletTransfer() {
 		</div>
 	);
 }
-function TransferForm({
-	setIsModalOpen,
-	User,
-}: {
-	User: User;
-	setIsModalOpen: () => void;
-}) {
+function TransferForm({ User, SetUser }: { SetUser: () => void; User: User }) {
 	const [amount, setAmount] = useState('');
 	const [note, setNote] = useState('');
 	const [isConfirmOpen, setIsConfirmOpen] = useState(false);
@@ -260,17 +274,32 @@ function TransferForm({
 
 	return (
 		<Card className=''>
-			<CardHeader>
-				<CardTitle>Transfer Details</CardTitle>
-				<CardContent className='pt-4'>
-					<div>
-						Paying to{' '}
-						<span className='underline font-bold text-lg'>{User.Name}</span>
+			<CardHeader className=' pb-0'>
+				<CardTitle className='text-center'>Transfer Details</CardTitle>
+				<CardContent className='pt-4 pb-0 flex justify-center flex-col items-center'>
+					{User.picture ?
+						<Image
+							src={User.picture}
+							alt='picture'
+							height={56}
+							width={56}
+							className='rounded-full'
+						/>
+					:	<div className='bg-blue-600 px-6 py-4 rounded-full font-bold  text-3xl'>
+							{User.Name.charAt(0)}
+						</div>
+					}
+					<div className='pt-4 px-2 text-center'>
+						<span className='font-bold text-2xl tracking-wider'>
+							{User.Name}
+						</span>
+						<div className='font-bold py-2 tracking-wide'>
+							{User.MobileNumber}
+						</div>
 					</div>
-					<div className='font-bold'>9943576410</div>
 				</CardContent>
 			</CardHeader>
-			<CardContent>
+			<CardContent className=''>
 				<form onSubmit={handleSubmit} className='space-y-4'>
 					<div>
 						<Label
@@ -292,7 +321,9 @@ function TransferForm({
 					</div>
 					<div className='flex gap-2'>
 						<Button type='submit'>Send Transfer</Button>
-						<Button onClick={setIsModalOpen}>Cancel Transfer</Button>
+						<Button type='button' onClick={SetUser}>
+							Cancel Transfer
+						</Button>
 					</div>
 				</form>
 				<Dialog open={isConfirmOpen} onOpenChange={setIsConfirmOpen}>
@@ -300,9 +331,6 @@ function TransferForm({
 						<DialogHeader className='space-y-4'>
 							<DialogTitle>Enter Your Pin</DialogTitle>
 							<Input placeholder='4-digit Pin' />
-							{/* <DialogDescription>
-								Are you sure you want to send ${amount}?
-							</DialogDescription> */}
 						</DialogHeader>
 						<DialogFooter>
 							<Button variant='outline' onClick={() => setIsConfirmOpen(false)}>

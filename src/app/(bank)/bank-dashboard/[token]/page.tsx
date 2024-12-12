@@ -55,7 +55,7 @@ export default async function Page({ params }: { params: { token: string } }) {
 											Balance
 										</dt>
 										<dd className='mt-1 text-sm text-gray-900'>
-											₹ {(Number(data.Balance)/100).toString()}
+											₹ {(Number(data.Balance) / 100).toString()}
 										</dd>
 									</div>
 									<div className='sm:col-span-1'>

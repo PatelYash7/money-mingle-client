@@ -90,7 +90,7 @@ export default function SignUpPage() {
 								<Input
 									{...register('Email')}
 									id='email'
-									placeholder='microplacer@hotmail.com'
+									placeholder='yashpate0101@gmail.com'
 									className='bg-[#222] border-gray-700 text-white pl-10'
 								/>
 								<Mail className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5' />
