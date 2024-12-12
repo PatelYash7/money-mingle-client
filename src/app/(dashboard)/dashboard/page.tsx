@@ -22,7 +22,9 @@ export default function Page() {
 							<CardContent>
 								<div className='flex-col'>
 									<div className='text-base text-gray-400'> Wallet Balance</div>
-									<div className='text-4xl font-bold tracking-wider'>$0.00</div>
+									<div className='text-4xl font-bold tracking-wider'>
+										${String(Number(user.contents.Wallet.Balance) / 100)}
+									</div>
 								</div>
 								<div className=' flex gap-4 w-full items-center justify-center'>
 									<Link

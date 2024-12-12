@@ -11,6 +11,9 @@ export const GET = async () => {
 				where: {
 					id: session.user.id,
 				},
+				include: {
+					Wallet: true,
+				},
 			});
 			if (response) {
 				return NextResponse.json(
@@ -34,6 +37,7 @@ export const GET = async () => {
 			},
 		);
 	} catch (error) {
+		console.log(error);
 		return NextResponse.json(
 			{
 				user: null,

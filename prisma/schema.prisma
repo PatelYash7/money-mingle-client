@@ -44,7 +44,7 @@ model Wallet {
   userId           String             @unique
   pin              Int?
   user             User               @relation(fields: [userId], references: [id])
-  Balance          BigInt             @default(0)
+  Balance          Int             @default(0)
   BankToWalletTrxn BankToWalletTrxn[]
 }
 
@@ -84,7 +84,7 @@ model BankAccount {
   pin              Int?     
   AccountNumber    Int                @unique //8-digit
   Email            String             @unique
-  Balance          BigInt             @default(2000000)
+  Balance          Int             @default(2000000)
   isVerified       Boolean            @default(false)
   BankTowalletTrxn BankToWalletTrxn[]
 }

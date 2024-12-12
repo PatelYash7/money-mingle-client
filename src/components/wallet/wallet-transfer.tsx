@@ -25,7 +25,8 @@ import { useDedounce } from '@/hooks/use-debounce';
 import { User } from '@prisma/client';
 import { searchUser } from '@/action/search-user';
 import Image from 'next/image';
-export function WalletTransfer() {
+import { UserWithWallet } from '@/types/type';
+export function WalletTransfer({ User }: { User: UserWithWallet }) {
 	const [balance, setBalance] = useState(300); // Mock balance
 	const [isOpen, setIsOpen] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -79,7 +80,6 @@ export function WalletTransfer() {
 								<Input
 									type='text'
 									placeholder='Search by name or email'
-									// value={searchTerm}
 									onChange={(e) => {
 										setError('');
 										setSearchValue(e.target.value);
@@ -252,8 +252,10 @@ export function WalletTransfer() {
 					<Card className='h-fit col-span-1'>
 						<CardContent className='py-4'>
 							<div className='flex flex-col gap-2'>
-								<div className='text-xl font-bold'>Total Balance</div>
-								<div className='text-2xl'>$0.00</div>
+								<div className='text-xl font-bold'>Wallet Balance</div>
+								<div className='text-2xl'>
+									${Number(User.Wallet?.Balance) / 100}
+								</div>
 							</div>
 						</CardContent>
 					</Card>

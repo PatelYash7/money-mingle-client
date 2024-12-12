@@ -1,4 +1,4 @@
-export type User = {
+export type UserType = {
 	id: String;
 	Email: String;
 	Name: String;
@@ -8,8 +8,18 @@ export type User = {
 	role: Role;
 	iSGoogle: Boolean;
 	isVerified: Boolean;
+	Wallet: {
+		id: String;
+		userId: String;
+		pin: Number | undefined;
+		Balance: Number;
+	};
 };
 enum Role {
 	User,
 	Admin,
 }
+import { PrismaClient, Prisma } from '@prisma/client';
+export type UserWithWallet = Prisma.UserGetPayload<{
+	include: { Wallet: true };
+}>;

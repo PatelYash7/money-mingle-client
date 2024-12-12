@@ -27,10 +27,14 @@ export default function CreateAccountPage() {
 		if (response.data.code == 1) {
 			setIsLoading(false);
 			router.push('/bank-account');
-		}else{
+		} else {
 			setIsLoading(false);
 
-			handleToast({title:'Please try Again Later',description:'Cannot Create Bank Account',className:'bg-red-600'})
+			handleToast({
+				title: 'Please try Again Later',
+				description: 'Cannot Create Bank Account',
+				className: 'bg-red-600',
+			});
 		}
 	};
 	return (

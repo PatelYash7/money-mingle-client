@@ -15,7 +15,7 @@ export default async function Page() {
 	if (User?.Wallet) {
 		return (
 			<div>
-				<WalletTransfer />
+				<WalletTransfer User={User} />
 			</div>
 		);
 	}
