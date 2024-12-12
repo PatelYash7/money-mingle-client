@@ -39,51 +39,50 @@ export const POST = async (req: NextRequest) => {
 				message: 'Account Already Exsist',
 			});
 		}
-		const response = await prisma.$transaction(
-			async (txn) => {
-				const response = await txn.bankAccount.create({
-					data: {
-						Email: data.Email,
-						MobileNumber: data.MobileNumber,
-						Name: data.Name,
-						Password: hasedPassword,
-						AccountNumber: AccountNumber,
-					},
-				});
-				const Verification = await txn.verificationToken.create({
-					data: {
-						identifier: response.id,
-						token: v4(),
-						type: 'BANK_VERIFICATION',
-					},
-				});
-				const confirmationLink = `${process.env.NEXTAUTH_URL}/verify-bank-account/${Verification.token}`;
+		const response = await prisma.$transaction(async (txn) => {
+			const response = await txn.bankAccount.create({
+				data: {
+					Email: data.Email,
+					MobileNumber: data.MobileNumber,
+					Name: data.Name,
+					Password: hasedPassword,
+					AccountNumber: AccountNumber,
+				},
+			});
+			const Verification = await txn.verificationToken.create({
+				data: {
+					identifier: response.id,
+					token: v4(),
+					type: 'BANK_VERIFICATION',
+				},
+			});
+			const confirmationLink = `${process.env.NEXTAUTH_URL}/verify-bank-account/${Verification.token}`;
+			if (Verification.token && confirmationLink) {
 				await sendEmail(response.Email, confirmationLink, Verification.type);
 				return {
 					code: 1,
 					message: 'Verification Mail Sent!!',
 				};
-			},
-			{
-				timeout: 10000,
-				maxWait: 5000,
-			},
-		);
+			}
+			return {
+				code: 0,
+				message: 'Error Sending Mail.',
+			};
+		});
 		if (response.code == 1) {
 			return NextResponse.json({
-				code: 1,
+				code: response.code,
 				message: response.message,
 			});
 		}
+		NextResponse.json({
+			code: 0,
+			message: 'No Data Uploaded',
+		});
 	} else {
-		NextResponse.json(
-			{
-				code: 0,
-				message: 'No Data Uploaded',
-			},
-			{
-				status: 500,
-			},
-		);
+		NextResponse.json({
+			code: 0,
+			message: 'No Data Uploaded',
+		});
 	}
 };

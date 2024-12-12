@@ -70,12 +70,6 @@ export default async function Page({ params }: { params: { token: string } }) {
 											</Badge>
 										</dd>
 									</div>
-									<div className='sm:col-span-2'>
-										<dt className='text-sm font-medium text-gray-500'>
-											User ID
-										</dt>
-										<dd className='mt-1 text-sm text-gray-900'>{data.id}</dd>
-									</div>
 								</dl>
 							</CardContent>
 						</Card>

@@ -71,7 +71,7 @@ export default function Home() {
 						</p>
 						{/* <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white">Get Started</Button> */}
 						<Link
-							className='bg-green-500 hover:bg-green-600 text-white py-2 px-2 rounded-2xl'
+							className='bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-2xl'
 							href={'/bank-account/create-account'}
 						>
 							Get Started

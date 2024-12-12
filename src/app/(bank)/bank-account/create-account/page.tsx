@@ -8,6 +8,7 @@ import { BankDetailsSchema, BankDetailsSchemaType } from '@/zod/authentication';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { handleToast } from '@/components/handle-toast';
 
 export default function CreateAccountPage() {
 	const {
@@ -26,6 +27,10 @@ export default function CreateAccountPage() {
 		if (response.data.code == 1) {
 			setIsLoading(false);
 			router.push('/bank-account');
+		}else{
+			setIsLoading(false);
+
+			handleToast({title:'Please try Again Later',description:'Cannot Create Bank Account',className:'bg-red-600'})
 		}
 	};
 	return (
@@ -105,7 +110,7 @@ export default function CreateAccountPage() {
 							</p>
 						)}
 					</div>
-					<Button type='submit' disabled={isLoading}>
+					<Button type='submit'>
 						{isLoading ? 'Creating Account...' : 'Create Account'}
 					</Button>
 				</form>

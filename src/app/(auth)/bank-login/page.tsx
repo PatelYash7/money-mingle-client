@@ -49,8 +49,7 @@ export default function CreateAccountPage() {
 					</div>
 
 					<div className='space-y-2'>
-						<Label htmlFor='password'>password</Label>
-
+						<Label htmlFor='password'>Password</Label>
 						<Input
 							onChange={(e) => {
 								setPassword(e.target.value);

@@ -19,8 +19,15 @@ export default async function Page({ params }: { params: { token: string } }) {
 							<span className='text-blue-400'>
 								{result.data?.AccountNumber}
 							</span>
+						</div>{' '}
+						<div className='flex justify-center py-4'>
+							<Link
+								href={'/bank-login'}
+								className='bg-blue-500 px-3 py-2 text-sm font-semibold rounded-3xl'
+							>
+								Login Now!
+							</Link>
 						</div>
-						<EnterPin id={result.data.id} type='Bank' />
 					</CardContent>
 				</Card>
 			</div>

@@ -12,16 +12,22 @@ import {
 	SelectValue,
 } from '@/components/ui/select';
 import { SelectContent } from '@radix-ui/react-select';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function Page() {
 	const [transfer, setTransfer] = useState('');
+	const router = useRouter();
 	return (
-		<div className='grid grid-cols-5 justify-between space-x-6 max-w-7xl bg-red-700'>
+		<div className='grid grid-cols-5 justify-between space-x-6 max-w-7xl'>
 			<div className=' col-span-3'>
 				<Card>
-					<CardHeader>
+					<CardHeader >
 						<CardTitle>Transfer Money with Bank</CardTitle>
+						<CardContent className=' space-y-2 pb-0 pt-4 pl-0'>
+							<div>If you dont have bank account?</div>
+							<Button onClick={()=>{router.push('/bank-account')}}>Create Bank Account</Button>
+						</CardContent>
 					</CardHeader>
 					<CardContent>
 						<div className='space-y-6 mt-4'>
