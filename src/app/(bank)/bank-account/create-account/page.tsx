@@ -38,41 +38,54 @@ export default function CreateAccountPage() {
 		}
 	};
 	return (
-		<div className='flex justify-center items-center h-screen'>
-			<div className='container mx-auto max-w-lg py-10 border-2 rounded-lg'>
-				<h1 className='text-3xl font-bold'>Create Bank Account</h1>
-				<h1
-					className='text-xl mb-3 pt-4 text-fuchsia-400 cursor-pointer'
-					onClick={() => {
-						router.push('/bank-account');
-					}}
-				>
-					Money Mingle Payments Banks
-				</h1>
-				<form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
-					<div className='space-y-2'>
-						<Label htmlFor='mobileNumber'>Mobile Number</Label>
-						<Input
-							{...register('MobileNumber')}
-							id='mobileNumber'
-							placeholder='Enter your 10-digit mobile number (+91)'
-						/>
-						{errors.MobileNumber?.message && (
-							<p className='text-xs text-red-700'>
-								{errors.MobileNumber.message}
-							</p>
-						)}
+		<div className='flex justify-center items-center min-h-screen py-8'>
+			<div className='container mx-auto max-w-2xl py-10 border-2 rounded-lg'>
+				<h1 className='text-3xl font-bold text-center'>Create Bank Account</h1>
+				<div className='flex justify-center items-center flex-col pb-4 '>
+					<div
+						className='text-lg mb-3 pt-4 text-fuchsia-400 font-bold cursor-pointer'
+						onClick={() => {
+							router.push('/bank-account');
+						}}
+					>
+						MM Payments Banks
 					</div>
-					<div className='space-y-2'>
-						<Label htmlFor=' Name'>Name</Label>
-						<Input
-							{...register('Name')}
-							id='name'
-							placeholder='Enter your full name'
-						/>
-						{errors.Name?.message && (
-							<p className='text-xs text-red-700'>{errors.Name.message}</p>
-						)}
+					<div
+						onClick={() => {
+							router.push('/bank-login');
+						}}
+						className='text-center text-xs cursor-pointer'
+					>
+						If your Already have an Account,{' '}
+						<span className='underline'> Login</span>
+					</div>
+				</div>
+				<form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
+					<div className='grid grid-cols-2 gap-4'>
+						<div className='space-y-2 col-span-1'>
+							<Label htmlFor='mobileNumber'>Mobile Number</Label>
+							<Input
+								{...register('MobileNumber')}
+								id='mobileNumber'
+								placeholder='Enter your 10-digit mobile number (+91)'
+							/>
+							{errors.MobileNumber?.message && (
+								<p className='text-xs text-red-700'>
+									{errors.MobileNumber.message}
+								</p>
+							)}
+						</div>
+						<div className='space-y-2 col-span-1'>
+							<Label htmlFor=' Name'>Name</Label>
+							<Input
+								{...register('Name')}
+								id='name'
+								placeholder='Enter your full name'
+							/>
+							{errors.Name?.message && (
+								<p className='text-xs text-red-700'>{errors.Name.message}</p>
+							)}
+						</div>
 					</div>
 					<div className='space-y-2'>
 						<Label htmlFor='email'>Email</Label>
@@ -100,7 +113,7 @@ export default function CreateAccountPage() {
 						)}
 					</div>
 					<div className='space-y-2'>
-						<Label htmlFor='Confirmpassword'>Password</Label>
+						<Label htmlFor='Confirmpassword'>Confirm Password</Label>
 						<Input
 							{...register('confirmPassword')}
 							id='Confirmpassword'

@@ -1,5 +1,5 @@
 'use client';
-import { BankWalletTxn } from '@/action/Bank-Wallet-txn';
+import { BankWalletTxn, WalletBankTxn } from '@/action/Bank-Wallet-txn';
 import { handleToast } from '@/components/handle-toast';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -36,12 +36,35 @@ export default function Page() {
 					description: response.message,
 					className: 'bg-green-600',
 				});
+				router.push('/dashboard');
+			} else {
+				handleToast({
+					title: 'Failed',
+					description: response.message,
+					className: 'bg-red-600',
+				});
 			}
-			handleToast({
-				title: 'Failed',
-				description: response.message,
-				className: 'bg-red-600',
+		}
+		if (transfer == 'WallettoBank') {
+			const response = await WalletBankTxn({
+				amount: Number(amount),
+				bankAccount: Number(bankAccount),
+				bankPassword: bankPassword,
 			});
+			if (response.code == 1) {
+				handleToast({
+					title: 'Success',
+					description: response.message,
+					className: 'bg-green-600',
+				});
+				router.push('/dashboard');
+			} else {
+				handleToast({
+					title: 'Failed',
+					description: response.message,
+					className: 'bg-red-600',
+				});
+			}
 		}
 	};
 	const router = useRouter();
@@ -55,7 +78,7 @@ export default function Page() {
 							<div>If you dont have bank account?</div>
 							<Button
 								onClick={() => {
-									router.push('/bank-account');
+									router.push('/bank-account/create-account');
 								}}
 							>
 								Create Bank Account
@@ -63,7 +86,7 @@ export default function Page() {
 						</CardContent>
 					</CardHeader>
 					<CardContent>
-						<form onSubmit={handleSubmit} className='space-y-6 mt-4'>
+						<form className='space-y-6 mt-4'>
 							<div className='grid grid-cols-3 '>
 								<div className=' col-span-2 space-y-4'>
 									<div className='space-y-2 w-1/2'>
@@ -136,6 +159,7 @@ export default function Page() {
 
 							<div className='py-4'>
 								<Button
+									onClick={handleSubmit}
 									type='submit'
 									className='px-4 font-bold text-lg text-white'
 								>

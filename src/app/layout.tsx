@@ -7,7 +7,9 @@ import { Space_Mono } from 'next/font/google';
 
 import { Bricolage_Grotesque } from 'next/font/google';
 import { Toaster } from '@/components/ui/toaster';
+import { IconHome } from '@tabler/icons-react';
 
+import { FloatingNav } from '@/components/ui/floating-navbar';
 const fontHeading = Bricolage_Grotesque({
 	subsets: ['latin'],
 	display: 'swap',
@@ -29,6 +31,18 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const navItems = [
+		{
+			name: 'Home',
+			link: '/',
+			icon: <IconHome className='h-4 w-4 text-neutral-500 dark:text-white' />,
+		},
+		{
+			name: 'Dashboard',
+			link: '/dashboard',
+			icon: <IconHome className='h-4 w-4 text-neutral-500 dark:text-white' />,
+		},
+	];
 	return (
 		<html lang='en'>
 			<body
@@ -40,6 +54,7 @@ export default function RootLayout({
 					enableSystem={true}
 					disableTransitionOnChange
 				>
+					<FloatingNav navItems={navItems} />
 					{children}
 					<Toaster />
 				</Providers>

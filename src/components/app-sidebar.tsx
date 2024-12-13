@@ -15,6 +15,7 @@ import {
 	Calendar,
 	Home,
 	Inbox,
+	Landmark,
 	LayoutDashboard,
 	Search,
 	Settings,
@@ -44,8 +45,8 @@ const items = [
 	},
 	{
 		title: 'Bank',
-		url: '#',
-		icon: Settings,
+		url: '/bank-account',
+		icon: Landmark,
 	},
 ];
 export function AppSidebar() {
