@@ -5,7 +5,6 @@ import { getServerSession } from 'next-auth';
 
 export const searchUser = async ({ value }: { value: string }) => {
 	const session = await getServerSession(authOptions);
-	console.log(value);
 	const result = await prisma.user.findMany({
 		where: {
 			AND: [

@@ -4,21 +4,12 @@ import { useEffect, useState } from 'react';
 import {
 	Card,
 	CardContent,
-	CardDescription,
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card';
 
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import {
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogFooter,
-	DialogHeader,
-	DialogTitle,
-} from '@/components/ui/dialog';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Label } from '@/components/ui/label';
 import { useDedounce } from '@/hooks/use-debounce';
@@ -26,18 +17,18 @@ import { User } from '@prisma/client';
 import { searchUser } from '@/action/search-user';
 import Image from 'next/image';
 import { UserWithWallet } from '@/types/type';
+import { p2pTransfer } from '@/action/p2pTransfer';
+import { handleToast } from '../handle-toast';
+import { useRouter } from 'next/navigation';
+import { SearchCard } from '../SerchCard';
 export function WalletTransfer({ User }: { User: UserWithWallet }) {
-	const [balance, setBalance] = useState(300); // Mock balance
 	const [isOpen, setIsOpen] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	const closeModal = () => {
-		setIsModalOpen(false);
-	};
 	const [error, setError] = useState('');
 	const [searchValue, setSearchValue] = useState('');
-	const debouncedValue = useDedounce({ value: searchValue, timer: 1000 });
 	const [userData, setUserData] = useState<User[]>();
 	const [selectedUser, setSelectedUser] = useState<User>();
+	const debouncedValue = useDedounce({ value: searchValue, timer: 1000 });
 	useEffect(() => {
 		const search = async () => {
 			const result = await searchUser({ value: debouncedValue });
@@ -54,7 +45,7 @@ export function WalletTransfer({ User }: { User: UserWithWallet }) {
 		} else {
 			setIsOpen(false);
 		}
-	}, [debouncedValue]);
+	}, [searchValue]);
 	return (
 		<div className='w-full py-4'>
 			<h1 className='text-4xl py-4 font-bold'>Wallet Transfer</h1>
@@ -87,49 +78,19 @@ export function WalletTransfer({ User }: { User: UserWithWallet }) {
 									}}
 								/>
 							</div>
+
 							<div className={`${isOpen ? 'block' : 'hidden'} space-y-2`}>
 								{userData?.length ?
 									userData.map((item: User, key) => (
-										<div
+										<SearchCard
+											item={item}
+											handlePayNow={() => {
+												setIsOpen(false);
+												setIsModalOpen(true);
+												setSelectedUser(item);
+											}}
 											key={key}
-											className='flex justify-between border-2 px-2 py-2 items-center rounded-md'
-										>
-											<div className='flex items-center gap-4'>
-												<div>
-													{item.picture ?
-														<Image
-															src={item.picture}
-															width={48}
-															height={48}
-															className='h-12 w-16 rounded-full'
-															alt='Profile'
-														/>
-													:	<div className='px-5 py-3 rounded-full bg-blue-600 text-3xl font-bold'>
-															{item.Name.charAt(0)}
-														</div>
-													}
-												</div>
-												<div className='w-full space-y-4'>
-													{/* <Skeleton className='w-48 h-4' /> */}
-													<div className=' text-xl font-semibold w-48 h-4'>
-														{item.Name}
-													</div>
-													<div className='text-sm'>{item.MobileNumber}</div>
-												</div>
-											</div>
-											<div>
-												<Button
-													onClick={() => {
-														setIsOpen(false);
-														setIsModalOpen(true);
-														setSelectedUser(item);
-													}}
-													className=' bg-green-500 rounded-2xl font-bold'
-												>
-													Pay Now
-												</Button>
-											</div>
-										</div>
+										/>
 									))
 								: error ?
 									<div className='text-center'>{error}</div>
@@ -267,25 +228,47 @@ export function WalletTransfer({ User }: { User: UserWithWallet }) {
 function TransferForm({ User, SetUser }: { SetUser: () => void; User: User }) {
 	const [amount, setAmount] = useState('');
 	const [note, setNote] = useState('');
-	const [isConfirmOpen, setIsConfirmOpen] = useState(false);
-
-	const handleSubmit = (e: any) => {
+	const [pin, setPin] = useState('');
+	const [loading, setLoading] = useState(false);
+	const router = useRouter();
+	const handleSubmit = async (e: any) => {
 		e.preventDefault();
-		setIsConfirmOpen(true);
+		setLoading(true);
+		const response = await p2pTransfer({
+			receiverId: User.id,
+			amount: Number(amount),
+			note: note,
+			Pin: Number(pin),
+		});
+		if (response.code == 1) {
+			handleToast({
+				title: 'Success',
+				description: response.message,
+				className: 'bg-green-600',
+			});
+			setLoading(false);
+			router.push('/dashboard');
+		} else {
+			handleToast({
+				title: 'Failed',
+				description: response.message,
+				className: 'bg-red-600',
+			});
+			setLoading(false);
+			SetUser();
+		}
 	};
-
 	return (
 		<Card className=''>
 			<CardHeader className=' pb-0'>
-				<CardTitle className='text-center'>Transfer Details</CardTitle>
 				<CardContent className='pt-4 pb-0 flex justify-center flex-col items-center'>
 					{User.picture ?
 						<Image
 							src={User.picture}
-							alt='picture'
+							alt='img'
 							height={56}
 							width={56}
-							className='rounded-full'
+							className='rounded-full justify-center flex items-center'
 						/>
 					:	<div className='bg-blue-600 px-6 py-4 rounded-full font-bold  text-3xl'>
 							{User.Name.charAt(0)}
@@ -303,45 +286,72 @@ function TransferForm({ User, SetUser }: { SetUser: () => void; User: User }) {
 			</CardHeader>
 			<CardContent className=''>
 				<form onSubmit={handleSubmit} className='space-y-4'>
-					<div>
+					<div className='space-y-2'>
 						<Label
 							htmlFor='amount'
-							className='block text-sm font-medium text-gray-700'
+							className='block text-sm font-medium text-white'
 						>
 							Amount
 						</Label>
-						<Input id='amount' placeholder='Enter amount' required />
+						<Input
+							id='amount'
+							inputMode='numeric'
+							pattern='[0-9]*'
+							placeholder='Enter amount'
+							required
+							onChange={(e) => setAmount(e.target.value)}
+						/>
 					</div>
-					<div>
+					<div className='space-y-2'>
 						<Label
 							htmlFor='note'
-							className='block text-sm font-medium text-gray-700'
+							className='block text-sm font-medium text-white'
 						>
 							Note (optional)
 						</Label>
-						<Input placeholder='Add a note' />
+						<Input
+							required
+							placeholder='Add a note'
+							onChange={(e) => setNote(e.target.value)}
+						/>
+					</div>
+					<div className='space-y-2'>
+						<Label
+							htmlFor='note'
+							className='block text-sm font-medium text-white'
+						>
+							PIN
+						</Label>
+						<Input
+							placeholder='6-digit Pin'
+							minLength={6}
+							maxLength={6}
+							inputMode='numeric'
+							pattern='[0-9]*'
+							required
+							onChange={(e) => {
+								setPin(e.target.value);
+							}}
+						/>
 					</div>
 					<div className='flex gap-2'>
-						<Button type='submit'>Send Transfer</Button>
-						<Button type='button' onClick={SetUser}>
+						<Button
+							type='submit'
+							disabled={loading}
+							className='px-8 font-bold text-white'
+						>
+							PAY
+						</Button>
+						<Button
+							type='button'
+							disabled={loading}
+							className='font-bold text-white'
+							onClick={SetUser}
+						>
 							Cancel Transfer
 						</Button>
 					</div>
 				</form>
-				<Dialog open={isConfirmOpen} onOpenChange={setIsConfirmOpen}>
-					<DialogContent>
-						<DialogHeader className='space-y-4'>
-							<DialogTitle>Enter Your Pin</DialogTitle>
-							<Input placeholder='4-digit Pin' />
-						</DialogHeader>
-						<DialogFooter>
-							<Button variant='outline' onClick={() => setIsConfirmOpen(false)}>
-								Cancel
-							</Button>
-							<Button>Confirm</Button>
-						</DialogFooter>
-					</DialogContent>
-				</Dialog>
 			</CardContent>
 		</Card>
 	);

@@ -1,13 +1,17 @@
 'use client';
+import { TransactionCard } from '@/components/TransactionCard';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import { transactionsSelector } from '@/store/transaction';
 import { userSelector } from '@/store/user';
+import { TransactionsWithUsers } from '@/types/type';
 import { ArrowDownFromLine, ArrowUp, ArrowUpFromLine } from 'lucide-react';
 import Link from 'next/link';
 import { useRecoilValueLoadable } from 'recoil';
 
 export default function Page() {
 	const user = useRecoilValueLoadable(userSelector);
+	const Transactions = useRecoilValueLoadable(transactionsSelector);
 	return (
 		<div className='py-4 w-full '>
 			<div className=' grid grid-cols-5 space-x-8 '>
@@ -115,11 +119,19 @@ export default function Page() {
 							<CardTitle className='underline'>Recent Transaction</CardTitle>
 						</CardHeader>
 						<CardContent className='space-y-2'>
-							<Skeleton className='h-14 w-full' />
-							<Skeleton className='h-14 w-full' />
-							<Skeleton className='h-14 w-full' />
-							<Skeleton className='h-14 w-full' />
-							<Skeleton className='h-14 w-full' />
+							{Transactions.state == 'hasValue' &&
+								Transactions.contents.map((item: TransactionsWithUsers) => (
+									<TransactionCard txn={item} />
+								))}
+							{Transactions.state == 'loading' && (
+								<>
+									<Skeleton className='h-14 w-full' />
+									<Skeleton className='h-14 w-full' />
+									<Skeleton className='h-14 w-full' />
+									<Skeleton className='h-14 w-full' />
+									<Skeleton className='h-14 w-full' />
+								</>
+							)}
 						</CardContent>
 					</Card>
 				</div>
