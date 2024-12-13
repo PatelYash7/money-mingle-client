@@ -3,7 +3,7 @@ import { BankDetailsSchemaType } from '@/zod/authentication';
 import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcrypt';
 import { v4 } from 'uuid';
-import { sendEmail } from '@/lib/sendEmail';
+import { SendBankDetails, sendEmail } from '@/lib/sendEmail';
 const GenerateAccountNumber = () => {
 	const AccountNumber = Math.floor(10000000 + Math.random() * 90000000);
 	return AccountNumber;
@@ -67,9 +67,11 @@ export const POST = async (req: NextRequest) => {
 			return {
 				code: 0,
 				message: 'Error Sending Mail.',
+				data:response
 			};
 		});
-		if (response.code == 1) {
+		if (response.code == 1 && response.data) {
+			await SendBankDetails({BankDetails:response.data,email:response.data?.Email})
 			return NextResponse.json({
 				code: response.code,
 				message: response.message,
