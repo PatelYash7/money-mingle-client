@@ -26,6 +26,14 @@ export type TransactionsWithUsers = Prisma.TransactionsGetPayload<{
 		Receiver: true;
 	};
 }>;
+
+export type TransactionsWithReciever = Prisma.TransactionsGetPayload<{
+	include: {
+		Sender: true;
+		Receiver: true;
+	};
+}>;
+
 export type UserWithWallet = Prisma.UserGetPayload<{
 	include: { Wallet: true };
 }>;

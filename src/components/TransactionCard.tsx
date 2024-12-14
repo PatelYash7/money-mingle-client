@@ -77,7 +77,7 @@ export const TransactionCard = ({ txn }: { txn?: TransactionsWithUsers }) => {
 						<div>{parseDateTime(txn?.timestamp as Date).date}</div>
 					</div>
 					<div className='text-3xl text-end font-bold text-green-500'>
-						${txn?.Amount}
+						₹{txn?.Amount}
 					</div>
 				</div>
 			</div>
