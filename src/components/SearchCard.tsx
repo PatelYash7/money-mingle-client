@@ -2,7 +2,13 @@ import { User } from '@prisma/client';
 import Image from 'next/image';
 import { Button } from './ui/button';
 
-export const SearchCard = ({ item,handlePayNow }: { item: User,handlePayNow:()=>void }) => {
+export const SearchCard = ({
+	item,
+	handlePayNow,
+}: {
+	item: User;
+	handlePayNow: () => void;
+}) => {
 	return (
 		<div className='flex justify-between border-2 px-2 py-2 items-center rounded-md'>
 			<div className='flex items-center gap-4'>

@@ -5,7 +5,12 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { transactionsSelector } from '@/store/transaction';
 import { userSelector } from '@/store/user';
 import { TransactionsWithUsers } from '@/types/type';
-import { ArrowDownFromLine, ArrowUp, ArrowUpFromLine } from 'lucide-react';
+import {
+	ArrowDownFromLine,
+	ArrowUp,
+	ArrowUpFromLine,
+	ChevronsDown,
+} from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useRecoilValueLoadable } from 'recoil';
@@ -18,7 +23,7 @@ export default function Page() {
 		<div className='py-4 w-full '>
 			<div className=' grid grid-cols-5 space-x-8 '>
 				<div className=' col-span-3 w-full flex flex-col gap-4'>
-					{user.state == 'hasValue' ?
+					{user.state == 'hasValue' && (
 						<Card className='w-full'>
 							<CardHeader>
 								<CardTitle className='text-2xl font-bold'>
@@ -48,7 +53,10 @@ export default function Page() {
 								</div>
 							</CardContent>
 						</Card>
-					:	<Skeleton className='h-[200px] w-[600px] rounded-xl' />}
+					)}
+					{user.state == 'loading' && (
+						<Skeleton className='h-[200px] w-full rounded-xl' />
+					)}
 
 					<Card>
 						<CardHeader>
@@ -133,13 +141,16 @@ export default function Page() {
 							{Transactions.state == 'hasValue' &&
 								Transactions.contents.length > 5 && (
 									<>
-										{Transactions.contents.slice(1,6).map(
-											(item: TransactionsWithUsers, i: any) => (
+										{Transactions.contents
+											.slice(0, 5)
+											.map((item: TransactionsWithUsers, i: any) => (
 												<TransactionCard txn={item} key={i} />
-											),
-										)}
-										<div onClick={()=>router.push('/transactions')} className=' cursor-pointer text-center text-muted-foreground'>
-											see more..
+											))}
+										<div
+											onClick={() => router.push('/transactions')}
+											className=' cursor-pointer text-center text-muted-foreground flex justify-center'
+										>
+											<ChevronsDown strokeWidth={3} />
 										</div>
 									</>
 								)}

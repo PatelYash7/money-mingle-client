@@ -154,9 +154,9 @@ export const SendBankDetails = async ({
 </html>
 `,
 	};
-	try{
+	try {
 		await transporter.sendMail(mailOptions);
-	}catch(error){
-		console.log("Error Sending Mails",error)
+	} catch (error) {
+		console.log('Error Sending Mails', error);
 	}
 };

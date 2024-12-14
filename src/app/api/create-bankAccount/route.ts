@@ -67,11 +67,14 @@ export const POST = async (req: NextRequest) => {
 			return {
 				code: 0,
 				message: 'Error Sending Mail.',
-				data:response
+				data: response,
 			};
 		});
 		if (response.code == 1 && response.data) {
-			await SendBankDetails({BankDetails:response.data,email:response.data?.Email})
+			await SendBankDetails({
+				BankDetails: response.data,
+				email: response.data?.Email,
+			});
 			return NextResponse.json({
 				code: response.code,
 				message: response.message,

@@ -20,12 +20,12 @@ enum Role {
 	User,
 	Admin,
 }
-export type TransactionsWithUsers=Prisma.TransactionsGetPayload<{
-	include:{
-		Sender:true,
-		Receiver:true
-	}
-}>
+export type TransactionsWithUsers = Prisma.TransactionsGetPayload<{
+	include: {
+		Sender: true;
+		Receiver: true;
+	};
+}>;
 export type UserWithWallet = Prisma.UserGetPayload<{
 	include: { Wallet: true };
 }>;

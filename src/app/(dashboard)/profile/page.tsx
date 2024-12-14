@@ -49,7 +49,7 @@ export default async function Page() {
 					</div>
 				</CardContent>
 				<CardFooter>
-					<ProfileFooter/>
+					<ProfileFooter />
 				</CardFooter>
 			</Card>
 		</div>

@@ -13,12 +13,10 @@ import {
 import {
 	ArrowRightLeft,
 	Calendar,
-	Home,
-	Inbox,
 	Landmark,
 	LayoutDashboard,
-	Search,
-	Settings,
+	List,
+	User,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -39,23 +37,28 @@ const items = [
 		icon: Calendar,
 	},
 	{
-		title: 'Profile',
-		url: '/profile',
-		icon: Search,
+		title: 'Transactions',
+		url: '/transactions',
+		icon: List,
 	},
 	{
-		title: 'Bank',
+		title: 'Profile',
+		url: '/profile',
+		icon: User,
+	},
+	{
+		title: 'Go to Bank',
 		url: '/bank-account',
 		icon: Landmark,
 	},
 ];
 export function AppSidebar() {
 	return (
-		<Sidebar className=''>
-			<SidebarContent className=' pl-4 bg-gray-900 text-white py-8 '>
+		<Sidebar className=' '>
+			<SidebarContent className=' pl-4 bg-gray-400 dark:bg-gray-900 text-gray-800 font-bold dark:text-white py-8 '>
 				<SidebarGroup>
 					<Link href={'/'}>
-						<SidebarGroupLabel className='font-bold text-white text-xl'>
+						<SidebarGroupLabel className='font-bold text-black dark:text-white text-xl'>
 							Money Mingle
 						</SidebarGroupLabel>
 					</Link>

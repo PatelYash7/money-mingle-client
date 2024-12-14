@@ -1,4 +1,4 @@
-'use server'
+'use server';
 import prisma from '@/db';
 import { authOptions } from '@/lib/auth';
 import { getServerSession } from 'next-auth';
@@ -24,8 +24,8 @@ export const p2pTransfer = async ({
 				},
 			},
 		});
-		console.log(session.user.id)
-		console.log(Pin)
+		console.log(session.user.id);
+		console.log(Pin);
 		if (!Sender) {
 			return {
 				code: 0,
