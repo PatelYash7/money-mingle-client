@@ -47,13 +47,12 @@ export const EnterPin = ({
 					<Input
 						placeholder='6-digit Integer'
 						value={pin}
+						minLength={6}
+						maxLength={6}
+						inputMode='numeric'
+						pattern='[0-9]*'
 						onChange={(e) => {
-							if (
-								/^\d*$/.test(e.target.value) &&
-								Number(e.target.value) < 1000000
-							) {
-								setpin(e.target.value);
-							}
+							setpin(e.target.value);
 						}}
 					/>
 					{pin && <Button onClick={submit}>Submit</Button>}

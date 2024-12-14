@@ -16,6 +16,7 @@ export function useDedounce<T>({
 		return () => {
 			clearInterval(timeout);
 		};
+		// @ts-ignore
 	}, [value]);
 	return debouncedValue;
 }

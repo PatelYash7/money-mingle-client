@@ -14,29 +14,6 @@ import {
 export default function LandingPage() {
 	return (
 		<div className='flex flex-col bg-background text-foreground'>
-			{/* <header className="px-4 lg:px-6 h-20 flex items-center border-b">
-        <Link className="flex items-center justify-center" href="#">
-          <Image
-            src="/placeholder.svg?height=40&width=40"
-            alt="MoneyMingle logo"
-            width={40}
-            height={40}
-            className="rounded-lg"
-          />
-          <span className="ml-2 text-2xl font-bold text-primary">MoneyMingle</span>
-        </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link className="text-sm font-medium hover:text-primary transition-colors" href="#features">
-            Features
-          </Link>
-          <Link className="text-sm font-medium hover:text-primary transition-colors" href="#how-it-works">
-            How It Works
-          </Link>
-          <Link className="text-sm font-medium hover:text-primary transition-colors" href="#testimonials">
-            Testimonials
-          </Link>
-        </nav>
-      </header> */}
 			<main className='flex-1'>
 				<section className='w-full py-12 md:py-24 lg:py-32 xl:py-36 bg-gradient-to-r from-purple-100 via-pink-100 to-orange-100'>
 					<div className='container px-4 md:px-6'>

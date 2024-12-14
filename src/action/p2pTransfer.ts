@@ -12,7 +12,7 @@ export const p2pTransfer = async ({
 	receiverId: string;
 	amount: number;
 	note: string;
-	Pin: number;
+	Pin: string;
 }) => {
 	const session = await getServerSession(authOptions);
 	if (session?.user.id) {
@@ -24,6 +24,8 @@ export const p2pTransfer = async ({
 				},
 			},
 		});
+		console.log(session.user.id)
+		console.log(Pin)
 		if (!Sender) {
 			return {
 				code: 0,

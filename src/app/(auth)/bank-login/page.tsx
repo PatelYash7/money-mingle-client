@@ -7,14 +7,12 @@ import { Label } from '@/components/ui/label';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { bankTokenAtom } from '@/store/bankToken';
 
 export default function CreateAccountPage() {
 	const [isLoading, setIsLoading] = useState(false);
 	const [mobileNumber, setMobileNumber] = useState('');
 	const [password, setPassword] = useState('');
 	const router = useRouter();
-	const setBankToken = useSetRecoilState(bankTokenAtom);
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
 		setIsLoading(true);
@@ -28,7 +26,6 @@ export default function CreateAccountPage() {
 		});
 		if (response.data.token) {
 			setIsLoading(false);
-			setBankToken(response.data.token);
 			router.push(`/bank-dashboard/${response.data.token}`);
 		}
 	};

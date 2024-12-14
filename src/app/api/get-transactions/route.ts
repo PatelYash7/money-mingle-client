@@ -16,10 +16,11 @@ export const GET = async () => {
             }
 		});
 		if (response) {
+			const sortedResponse = response.sort((a,b)=>new Date(b.timestamp).getTime()- new Date(a.timestamp).getTime())
 			return NextResponse.json({
 				code: 1,
 				message: 'success',
-				data: response,
+				data: sortedResponse,
 			});
 		}
 		return NextResponse.json({

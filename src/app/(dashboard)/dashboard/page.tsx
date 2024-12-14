@@ -7,11 +7,13 @@ import { userSelector } from '@/store/user';
 import { TransactionsWithUsers } from '@/types/type';
 import { ArrowDownFromLine, ArrowUp, ArrowUpFromLine } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useRecoilValueLoadable } from 'recoil';
 
 export default function Page() {
 	const user = useRecoilValueLoadable(userSelector);
 	const Transactions = useRecoilValueLoadable(transactionsSelector);
+	const router = useRouter();
 	return (
 		<div className='py-4 w-full '>
 			<div className=' grid grid-cols-5 space-x-8 '>
@@ -119,10 +121,6 @@ export default function Page() {
 							<CardTitle className='underline'>Recent Transaction</CardTitle>
 						</CardHeader>
 						<CardContent className='space-y-2'>
-							{Transactions.state == 'hasValue' &&
-								Transactions.contents.map((item: TransactionsWithUsers) => (
-									<TransactionCard txn={item} />
-								))}
 							{Transactions.state == 'loading' && (
 								<>
 									<Skeleton className='h-14 w-full' />
@@ -132,6 +130,30 @@ export default function Page() {
 									<Skeleton className='h-14 w-full' />
 								</>
 							)}
+							{Transactions.state == 'hasValue' &&
+								Transactions.contents.length > 5 && (
+									<>
+										{Transactions.contents.slice(1,6).map(
+											(item: TransactionsWithUsers, i: any) => (
+												<TransactionCard txn={item} key={i} />
+											),
+										)}
+										<div onClick={()=>router.push('/transactions')} className=' cursor-pointer text-center text-muted-foreground'>
+											see more..
+										</div>
+									</>
+								)}
+
+							{Transactions.state == 'hasValue' &&
+								Transactions.contents.length < 5 && (
+									<>
+										{Transactions.contents.map(
+											(item: TransactionsWithUsers, i) => (
+												<TransactionCard txn={item} key={i} />
+											),
+										)}
+									</>
+								)}
 						</CardContent>
 					</Card>
 				</div>

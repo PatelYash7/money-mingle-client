@@ -42,7 +42,7 @@ enum Role {
 model Wallet {
   id               String             @id @default(cuid())
   userId           String             @unique
-  pin              Int?
+  pin              String?
   user             User               @relation(fields: [userId], references: [id])
   Balance          Int             @default(0)
   BankToWalletTrxn BankToWalletTrxn[]

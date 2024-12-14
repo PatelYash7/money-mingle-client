@@ -60,7 +60,7 @@ export default function Component() {
 						className='w-full bg-[#222] hover:bg-[#333] text-white'
 						variant='outline'
 						onClick={() => {
-							signIn('google', { callbackUrl: '/add-number' });
+							signIn('google', { callbackUrl: '/' });
 						}}
 					>
 						<FcGoogle className='mr-2 h-4 w-4' />

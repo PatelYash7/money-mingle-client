@@ -1,12 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import {
-	Card,
-	CardContent,
-	CardHeader,
-	CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -20,7 +15,7 @@ import { UserWithWallet } from '@/types/type';
 import { p2pTransfer } from '@/action/p2pTransfer';
 import { handleToast } from '../handle-toast';
 import { useRouter } from 'next/navigation';
-import { SearchCard } from '../SerchCard';
+import { SearchCard } from '../SearchCard';
 export function WalletTransfer({ User }: { User: UserWithWallet }) {
 	const [isOpen, setIsOpen] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -45,6 +40,7 @@ export function WalletTransfer({ User }: { User: UserWithWallet }) {
 		} else {
 			setIsOpen(false);
 		}
+		// @ts-ignore
 	}, [searchValue]);
 	return (
 		<div className='w-full py-4'>
@@ -238,7 +234,7 @@ function TransferForm({ User, SetUser }: { SetUser: () => void; User: User }) {
 			receiverId: User.id,
 			amount: Number(amount),
 			note: note,
-			Pin: Number(pin),
+			Pin: pin,
 		});
 		if (response.code == 1) {
 			handleToast({
@@ -326,7 +322,7 @@ function TransferForm({ User, SetUser }: { SetUser: () => void; User: User }) {
 							placeholder='6-digit Pin'
 							minLength={6}
 							maxLength={6}
-							inputMode='numeric'
+							inputMode='text'
 							pattern='[0-9]*'
 							required
 							onChange={(e) => {

@@ -37,7 +37,7 @@ export const addWalletPin = async (pin: number, id: string) => {
 				id: id,
 			},
 			data: {
-				pin: pin,
+				pin: String(pin),
 			},
 		});
 		if (result) {
