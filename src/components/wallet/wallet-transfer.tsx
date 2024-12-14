@@ -16,15 +16,23 @@ import { p2pTransfer } from '@/action/p2pTransfer';
 import { handleToast } from '../handle-toast';
 import { useRouter } from 'next/navigation';
 import { SearchCard } from '../SearchCard';
+import { useRecoilValue } from 'recoil';
+import { PaymentUser } from '@/store/PaymentUser';
 export function WalletTransfer({ User }: { User: UserWithWallet }) {
 	const [isOpen, setIsOpen] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [error, setError] = useState('');
 	const [searchValue, setSearchValue] = useState('');
 	const [userData, setUserData] = useState<User[]>();
+	const PaymentUserValue = useRecoilValue(PaymentUser);
 	const [selectedUser, setSelectedUser] = useState<User>();
 	const debouncedValue = useDedounce({ value: searchValue, timer: 1000 });
 	useEffect(() => {
+		if (PaymentUser) {
+			setIsOpen(false);
+			setIsModalOpen(true);
+			setSelectedUser(PaymentUserValue);
+		}
 		const search = async () => {
 			const result = await searchUser({ value: debouncedValue });
 			if (result.code == 1 && result.data?.length) {

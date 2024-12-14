@@ -8,12 +8,18 @@ import { useRecoilValueLoadable } from 'recoil';
 import { RecentFriends } from '@/store/TopFriends';
 import { SearchCard } from '../SearchCard';
 import { User } from '@prisma/client';
+import Image from 'next/image';
+import { User2 } from 'lucide-react';
+import { useSetRecoilState } from 'recoil';
+import { PaymentUser } from '@/store/PaymentUser';
+import { useRouter } from 'next/navigation';
 
 export const PayAgain = () => {
 	const [loading, setLoading] = useState(false);
+    const setPaymentUser = useSetRecoilState(PaymentUser);
 	const [Users, setUsers] = useState<TransactionsWithReciever[]>();
 	const RecentFriendsData = useRecoilValueLoadable(RecentFriends);
-    console.log(Users)
+	console.log(Users);
 	useEffect(() => {
 		if (RecentFriendsData.state == 'loading') {
 			setLoading(true);
@@ -23,6 +29,7 @@ export const PayAgain = () => {
 			setLoading(false);
 		}
 	}, [RecentFriendsData.state]);
+    const router = useRouter();
 	return (
 		<Card>
 			<CardHeader>
@@ -51,9 +58,25 @@ export const PayAgain = () => {
 							</div>
 						</div>
 					))}
-                    {
-                        Users && Users.map((item:TransactionsWithReciever,i)=> <div>{item.Receiver.Name}</div> )
-                    }
+				<div className='grid grid-cols-5 '>
+					{Users &&
+						Users.map((item: TransactionsWithReciever, i) => (
+							<div key={i} onClick={()=>{
+                                router.push('/wallet-transfers')
+                                setPaymentUser(item.Receiver)
+                            }} className='flex cursor-pointer flex-col justify-center items-center'>
+								<div className='flex flex-col items-center justify-center rounded-full p-5'>
+									<div className='text-3xl font-bold rounded-full border px-6 py-5 bg-blue-500'>
+										{item.Receiver.Name.charAt(0) +
+											item.Receiver.Name.charAt(item.Receiver.Name.length - 1)}
+									</div>
+									<div className='text-2xl font-bold text-blue-400'>
+										{item.Receiver.Name.split(" ")[0]} ..
+									</div>
+								</div>
+							</div>
+						))}
+				</div>
 			</CardContent>
 		</Card>
 	);
