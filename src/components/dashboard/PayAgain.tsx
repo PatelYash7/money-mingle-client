@@ -38,7 +38,7 @@ export const PayAgain = () => {
 			<CardContent className='space-y-4'>
 				{loading &&
 					Array.from({ length: 5 }).map((_, i) => (
-						<div className='flex justify-between'>
+						<div key={i} className='flex justify-between'>
 							<div className='flex items-center gap-4'>
 								<div>
 									<Skeleton className='h-12 w-12 rounded-full' />
