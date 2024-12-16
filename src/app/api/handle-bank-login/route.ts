@@ -21,10 +21,7 @@ export const POST = async (req: NextRequest) => {
 					data: null,
 				};
 			}
-			const isPasswordMatch = await bcrypt.compare(
-				String(data.password),
-				Value.Password,
-			);
+			const isPasswordMatch = data.password==Value.Password;
 			if (isPasswordMatch) {
 				return {
 					code: 1,

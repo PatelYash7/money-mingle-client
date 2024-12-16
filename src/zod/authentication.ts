@@ -79,3 +79,27 @@ export const BankDetailsSchema = z
 	);
 
 export type BankDetailsSchemaType = z.infer<typeof BankDetailsSchema>;
+
+export const WalletPassword = z
+	.object({
+		Password: z
+			.string()
+			.min(8, 'Password must be at least 8 characters')
+			.regex(
+				/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+				'Password must use UpperCase(A),LowerCase(a),digit(1) and special character(%)',
+			),
+		confirmPassword: z
+			.string()
+			.min(1, { message: 'Confirm Password is Required' }),
+	})
+	.refine(
+		(data) => data.Password === data.confirmPassword,
+
+		{
+			path: ['confirmPassword'],
+			message: 'Password does not Match with Confirm Password',
+		},
+	);
+
+export type WalletPasswordType = z.infer<typeof WalletPassword>;

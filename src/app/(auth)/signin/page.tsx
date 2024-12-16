@@ -46,7 +46,7 @@ export default function Component() {
 						}}
 						className='text-3xl cursor-pointer font-bold tracking-tight mb-2'
 					>
-						Moeny Mingle
+						Money Mingle
 					</h1>
 					<p className='text-sm text-gray-400'>
 						Don&apos;t have an account?{' '}
@@ -113,6 +113,7 @@ export default function Component() {
 									})}
 									id='password'
 									type={visible ? 'text' : 'password'}
+									placeholder='Enter Password'
 									className='bg-[#222] border-gray-700 text-white pr-10'
 								/>
 								<Eye
@@ -141,7 +142,7 @@ export default function Component() {
 						</Button>
 					</form>
 					<div className='text-center'>
-						<Link href='#' className='text-sm text-blue-500 hover:underline'>
+						<Link href='/forgot-password' className='text-sm text-blue-500 hover:underline'>
 							Forgot Your Password?
 						</Link>
 					</div>

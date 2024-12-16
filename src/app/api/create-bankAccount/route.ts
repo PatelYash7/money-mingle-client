@@ -26,7 +26,6 @@ const getAccountNumber = async () => {
 export const POST = async (req: NextRequest) => {
 	const data: BankDetailsSchemaType = await req.json();
 	const AccountNumber = await getAccountNumber();
-	const hasedPassword = await bcrypt.hash(data.Password, 10);
 	if (data && AccountNumber) {
 		const isExistAccount = await prisma.bankAccount.findFirst({
 			where: {
@@ -45,7 +44,7 @@ export const POST = async (req: NextRequest) => {
 					Email: data.Email,
 					MobileNumber: data.MobileNumber,
 					Name: data.Name,
-					Password: hasedPassword,
+					Password: data.Password,
 					AccountNumber: AccountNumber,
 				},
 			});
