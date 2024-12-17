@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE "Wallet" ALTER COLUMN "pin" SET DATA TYPE TEXT;

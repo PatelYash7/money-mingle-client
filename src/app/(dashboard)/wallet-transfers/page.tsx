@@ -7,20 +7,20 @@ export default async function Page() {
 	const User = await getUser();
 	if (User?.Wallet?.id && !User?.Wallet?.pin) {
 		return (
-			<div className=''>
+			<div className='flex justify-center items-center h-screen'>
 				<UpdatePin id={User.Wallet.id} />
 			</div>
 		);
 	}
 	if (User?.Wallet) {
 		return (
-			<div>
+			<div className=''>
 				<WalletTransfer User={User} />
 			</div>
 		);
 	}
 	return (
-		<div>
+		<div className='flex items-center justify-center h-screen'>
 			<WalletVerification />
 		</div>
 	);

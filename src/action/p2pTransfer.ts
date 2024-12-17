@@ -24,8 +24,6 @@ export const p2pTransfer = async ({
 				},
 			},
 		});
-		console.log(session.user.id);
-		console.log(Pin);
 		if (!Sender) {
 			return {
 				code: 0,

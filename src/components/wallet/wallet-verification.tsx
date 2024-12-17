@@ -6,6 +6,7 @@ import { AlertCircle } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { handleToast } from '../handle-toast';
+import { useRouter } from 'next/navigation';
 export const WalletVerification = () => {
 	const session = useSession();
 	const [close, setClose] = useState(false);
@@ -29,7 +30,6 @@ export const WalletVerification = () => {
 			setLoading(false);
 		}
 	};
-	console.log(close);
 	return (
 		<div>
 			<Alert variant={'destructive'} className='max-w-md bg-white mx-auto'>

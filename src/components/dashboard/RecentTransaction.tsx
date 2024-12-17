@@ -39,31 +39,34 @@ export const RecentTransaction = () => {
 						<Skeleton className='h-24 w-full' />
 					</>
 				)}
-				{RecentTransaction?.length && RecentTransaction?.length > 5 && (
-					<>
-						{RecentTransaction.slice(0, 5).map(
-							(item: TransactionsWithUsers, i: any) => (
-								<TransactionCard txn={item} key={i} />
-							),
-						)}
-						<div
-							onClick={() => router.push('/transactions')}
-							className=' cursor-pointer text-center text-muted-foreground flex justify-center'
-						>
-							<ChevronsDown strokeWidth={3} />
-						</div>
-					</>
-				)}
 
-				{RecentTransaction &&
-					RecentTransaction?.length &&
-					RecentTransaction.length < 5 && (
-						<>
-							{RecentTransaction.map((item: TransactionsWithUsers, i) => (
-								<TransactionCard txn={item} key={i} />
-							))}
-						</>
-					)}
+				{RecentTransaction?.length ?
+					<>
+						{RecentTransaction.length > 5 && (
+							<>
+								{RecentTransaction.slice(0, 5).map(
+									(item: TransactionsWithUsers, i: any) => (
+										<TransactionCard txn={item} key={i} />
+									),
+								)}
+								<div
+									onClick={() => router.push('/transactions')}
+									className=' cursor-pointer text-center text-muted-foreground flex justify-center'
+								>
+									<ChevronsDown strokeWidth={3} />
+								</div>
+							</>
+						)}
+
+						{RecentTransaction.length < 5 && (
+							<>
+								{RecentTransaction.map((item: TransactionsWithUsers, i) => (
+									<TransactionCard txn={item} key={i} />
+								))}
+							</>
+						)}
+					</>
+				:	<div className=''>No transactions to show</div>}
 			</CardContent>
 		</Card>
 	);

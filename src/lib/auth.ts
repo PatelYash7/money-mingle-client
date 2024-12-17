@@ -109,7 +109,6 @@ export const authOptions: NextAuthOptions = {
 							Name: profile?.name as string,
 							picture: profile?.image,
 							iSGoogle: true,
-							MobileNumber: '',
 						},
 					});
 					// Store new user's ID in token
@@ -163,7 +162,6 @@ export const authOptions: NextAuthOptions = {
 								Name: profile.name,
 								picture: profile.picture,
 								iSGoogle: true,
-								MobileNumber: '',
 							},
 						});
 						token.id = NewUser.id;

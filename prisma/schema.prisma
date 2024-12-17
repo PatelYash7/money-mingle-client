@@ -18,7 +18,7 @@ model User {
   Email                String         @unique
   Name                 String
   Password             String?
-  MobileNumber         String         @unique
+  MobileNumber         String?         @unique
   picture              String?
   AccountType          AccountType    @default(CLIENT)
   role                 Role           @default(User)

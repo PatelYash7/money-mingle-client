@@ -31,18 +31,7 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	const navItems = [
-		{
-			name: 'Home',
-			link: '/',
-			icon: <IconHome className='h-4 w-4 text-neutral-500 dark:text-white' />,
-		},
-		{
-			name: 'Dashboard',
-			link: '/dashboard',
-			icon: <IconHome className='h-4 w-4 text-neutral-500 dark:text-white' />,
-		},
-	];
+	
 	return (
 		<html lang='en'>
 			<body
@@ -54,7 +43,7 @@ export default function RootLayout({
 					enableSystem={true}
 					disableTransitionOnChange
 				>
-					<FloatingNav navItems={navItems} />
+					
 					{children}
 					<Toaster />
 				</Providers>

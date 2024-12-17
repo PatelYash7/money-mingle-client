@@ -18,12 +18,12 @@ export const UpdatePin = ({ id }: { id: string }) => {
 			setIsSubmitting(true);
 			const response = await addWalletPin(Number(Pin), id);
 			if (response.code == 1) {
-				setError(response.message);
+				window.location.reload();
 				setIsSubmitting(false);
 				handleToast({
 					title: 'Pin Updated',
 					description: 'Your Pin has been Updated!!!',
-					className: 'bg=green-600 text-white font-bold',
+					className: 'bg-green-600 text-white font-bold',
 				});
 			}
 		} else {

@@ -1,21 +1,37 @@
-/*
-  Warnings:
+-- CreateEnum
+CREATE TYPE "AccountType" AS ENUM ('CLIENT', 'MERCHANT');
 
-  - Made the column `MobileNumber` on table `User` required. This step will fail if there are existing NULL values in that column.
+-- CreateEnum
+CREATE TYPE "Role" AS ENUM ('Admin', 'User');
 
-*/
+-- CreateEnum
+CREATE TYPE "TransactionType" AS ENUM ('CREDIT', 'DEBIT');
+
 -- CreateEnum
 CREATE TYPE "TokenType" AS ENUM ('BANK_VERIFICATION', 'RESET_PASSWORD', 'WALLET_VERIFICATION');
 
--- AlterTable
-ALTER TABLE "User" ADD COLUMN     "isVerified" BOOLEAN NOT NULL DEFAULT false,
-ALTER COLUMN "MobileNumber" SET NOT NULL;
+-- CreateTable
+CREATE TABLE "User" (
+    "id" TEXT NOT NULL,
+    "Email" TEXT NOT NULL,
+    "Name" TEXT NOT NULL,
+    "Password" TEXT,
+    "MobileNumber" TEXT,
+    "picture" TEXT,
+    "AccountType" "AccountType" NOT NULL DEFAULT 'CLIENT',
+    "role" "Role" NOT NULL DEFAULT 'User',
+    "iSGoogle" BOOLEAN NOT NULL DEFAULT false,
+    "isVerified" BOOLEAN NOT NULL DEFAULT false,
+
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
 
 -- CreateTable
 CREATE TABLE "Wallet" (
     "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
-    "Balance" BIGINT NOT NULL DEFAULT 0,
+    "pin" TEXT,
+    "Balance" INTEGER NOT NULL DEFAULT 0,
 
     CONSTRAINT "Wallet_pkey" PRIMARY KEY ("id")
 );
@@ -25,6 +41,8 @@ CREATE TABLE "Transactions" (
     "id" TEXT NOT NULL,
     "SenderId" TEXT NOT NULL,
     "ReceiverId" TEXT NOT NULL,
+    "Note" TEXT NOT NULL,
+    "timestamp" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "Amount" INTEGER NOT NULL,
 
     CONSTRAINT "Transactions_pkey" PRIMARY KEY ("id")
@@ -36,9 +54,9 @@ CREATE TABLE "BankToWalletTrxn" (
     "Amount" INTEGER NOT NULL,
     "Locked" INTEGER NOT NULL,
     "Token" TEXT,
-    "otp" TEXT,
     "BankId" TEXT NOT NULL,
     "WalletId" TEXT NOT NULL,
+    "TxnType" "TransactionType" NOT NULL,
 
     CONSTRAINT "BankToWalletTrxn_pkey" PRIMARY KEY ("id")
 );
@@ -48,9 +66,11 @@ CREATE TABLE "BankAccount" (
     "id" TEXT NOT NULL,
     "MobileNumber" TEXT NOT NULL,
     "Name" TEXT NOT NULL,
+    "Password" TEXT NOT NULL,
+    "pin" INTEGER,
     "AccountNumber" INTEGER NOT NULL,
     "Email" TEXT NOT NULL,
-    "Balance" BIGINT NOT NULL DEFAULT 2000000,
+    "Balance" INTEGER NOT NULL DEFAULT 2000000,
     "isVerified" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "BankAccount_pkey" PRIMARY KEY ("id")
@@ -64,6 +84,12 @@ CREATE TABLE "VerificationToken" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "type" "TokenType" NOT NULL
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_Email_key" ON "User"("Email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_MobileNumber_key" ON "User"("MobileNumber");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Wallet_userId_key" ON "Wallet"("userId");

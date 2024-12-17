@@ -19,12 +19,15 @@ export const PayAgain = () => {
     const setPaymentUser = useSetRecoilState(PaymentUser);
 	const [Users, setUsers] = useState<TransactionsWithReciever[]>();
 	const RecentFriendsData = useRecoilValueLoadable(RecentFriends);
-	console.log(Users);
+	const [error,setError]=useState(false)
 	useEffect(() => {
 		if (RecentFriendsData.state == 'loading') {
 			setLoading(true);
 		}
 		if (RecentFriendsData.state == 'hasValue' && RecentFriendsData.contents) {
+			if(RecentFriendsData.contents.length==0){	
+				setError(true)
+			}
 			setUsers(RecentFriendsData.contents);
 			setLoading(false);
 		}
@@ -76,7 +79,11 @@ export const PayAgain = () => {
 								</div>
 							</div>
 						))}
+						
 				</div>
+						{error &&  <div>
+							Top Friends will show after some transactions
+						</div> }
 			</CardContent>
 		</Card>
 	);
