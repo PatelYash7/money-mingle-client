@@ -83,3 +83,6 @@
 		@apply bg-background text-foreground;
 	}
 }
+body {
+	font-family: -apple-system-body, BlinkMacSystemFont, sans-serif;
+}

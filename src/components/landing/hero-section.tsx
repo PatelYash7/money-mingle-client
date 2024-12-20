@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import {
 	ArrowRightIcon,
@@ -9,15 +8,24 @@ import {
 import { ButtonPrimary } from '../Button';
 
 export function HeroSection() {
+	const handleClick =()=>{
+		console.log("j")
+	}
 	return (
 		<section className='relative py-28 min-h-screen w-screen'>
-			<div className="absolute inset-0 -z-10 h-full  w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)] dark:[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
+			<div className='absolute inset-0 -z-10 h-full  w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)] dark:[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]'></div>
+			<div className='relative h-full w-full bg-slate-950'>
+				<div className='absolute bottom-0 left-[-20%] right-0 top-[-10%] h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(255,0,182,.15),rgba(255,255,255,0))]'></div>
+				<div className='absolute bottom-0 right-[20%] top-[-10%] h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(255,0,182,.15),rgba(255,255,255,0))]'></div>
+			</div>
 			<div className='container px-4  md:px-6 '>
 				<div className='flex flex-col items-center space-y-8 text-center'>
 					<div className='space-y-4 max-w-3xl'>
 						<h1 className='text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl text-black dark:text-white'>
 							Revolutionize Your
-							<span className='block bg-gradient-to-r text-transparent bg-clip-text from-[#6633ee] py-4 to-[#83f]'>Payments Experience</span>
+							<span className='block bg-gradient-to-r text-transparent bg-clip-text from-[#6633ee] py-4 to-[#83f]'>
+								Payments Experience
+							</span>
 						</h1>
 						<p className='mx-auto max-w-[700px] text-gray-800 dark:text-slate-400 md:text-xl'>
 							Unlock seamless, secure, and efficient financial transactions.
@@ -25,10 +33,12 @@ export function HeroSection() {
 							send and integrate multiple financial services.
 						</p>
 					</div>
-					<div className='space-x-4'>
-						<ButtonPrimary className='px-6 text-lg' title='Get Started'/>
-						
-					</div>
+					<ButtonPrimary
+						url='/dashboard'
+						className='text-lg'
+						title='Get Started'
+					/>
+
 					<div className='grid gap-6 md:grid-cols-3 lg:gap-8 pt-8 w-full'>
 						{[
 							{
@@ -50,13 +60,18 @@ export function HeroSection() {
 								icon: GlobeIcon,
 							},
 						].map((feature, index) => (
-							<Card key={index} className='bg-[#0000000c] rounded-3xl border-gray-300 dark:backdrop-blur-md   dark:bg-[#ffffff0c] dark:border-[#ffffff3a] dark:border-[0.01px] border-[0.01px]'>
+							<Card
+								key={index}
+								className='bg-[#0000000c] rounded-3xl border-gray-300 dark:backdrop-blur-md   dark:bg-[#ffffff0c] dark:border-[#ffffff3a] dark:border-[0.01px] border-[0.01px]'
+							>
 								<CardContent className='p-6'>
 									<feature.icon className='h-12 w-12 text-primary-foreground mb-4' />
 									<h3 className='text-2xl font-bold text-left text-primary mb-2'>
 										{feature.title}
 									</h3>
-									<p className='dark:text-white text-left text-black'>{feature.description}</p>
+									<p className='dark:text-white text-left text-black'>
+										{feature.description}
+									</p>
 								</CardContent>
 							</Card>
 						))}

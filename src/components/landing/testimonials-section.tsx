@@ -42,11 +42,6 @@ export function TestimonialsSection() {
 						</div>
 					</div>
 				</div>
-				<div className='flex justify-center items-center gap-8 flex-wrap'>
-					{Array.from({ length: 5 }).map((_, i) => (
-						<div key={i} className='w-32 h-12 bg-slate-100 rounded' />
-					))}
-				</div>
 			</div>
 		</section>
 	);
