@@ -29,7 +29,7 @@ export const Hero = () => {
 		return (
 			<Card className='w-full'>
 				<CardHeader>
-					<CardTitle className='text-2xl font-bold'>Hi,{User.Name}</CardTitle>
+					<CardTitle className='text-2xl text-primary font-bold'>Hi,{User.Name}</CardTitle>
 				</CardHeader>
 				<CardContent>
 					{User.Wallet ?

@@ -11,10 +11,12 @@ export const ProfileFooter = () => {
 				onClick={() => {
 					router.push('/change-pin');
 				}}
+				className='text-white'
 			>
 				Change Pin
 			</Button>
 			<Button
+				className='text-white'
 				onClick={async () => {
 					router.push('/change-password');
 				}}

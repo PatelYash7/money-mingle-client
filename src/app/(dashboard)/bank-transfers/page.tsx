@@ -69,17 +69,18 @@ export default function Page() {
 	};
 	const router = useRouter();
 	return (
-		<div className='grid grid-cols-5 justify-between space-x-6 max-w-7xl'>
+		<div className='grid grid-cols-5 justify-between space-x-6 py-8 max-w-7xl'>
 			<div className=' col-span-3'>
 				<Card>
 					<CardHeader>
-						<CardTitle>Transfer Money with Bank</CardTitle>
+						<CardTitle className='text-primary'>Transfer Money with Bank</CardTitle>
 						<CardContent className=' space-y-2 pb-0 pt-4 pl-0'>
 							<div>If you dont have bank account?</div>
 							<Button
 								onClick={() => {
 									router.push('/bank-account/create-account');
 								}}
+								className='text-white'
 							>
 								Create Bank Account
 							</Button>
@@ -126,7 +127,7 @@ export default function Page() {
 										<SelectTrigger className=''>
 											<SelectValue placeholder='Transfer Type' />
 										</SelectTrigger>
-										<SelectContent className='bg-slate-900 rounded-xl mx-0 pl-0 py-2 my-0'>
+										<SelectContent className='dark:bg-background  bg-slate-50 border-primary border rounded-xl mx-0 pl-0 py-2 my-0'>
 											<SelectGroup className='mx-0   top-0 w-[180px]'>
 												<SelectItem
 													className='text-center pl-2 flex justify-center '
@@ -171,9 +172,6 @@ export default function Page() {
 				</Card>
 			</div>
 			<div className='col-span-2'>
-				<Card>
-					<CardTitle>Hello 2</CardTitle>
-				</Card>
 			</div>
 		</div>
 	);

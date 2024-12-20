@@ -54,18 +54,18 @@ const items = [
 ];
 export function AppSidebar() {
 	return (
-		<Sidebar className=' '>
-			<SidebarContent className=' pl-4 bg-gray-400 dark:bg-gray-900 text-gray-800 font-bold dark:text-white py-8 '>
+		<Sidebar className='  '>
+			<SidebarContent className=' -mr-2 pl-4  border-primary backdrop-blur-sm bg-slate-100 dark:bg-[#00000060] text-gray-800 font-bold dark:text-white py-8 '>
 				<SidebarGroup>
 					<Link href={'/'}>
-						<SidebarGroupLabel className='font-bold text-black dark:text-white text-xl'>
+						<SidebarGroupLabel className='font-bold text-primary text-2xl'>
 							Money Mingle
 						</SidebarGroupLabel>
 					</Link>
 					<SidebarGroupContent className='mt-4'>
 						<SidebarMenu className=' space-y-4'>
 							{items.map((item) => (
-								<SidebarMenuItem key={item.title}>
+								<SidebarMenuItem className='' key={item.title}>
 									<SidebarMenuButton asChild>
 										<a href={item.url}>
 											<item.icon />

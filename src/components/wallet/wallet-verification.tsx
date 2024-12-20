@@ -6,10 +6,10 @@ import { AlertCircle } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { handleToast } from '../handle-toast';
-import { useRouter } from 'next/navigation';
+import { Loader } from '../ui/Loader';
+
 export const WalletVerification = () => {
 	const session = useSession();
-	const [close, setClose] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const handleVerify = async () => {
 		setLoading(true);
@@ -24,8 +24,8 @@ export const WalletVerification = () => {
 				description: 'Please check your email and verify your Email',
 				className: 'bg-green-600',
 			});
-			setClose(true);
 			setLoading(false);
+			window.location.reload();
 		} else {
 			setLoading(false);
 		}
@@ -37,15 +37,17 @@ export const WalletVerification = () => {
 				<AlertTitle>Account Not Verified</AlertTitle>
 				<AlertDescription className='mt-2 flex items-center justify-between'>
 					<span>Your account is not verified.</span>
-					<Button
-						variant='outline'
-						className='bg-red-600 text-white'
-						size='sm'
-						disabled={close}
-						onClick={handleVerify}
-					>
-						{loading ? 'Loading....' : 'Verify Account'}
-					</Button>
+					{loading ?
+						<Loader />
+					:	<Button
+							variant='outline'
+							className='bg-red-600 text-white'
+							size='sm'
+							onClick={handleVerify}
+						>
+							Verify Account
+						</Button>
+					}
 				</AlertDescription>
 			</Alert>
 		</div>

@@ -20,5 +20,5 @@ export async function middleware(req: any) {
 
 export const config = {
 	// Add your protected routes in matcher.
-	matcher: ['/dashboard', '/bank-transfers', '/profile', '/wallet-transfers'],
+	matcher: ['/dashboard', '/bank-transfers', '/profile', '/wallet-transfers','/transactions'],
 };

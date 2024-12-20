@@ -9,6 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { handleToast } from '@/components/handle-toast';
+import { Loader } from '@/components/ui/Loader';
 
 export default function CreateAccountPage() {
 	const {
@@ -29,7 +30,6 @@ export default function CreateAccountPage() {
 			router.push('/bank-account');
 		} else {
 			setIsLoading(false);
-
 			handleToast({
 				title: 'Please try Again Later',
 				description: 'Cannot Create Bank Account',
@@ -127,9 +127,9 @@ export default function CreateAccountPage() {
 							</p>
 						)}
 					</div>
-					<Button type='submit'>
-						{isLoading ? 'Creating Account...' : 'Create Account'}
-					</Button>
+					{isLoading ?
+						<Loader />
+					:	<Button type='submit'>Create Account</Button>}
 				</form>
 			</div>
 		</div>

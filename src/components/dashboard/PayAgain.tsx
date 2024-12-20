@@ -36,7 +36,7 @@ export const PayAgain = () => {
 	return (
 		<Card>
 			<CardHeader>
-				<CardTitle className='underline text-2xl'>Pay Again</CardTitle>
+				<CardTitle className='underline text-2xl text-primary'>Pay Again</CardTitle>
 			</CardHeader>
 			<CardContent className='space-y-4'>
 				{loading &&

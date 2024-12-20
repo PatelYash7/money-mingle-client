@@ -52,7 +52,7 @@ export function WalletTransfer({ User }: { User: UserWithWallet }) {
 	}, [searchValue]);
 	return (
 		<div className='w-full py-4'>
-			<h1 className='text-4xl py-4 font-bold'>Wallet Transfer</h1>
+			<h1 className='text-4xl py-4 font-bold text-primary'>Wallet Transfer</h1>
 
 			{selectedUser ?
 				<div className='w-1/3 flex justify-start'>
