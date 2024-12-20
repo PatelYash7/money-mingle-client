@@ -1,16 +1,16 @@
-import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 
 export function TestimonialsSection() {
 	return (
-		<section className='relative py-16'>
-			<div className="absolute inset-0 -z-10 h-full  w-full items-center px-5 py-24 [background:radial-gradient(110%_110%_at_50%_50%,#fff_40%,#63e_100%)] dark:[background:radial-gradient(110%_110%_at_50%_50%,#000_40%,#63e_100%)]"></div>
+		<section className='relative py-16   rounded-3xl'>
+			<div className='absolute inset-0 rounded-3xl -z-10 h-full w-full items-center [background:radial-gradient(125%_125%_at_50%_50%,#fff_30%,#63e_100%)] dark:[background:radial-gradient(125%_125%_at_50%_50%,#000_20%,#63e_100%)]'></div>
+ 
 			<div className='container px-4 md:px-6'>
 				<h2 className='text-3xl sm:text-4xl md:text-6xl  text-primary  font-bold tracking-tighter text-center mb-12'>
 					Customer Stories
 				</h2>
 				<div className='grid gap-8 md:grid-cols-2 lg:gap-12 max-w-4xl mx-auto mb-12'>
-					<Card className='bg-white rounded-3xl border-gray-300   dark:backdrop-blur-md dark:bg-[#ffffff0c] dark:border-[#ffffff3a] dark:border-[0.01px] border-[0.01px]'>
+					<Card className='bg-white/20 rounded-3xl border-gray-300   backdrop-blur-md dark:bg-[#ffffff0c] dark:border-[#ffffff3a] dark:border-[0.01px] border-[0.01px]'>
 						<CardContent className='p-6 space-y-4'>
 							<p className='text-sm text-muted-foreground'>A TESTIMONIAL</p>
 							<p className='text-lg font-medium'>
