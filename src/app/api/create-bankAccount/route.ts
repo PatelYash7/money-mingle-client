@@ -58,22 +58,20 @@ export const POST = async (req: NextRequest) => {
 			const confirmationLink = `${process.env.NEXTAUTH_URL}/verify-bank-account/${Verification.token}`;
 			if (Verification.token && confirmationLink) {
 				await sendEmail(response.Email, confirmationLink, Verification.type);
+
 				return {
 					code: 1,
 					message: 'Verification Mail Sent!!',
+					data: response,
 				};
 			}
 			return {
 				code: 0,
 				message: 'Error Sending Mail.',
-				data: response,
+				data: null,
 			};
 		});
 		if (response.code == 1 && response.data) {
-			await SendBankDetails({
-				BankDetails: response.data,
-				email: response.data?.Email,
-			});
 			return NextResponse.json({
 				code: response.code,
 				message: response.message,

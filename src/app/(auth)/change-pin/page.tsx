@@ -27,11 +27,11 @@ export default function Page() {
 			setUser(user.contents);
 		}
 	}, [user.state]);
-    const [pin, setPin] = useState(0);
+	const [pin, setPin] = useState(0);
 	const [cpin, setcPin] = useState(0);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [error, setError] = useState('');
-    const router = useRouter();
+	const router = useRouter();
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		if (pin == cpin && User?.Wallet.id) {
@@ -45,19 +45,19 @@ export default function Page() {
 					description: 'Your Pin has been Updated!!!',
 					className: 'bg-green-600 text-white font-bold',
 				});
-                router.push('/dashboard')
-			}else{
-                handleToast({
+				router.push('/dashboard');
+			} else {
+				handleToast({
 					title: 'Failed',
 					description: response.message,
 					className: 'bg-red-600 text-white font-bold',
 				});
-            }
+			}
 		} else {
 			setError('Pin is not Same');
 		}
 	};
-	
+
 	if (session.data?.user.id) {
 		return (
 			<div className='flex justify-center items-center min-h-screen'>

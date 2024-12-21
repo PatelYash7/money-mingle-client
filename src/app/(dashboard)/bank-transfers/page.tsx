@@ -73,7 +73,9 @@ export default function Page() {
 			<div className=' col-span-3'>
 				<Card>
 					<CardHeader>
-						<CardTitle className='text-primary'>Transfer Money with Bank</CardTitle>
+						<CardTitle className='text-primary'>
+							Transfer Money with Bank
+						</CardTitle>
 						<CardContent className=' space-y-2 pb-0 pt-4 pl-0'>
 							<div>If you dont have bank account?</div>
 							<Button
@@ -171,8 +173,7 @@ export default function Page() {
 					</CardContent>
 				</Card>
 			</div>
-			<div className='col-span-2'>
-			</div>
+			<div className='col-span-2'></div>
 		</div>
 	);
 }

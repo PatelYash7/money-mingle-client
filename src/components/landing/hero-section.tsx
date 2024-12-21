@@ -8,9 +8,6 @@ import {
 import { ButtonPrimary } from '../Button';
 
 export function HeroSection() {
-	const handleClick =()=>{
-		console.log("j")
-	}
 	return (
 		<section className='relative py-28 min-h-screen w-screen'>
 			<div className='absolute inset-0 -z-10 h-full  w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)] dark:[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]'></div>

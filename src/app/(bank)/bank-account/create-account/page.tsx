@@ -27,6 +27,11 @@ export default function CreateAccountPage() {
 		const response = await axios.post('/api/create-bankAccount', e);
 		if (response.data.code == 1) {
 			setIsLoading(false);
+			handleToast({
+				title: 'Account Created',
+				description: 'Please Verify your Account by Email',
+				className: 'bg-green-600',
+			});
 			router.push('/bank-account');
 		} else {
 			setIsLoading(false);
@@ -128,8 +133,13 @@ export default function CreateAccountPage() {
 						)}
 					</div>
 					{isLoading ?
-						<Loader />
-					:	<Button type='submit'>Create Account</Button>}
+						<div className=' flex justify-center'>
+							<Loader />
+						</div>
+					:	<Button type='submit' className='text-white'>
+							Create Account
+						</Button>
+					}
 				</form>
 			</div>
 		</div>

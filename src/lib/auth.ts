@@ -93,6 +93,7 @@ export const authOptions: NextAuthOptions = {
 	callbacks: {
 		async jwt({ token, user, profile, account }) {
 			// Check if signin is done by google or credentials.
+			// console.log(token, user, profile, account);
 			if (account?.provider === 'google') {
 				const UserExist = await prisma.user.findFirst({
 					where: { Email: profile?.email },

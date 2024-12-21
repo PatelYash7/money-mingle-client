@@ -5,6 +5,7 @@ import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { addBankPin, addWalletPin } from '@/action/add-pin';
 import { handleToast } from '../handle-toast';
+import { Loader } from '../ui/Loader';
 
 export const UpdatePin = ({ id }: { id: string }) => {
 	const [isSubmitting, setIsSubmitting] = useState(false);
@@ -34,8 +35,11 @@ export const UpdatePin = ({ id }: { id: string }) => {
 		<div className=' flex justify-center'>
 			<form
 				onSubmit={handleSubmit}
-				className='space-y-4 border-2 px-4 py-2 rounded-xl w-full max-w-md'
+				className='space-y-4 border-2 px-8 py-6 rounded-xl w-full max-w-md'
 			>
+				<div className='text-center font-bold text-xl text-primary'>
+					Update Pin
+				</div>
 				<div className='space-y-2'>
 					<Label htmlFor='newPin'>New PIN</Label>
 					<Input
@@ -61,9 +65,14 @@ export const UpdatePin = ({ id }: { id: string }) => {
 					/>
 				</div>
 				{error && <div className='text-base text-red-600'>{error}</div>}
-				<Button type='submit' className='w-full' disabled={isSubmitting}>
-					{isSubmitting ? 'Updating...' : 'Update PIN'}
-				</Button>
+				{isSubmitting ?
+					<div className=' flex justify-center'>
+						<Loader />
+					</div>
+				:	<Button type='submit' className=' text-white w-full'>
+						Update PIN
+					</Button>
+				}
 			</form>
 		</div>
 	);

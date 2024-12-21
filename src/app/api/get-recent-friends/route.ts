@@ -11,7 +11,7 @@ export const GET = async () => {
 				where: {
 					SenderId: session.user.id,
 				},
-                distinct:['ReceiverId'],
+				distinct: ['ReceiverId'],
 				include: {
 					Receiver: true,
 				},

@@ -51,8 +51,8 @@ export const UpdatePassword = async (
 			message: 'Your Password has been Updated Please try Login!',
 		};
 	}
-    return {
-        code: 0,
-        message: 'Error Updating the User Please try again!!',
-    };
+	return {
+		code: 0,
+		message: 'Error Updating the User Please try again!!',
+	};
 };

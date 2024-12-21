@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { UpdatePassword } from '@/action/update-password';
 import { handleToast } from '@/components/handle-toast';
 import { Button } from '@/components/ui/button';
@@ -10,8 +10,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
-export const ForgotPassword = ({email}:{email:string})=>{
-    const {
+export const ForgotPassword = ({ email }: { email: string }) => {
+	const {
 		register,
 		handleSubmit,
 		formState: { errors },
@@ -21,7 +21,7 @@ export const ForgotPassword = ({email}:{email:string})=>{
 	});
 	const router = useRouter();
 	const onSubmit = async (e: WalletPasswordType) => {
-		const response = await UpdatePassword(e.Password,email);
+		const response = await UpdatePassword(e.Password, email);
 		if (response.code == 1) {
 			handleToast({
 				title: 'Password Updated',
@@ -91,4 +91,4 @@ export const ForgotPassword = ({email}:{email:string})=>{
 			</Card>
 		</div>
 	);
-}
+};

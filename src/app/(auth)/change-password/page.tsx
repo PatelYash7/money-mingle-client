@@ -41,9 +41,14 @@ export default function Page() {
 		<div className='flex justify-center items-center min-h-screen'>
 			<Card className=' min-w-96'>
 				<CardHeader>
-					<CardTitle className=' cursor-pointer' onClick={()=>{
-                        router.push('/dashboard')
-                    }}>Change Pin</CardTitle>
+					<CardTitle
+						className=' cursor-pointer'
+						onClick={() => {
+							router.push('/dashboard');
+						}}
+					>
+						Change Pin
+					</CardTitle>
 				</CardHeader>
 				<CardContent>
 					<form

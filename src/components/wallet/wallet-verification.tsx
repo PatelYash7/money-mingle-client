@@ -25,7 +25,6 @@ export const WalletVerification = () => {
 				className: 'bg-green-600',
 			});
 			setLoading(false);
-			window.location.reload();
 		} else {
 			setLoading(false);
 		}
@@ -36,9 +35,10 @@ export const WalletVerification = () => {
 				<AlertCircle className='h-4 w-4' />
 				<AlertTitle>Account Not Verified</AlertTitle>
 				<AlertDescription className='mt-2 flex items-center justify-between'>
-					<span>Your account is not verified.</span>
 					{loading ?
-						<Loader />
+						<div className=' flex justify-center'>
+							<Loader />
+						</div>
 					:	<Button
 							variant='outline'
 							className='bg-red-600 text-white'

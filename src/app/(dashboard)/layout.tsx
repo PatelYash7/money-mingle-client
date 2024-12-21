@@ -20,10 +20,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 		<>
 			<FloatingNav navItems={navItems} />
 			<SidebarProvider className=''>
-				<AppSidebar/>
+				<AppSidebar />
 				<main className='text-white  w-full '>
 					<SidebarTrigger className='absolute top-4 z-10 ml-4 text-xl text-primary hover:bg-transparent hover:text-2xl  hover:text-primary-foreground' />
-					<div className='px-10 min-h-screen py-20 dark:bg-background bg-slate-50  '>{children}</div>
+					<div className='px-10 min-h-screen py-20 dark:bg-background bg-slate-50  '>
+						{children}
+					</div>
 				</main>
 			</SidebarProvider>
 		</>

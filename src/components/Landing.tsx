@@ -26,9 +26,9 @@ export default function Home() {
 			<FloatingNav navItems={navItems} />
 			<main className='min-h-screen '>
 				<div className=''>
-					<HeroSection/>
-					<FeaturesSection/>
-					<TestimonialsSection/>
+					<HeroSection />
+					<FeaturesSection />
+					<TestimonialsSection />
 					<HowItWorks />
 					<CTASection />
 					<FAQSection />

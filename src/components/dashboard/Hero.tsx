@@ -29,7 +29,9 @@ export const Hero = () => {
 		return (
 			<Card className='w-full'>
 				<CardHeader>
-					<CardTitle className='text-2xl text-primary font-bold'>Hi,{User.Name}</CardTitle>
+					<CardTitle className='text-2xl text-primary font-bold'>
+						Hi,{User.Name}
+					</CardTitle>
 				</CardHeader>
 				<CardContent>
 					{User.Wallet ?
@@ -40,6 +42,14 @@ export const Hero = () => {
 									${String(Number(User.Wallet.Balance) / 100)}
 								</div>
 							</div>
+							{!User.Wallet.pin && (
+								<div>
+									<div className='text-base text-gray-400 py-4'>
+										{' '}
+										(Please Update Pin)
+									</div>
+								</div>
+							)}
 							<div className=' flex gap-4 w-full items-center justify-center'>
 								<Link
 									href={'/wallet-transfers'}
@@ -55,12 +65,17 @@ export const Hero = () => {
 								</Link>
 							</div>
 						</>
-					:	<>
+					:	<div className='flex gap-2'>
 							<div className='py-4 font-bold text-lg'>
 								To get Started Please verify your account
 							</div>
-							<Link href={'/wallet-transfers'}></Link>
-						</>
+							<Link
+								href={'/wallet-transfers'}
+								className='py-4 underline font-bold text-lg'
+							>
+								Verify
+							</Link>
+						</div>
 					}
 				</CardContent>
 			</Card>

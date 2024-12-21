@@ -17,14 +17,12 @@ export const ButtonPrimary = ({
 	const router = useRouter();
 	return (
 		<Button
-			onClick={
-				() => {
-					handleClick&& handleClick();
-					if (url) {
-						router.push(url);
-					}
+			onClick={() => {
+				handleClick && handleClick();
+				if (url) {
+					router.push(url);
 				}
-			}
+			}}
 			className={cn(
 				'bg-primary z-10 rounded-full px-6  hover:bg-primary-foreground text-white',
 				className,

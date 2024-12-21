@@ -9,9 +9,7 @@ export default function Page() {
 	const Transaction = useRecoilValueLoadable(transactionsSelector);
 	return (
 		<div className='py-8'>
-			<div className='text-4xl font-bold text-primary'>
-				Transaction Details
-			</div>
+			<div className='text-4xl font-bold text-primary'>Transaction Details</div>
 			<div className='space-y-2 py-4 w-1/2'>
 				{Transaction.state == 'hasValue' &&
 					Transaction.contents &&

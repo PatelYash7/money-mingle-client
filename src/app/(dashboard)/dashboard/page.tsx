@@ -11,7 +11,7 @@ export default function Page() {
 					<PayAgain />
 				</div>
 				<div className='col-span-2'>
-					<RecentTransaction/>
+					<RecentTransaction />
 				</div>
 			</div>
 		</div>

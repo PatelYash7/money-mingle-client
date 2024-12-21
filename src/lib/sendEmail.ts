@@ -27,7 +27,83 @@ export async function sendEmail(email: string, link: string, type: TokenType) {
 				to: email,
 				subject: 'Wallet Verification',
 				text: `Click the following link to confirm your Wallet: ${link}`,
-				html: `<p>Click the following link to confirm your email:</p><a href="${link}">Confirm Email</a>`,
+				html: `
+                
+                <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        }
+        .header {
+            background: #6633ee;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+        .content {
+            padding: 20px;
+            line-height: 1.6;
+            color: #333333;
+        }
+        .content h2 {
+            color: #6633ee;
+            margin-bottom: 10px;
+        }
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .details-table th, .details-table td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #dddddd;
+        }
+        .details-table th {
+            background-color: #f4f4f4;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f4f4f4;
+            font-size: 14px;
+            color: #888888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            Verify Your Wallet
+        </div>
+        <div class="content">
+            <h1>Click on This button to Verify Your Wallet</h1>
+            <a href="${link}" style="display: inline-block; padding: 10px 20px; background-color: #6633ee; color: white; text-decoration: none; border-radius: 5px;">Verify Wallet</a>
+        </div>
+        <div class="footer">
+            This is an automated message. Please do not reply.
+        </div>
+    </div>
+</body>
+</html>
+                `,
 			};
 			await transporter.sendMail(mailOptions);
 		}
@@ -78,7 +154,7 @@ export const SendBankDetails = async ({
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
         }
         .header {
-            background: #007BFF;
+            background: #6633ee;
             color: white;
             padding: 20px;
             text-align: center;
@@ -90,7 +166,7 @@ export const SendBankDetails = async ({
             color: #333333;
         }
         .content h2 {
-            color: #007BFF;
+            color: #6633ee;
             margin-bottom: 10px;
         }
         .details-table {
@@ -121,28 +197,28 @@ export const SendBankDetails = async ({
             User Account Details
         </div>
         <div class="content">
-            <h2>Hello, {${BankDetails.Name}}</h2>
+            <h2>Hello, ${BankDetails.Name}</h2>
             <p>Here are the details of your account:</p>
             <table class="details-table">
                 <tr>
                     <th>Mobile Number</th>
-                    <td>{${BankDetails.MobileNumber}}</td>
+                    <td>${BankDetails.MobileNumber}</td>
                 </tr>
                 <tr>
                     <th>Password</th>
-                    <td>{${BankDetails.Password}}</td>
+                    <td>${BankDetails.Password}</td>
                 </tr>
                 <tr>
                     <th>Account Number</th>
-                    <td>{${BankDetails.AccountNumber}}</td>
+                    <td>${BankDetails.AccountNumber}</td>
                 </tr>
                 <tr>
                     <th>Email</th>
-                    <td>{${BankDetails.Email}}</td>
+                    <td>${BankDetails.Email}</td>
                 </tr>
                 <tr>
                     <th>Verified</th>
-                    <td>{${BankDetails.isVerified ? 'Yes' : 'No'}}</td>
+                    <td>${BankDetails.isVerified ? 'Yes' : 'No'}</td>
                 </tr>
             </table>
         </div>

@@ -4,7 +4,7 @@ export function TestimonialsSection() {
 	return (
 		<section className='relative py-16   rounded-3xl'>
 			<div className='absolute inset-0 rounded-3xl -z-10 h-full w-full items-center [background:radial-gradient(125%_125%_at_50%_50%,#fff_30%,#63e_100%)] dark:[background:radial-gradient(125%_125%_at_50%_50%,#000_20%,#63e_100%)]'></div>
- 
+
 			<div className='container px-4 md:px-6'>
 				<h2 className='text-3xl sm:text-4xl md:text-6xl  text-primary  font-bold tracking-tighter text-center mb-12'>
 					Customer Stories

@@ -5,7 +5,6 @@ export { default } from 'next-auth/middleware';
 // You can add protected routing based on user roles.
 export async function middleware(req: any) {
 	const token = await getToken({ req });
-
 	if (!token) {
 		return NextResponse.redirect(new URL('/api/auth/signin', req.url));
 	}
@@ -20,5 +19,11 @@ export async function middleware(req: any) {
 
 export const config = {
 	// Add your protected routes in matcher.
-	matcher: ['/dashboard', '/bank-transfers', '/profile', '/wallet-transfers','/transactions'],
+	matcher: [
+		'/dashboard',
+		'/bank-transfers',
+		'/profile',
+		'/wallet-transfers',
+		'/transactions',
+	],
 };

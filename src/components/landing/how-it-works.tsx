@@ -25,7 +25,10 @@ export function HowItWorks() {
 							image: '/signup.png',
 						},
 					].map((step, index) => (
-						<div key={index} className=' backdrop-blur-sm border-primary border rounded-3xl px-4 py-4 text-center'>
+						<div
+							key={index}
+							className=' backdrop-blur-sm border-primary border rounded-3xl px-4 py-4 text-center'
+						>
 							<div className='relative h-[200px] w-[200px] mb-4'>
 								<Image
 									src={step.image}

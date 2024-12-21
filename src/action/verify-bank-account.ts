@@ -1,5 +1,6 @@
 'use server';
 import prisma from '@/db';
+import { SendBankDetails } from '@/lib/sendEmail';
 export const VerifyBankAccount = async ({ token }: { token: string }) => {
 	try {
 		const response = await prisma.$transaction(async (txn) => {
@@ -24,6 +25,10 @@ export const VerifyBankAccount = async ({ token }: { token: string }) => {
 				},
 			});
 			if (BankAccount) {
+				await SendBankDetails({
+					BankDetails: BankAccount,
+					email: BankAccount.Email,
+				});
 				return {
 					code: 1,
 					message: 'Account Verified Successfully!',

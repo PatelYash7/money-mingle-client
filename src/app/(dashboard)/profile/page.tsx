@@ -40,9 +40,7 @@ export default async function Page() {
 						</div>
 					</div>
 					<div className='flex items-center gap-2 text-lg'>
-						<Label className=' font-bold text-lg'>
-							Account Type:
-						</Label>
+						<Label className=' font-bold text-lg'>Account Type:</Label>
 						<div>{User?.AccountType}</div>
 					</div>
 				</CardContent>

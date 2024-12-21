@@ -17,12 +17,12 @@ export default function Page() {
 			const User = await FindUser(email);
 			if (User?.iSGoogle) {
 				handleToast({
-                    title: "Password Updated",
-                    description: "response.message",
-                    className: "bg-green-600 text-white",
-                });
-                alert("Account Linked with Google")
-                router.push(`/signin`);
+					title: 'Password Updated',
+					description: 'response.message',
+					className: 'bg-green-600 text-white',
+				});
+				alert('Account Linked with Google');
+				router.push(`/signin`);
 			} else {
 				if (User) {
 					router.push(`/forgot-password/${User.id}`);

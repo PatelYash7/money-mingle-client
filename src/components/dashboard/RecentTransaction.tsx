@@ -27,7 +27,9 @@ export const RecentTransaction = () => {
 	return (
 		<Card className='  '>
 			<CardHeader>
-				<CardTitle className='underline text-primary'>Recent Transaction</CardTitle>
+				<CardTitle className='underline text-primary'>
+					Recent Transaction
+				</CardTitle>
 			</CardHeader>
 			<CardContent className='space-y-2'>
 				{loading && (

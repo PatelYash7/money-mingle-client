@@ -2,7 +2,7 @@
 import { UserType } from '@/types/type';
 import axios from 'axios';
 import { atom, selector } from 'recoil';
-export const userSelector = selector<UserType|null >({
+export const userSelector = selector<UserType | null>({
 	key: 'UserSelector',
 	get: async () => {
 		try {
@@ -13,10 +13,10 @@ export const userSelector = selector<UserType|null >({
 		} catch (error) {
 			return null;
 		}
-	}
+	},
 });
 
-export const userAtom = atom<UserType |null>({
+export const userAtom = atom<UserType | null>({
 	key: 'UserAtom',
 	default: userSelector,
 });

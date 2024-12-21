@@ -60,7 +60,7 @@ export default function Component() {
 						className='w-full bg-[#222] hover:bg-[#333] text-white'
 						variant='outline'
 						onClick={() => {
-							signIn('google', { callbackUrl: '/' });
+							signIn('google', { callbackUrl: `/dashboard` });
 						}}
 					>
 						<FcGoogle className='mr-2 h-4 w-4' />
@@ -142,7 +142,10 @@ export default function Component() {
 						</Button>
 					</form>
 					<div className='text-center'>
-						<Link href='/forgot-password' className='text-sm text-blue-500 hover:underline'>
+						<Link
+							href='/forgot-password'
+							className='text-sm text-blue-500 hover:underline'
+						>
 							Forgot Your Password?
 						</Link>
 					</div>
