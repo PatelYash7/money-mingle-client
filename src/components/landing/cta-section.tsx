@@ -11,12 +11,12 @@ export function CTASection() {
 				<div className='grid gap-6 lg:grid-cols-2 items-center'>
 					<div className='space-y-4'>
 						<h2 className='text-3xl font-bold tracking-tighter text-primary sm:text-4xl md:text-5xl'>
-							Ready to simplify your financial transactions?
+							Ready to simplify your Wallet transactions?
 						</h2>
 						<p className='text-slate-400 md:text-xl'>
-							Join thousands of satisfied users and experience the difference.
+							Create an Bank account and start managing your finances with ease.
 						</p>
-						<ButtonPrimary title='Get Started Now' />
+						<ButtonPrimary url='/bank-account' title='Get Started Now' />
 					</div>
 					<div className='relative h-[300px] lg:h-[400px]'>
 						<Image

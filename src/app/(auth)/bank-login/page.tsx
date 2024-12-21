@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useRecoilState, useSetRecoilState } from 'recoil';
+import { Loader } from '@/components/ui/Loader';
 
 export default function CreateAccountPage() {
 	const [isLoading, setIsLoading] = useState(false);
@@ -31,8 +32,12 @@ export default function CreateAccountPage() {
 	};
 	return (
 		<div className='flex justify-center items-center h-screen'>
-			<div className='container mx-auto max-w-lg py-10 border-2 rounded-lg'>
-				<h1 className='text-3xl font-bold mb-6'>Create Bank Account</h1>
+			<div className='absolute top-0 z-[-2] h-screen w-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1.5px,#00091d_1.5px)] bg-[size:20px_20px]'></div>
+
+			<div className='container mx-auto bg-white/5 border-primary backdrop-blur-sm max-w-lg py-10 border-2 rounded-lg'>
+				<h1 className='text-3xl font-bold mb-6 text-primary'>
+					Create Bank Account
+				</h1>
 				<form onSubmit={handleSubmit} className='space-y-6'>
 					<div className='space-y-2'>
 						<Label htmlFor='mobileNumber'>Mobile Number</Label>
@@ -59,9 +64,14 @@ export default function CreateAccountPage() {
 					</div>
 
 					<div className='flex justify-center'>
-						<Button type='submit' disabled={isLoading}>
-							{isLoading ? 'Logging In' : 'Login'}
-						</Button>
+						{isLoading ?
+							<div className='flex justify-center'>
+								<Loader />
+							</div>
+						:	<Button className='text-white font-bold text-lg' type='submit'>
+								Login
+							</Button>
+						}
 					</div>
 				</form>
 			</div>

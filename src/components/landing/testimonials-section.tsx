@@ -12,17 +12,17 @@ export function TestimonialsSection() {
 				<div className='grid gap-8 md:grid-cols-2 lg:gap-12 max-w-4xl mx-auto mb-12'>
 					<Card className='bg-white/20 rounded-3xl border-gray-300   backdrop-blur-md dark:bg-[#ffffff0c] dark:border-[#ffffff3a] dark:border-[0.01px] border-[0.01px]'>
 						<CardContent className='p-6 space-y-4'>
-							<p className='text-sm text-muted-foreground'>A TESTIMONIAL</p>
+							<p className='text-sm text-muted-foreground'>Tirth Bhavani</p>
 							<p className='text-lg font-medium'>
 								"The best payment solution I've ever used. Secure, efficient,
 								and integrates perfectly with all my financial tools. Highly
 								recommend!"
 							</p>
 							<div className='flex items-center space-x-4'>
-								<div className='rounded-full bg-slate-100 w-10 h-10' />
+								<div className='rounded-full bg-black text-white flex justify-center items-center w-10 h-10'>TB</div>
 								<div>
 									<p className='text-sm font-medium'>Finance Executive</p>
-									<p className='text-sm text-muted-foreground'>Company Name</p>
+									<p className='text-sm text-muted-foreground'>TechTOnions</p>
 								</div>
 							</div>
 						</CardContent>

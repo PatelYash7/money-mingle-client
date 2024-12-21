@@ -15,8 +15,8 @@ export function HowItWorks() {
 							image: '/signup.png',
 						},
 						{
-							title: 'Add Your Bank Account',
-							description: 'Connect your bank account securely',
+							title: 'Create a Bank Account',
+							description: 'Transfer Money to your Wallet.',
 							image: '/signup.png',
 						},
 						{

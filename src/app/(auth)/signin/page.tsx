@@ -37,20 +37,21 @@ export default function Component() {
 		}
 	};
 	return (
-		<div className='min-h-screen flex items-center justify-center bg-black bg-[linear-gradient(rgba(0,0,0,.5)_2px,transparent_2px),linear-gradient(90deg,rgba(0,0,0,.5)_2px,transparent_2px)] bg-[size:50px_50px]'>
-			<Card className='w-full max-w-md bg-[#111] text-white border-none shadow-2xl'>
+		<div className='min-h-screen flex items-center justify-center '>
+			<div className='absolute top-0 z-[-2] h-screen w-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]'></div>
+			<Card className='w-full max-w-md  text-white border-none shadow-2xl bg-white/5 backdrop-blur-sm'>
 				<CardHeader className='space-y-1 text-center'>
 					<h1
 						onClick={() => {
 							router.push('/');
 						}}
-						className='text-3xl cursor-pointer font-bold tracking-tight mb-2'
+						className='text-3xl cursor-pointer font-bold text-primary tracking-tight mb-2'
 					>
 						Money Mingle
 					</h1>
 					<p className='text-sm text-gray-400'>
 						Don&apos;t have an account?{' '}
-						<Link href='signup' className='text-blue-500 hover:underline'>
+						<Link href='signup' className='text-primary hover:underline'>
 							Create one.
 						</Link>
 					</p>
@@ -78,7 +79,7 @@ export default function Component() {
 						<div className='space-y-2'>
 							<label
 								htmlFor='email'
-								className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
+								className='text-lg font-bold leading-none peer-disabled:cursor-not-allowed text-primary peer-disabled:opacity-70'
 							>
 								Email
 							</label>
@@ -102,7 +103,7 @@ export default function Component() {
 						<div className='space-y-2'>
 							<label
 								htmlFor='password'
-								className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
+								className='text-lg text-primary  font-bold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
 							>
 								Password
 							</label>
@@ -136,7 +137,7 @@ export default function Component() {
 						</div>
 						<Button
 							type='submit'
-							className='w-full bg-blue-600 hover:bg-blue-700 text-white'
+							className='w-full bg-primary font-bold text-lg hover:bg-blue-700 text-white'
 						>
 							Sign in
 						</Button>
@@ -144,7 +145,7 @@ export default function Component() {
 					<div className='text-center'>
 						<Link
 							href='/forgot-password'
-							className='text-sm text-blue-500 hover:underline'
+							className='text-sm text-primary-foreground hover:underline'
 						>
 							Forgot Your Password?
 						</Link>

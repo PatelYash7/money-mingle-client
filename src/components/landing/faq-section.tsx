@@ -19,25 +19,25 @@ export function FAQSection() {
 						{[
 							{
 								question:
-									'Do I need to link all my bank accounts and cards to use ZenPay?',
+									'Do I need to link all my bank accounts and cards to use Moneymingle?',
 								answer:
 									'No, you can start with just one account and add more as needed.',
 							},
 							{
-								question: 'How long does it take to set up my ZenPay account?',
+								question:
+									'How long does it take to set up my Moneymingle account?',
 								answer:
 									'Setting up your account typically takes less than 5 minutes.',
-							},
-							{
-								question:
-									'Can ZenPay handle transactions in multiple currencies?',
-								answer:
-									'Yes, we support multiple currencies with competitive exchange rates.',
 							},
 							{
 								question: 'Does ZenPay allow all types of transactions?',
 								answer:
 									'We support most standard financial transactions with some restrictions.',
+							},
+							{
+								question: 'How to Add money in Money Mingle Wallet?',
+								answer:
+									'You can add money to your wallet using your bank account. You can add create bank account in money mingle bank account section.',
 							},
 						].map((faq, index) => (
 							<AccordionItem key={index} value={`item-${index}`}>

@@ -40,28 +40,28 @@ export default function SignUpPage() {
 		resolver: zodResolver(UserSchemaSignup),
 	});
 	return (
-		<div className='min-h-screen py-8 flex items-center justify-center bg-black bg-[linear-gradient(rgba(0,0,0,.5)_2px,transparent_2px),linear-gradient(90deg,rgba(0,0,0,.5)_2px,transparent_2px)] bg-[size:50px_50px]'>
+		<div className=' min-h-screen py-8 flex items-center justify-center'>
+			<div className='fixed py-8 top-0 z-[-2] min-h-screen w-full bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]'></div>
 			<Card className='w-full max-w-md bg-[#111] text-white border-none shadow-2xl'>
 				<CardHeader className='space-y-1 text-center'>
 					<h1
 						onClick={() => {
 							router.push('/');
 						}}
-						className='text-3xl cursor-pointer font-bold tracking-tight mb-2'
+						className='text-3xl tracking-wider cursor-pointer text-primary font-bold mb-2'
 					>
-						Product Name
+						Money Mingle
 					</h1>
-					<p className='text-sm text-gray-400'>This is sample login page.</p>
 					<p className='text-sm text-gray-400'>
 						Already have an account?{' '}
-						<Link href='/signin' className='text-blue-500 hover:underline'>
+						<Link href='/signin' className='text-primary hover:underline'>
 							signin.
 						</Link>
 					</p>
 				</CardHeader>
 				<CardContent className='space-y-4'>
 					<Button
-						className='w-full bg-[#222] hover:bg-[#333] text-white'
+						className='w-full border-primary shadow-primary-foreground border-2 shadow bg-[#222] hover:bg-[#333] text-white'
 						variant='outline'
 						onClick={() => {
 							signIn('google', { callbackUrl: '/' });
@@ -82,7 +82,7 @@ export default function SignUpPage() {
 						<div className='space-y-2'>
 							<label
 								htmlFor='email'
-								className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
+								className='text-lg text-primary font-bold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
 							>
 								Email
 							</label>
@@ -106,7 +106,7 @@ export default function SignUpPage() {
 						<div className='space-y-2'>
 							<label
 								htmlFor='name'
-								className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
+								className='text-lg text-primary font-bold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
 							>
 								Name
 							</label>
@@ -128,7 +128,7 @@ export default function SignUpPage() {
 						<div className='space-y-2'>
 							<label
 								htmlFor='number'
-								className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
+								className='text-lg text-primary font-bold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
 							>
 								Number
 							</label>
@@ -150,7 +150,7 @@ export default function SignUpPage() {
 						<div className='space-y-2'>
 							<label
 								htmlFor='password'
-								className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
+								className='text-lg text-primary font-bold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
 							>
 								Password
 							</label>
@@ -178,7 +178,7 @@ export default function SignUpPage() {
 						<div className='space-y-2'>
 							<label
 								htmlFor='confirm-password'
-								className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
+								className='text-lg text-primary font-bold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
 							>
 								Confirm Password
 							</label>
@@ -205,7 +205,7 @@ export default function SignUpPage() {
 						)}
 						<Button
 							type='submit'
-							className='w-full my-4 bg-blue-600 hover:bg-blue-700 text-white'
+							className='w-full my-4 bg-primary hover:bg-primary-foreground transition-colors text-white'
 						>
 							Sign up
 						</Button>

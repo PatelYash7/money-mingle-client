@@ -44,22 +44,23 @@ export default function CreateAccountPage() {
 	};
 	return (
 		<div className='flex justify-center items-center min-h-screen py-8'>
-			<div className='container mx-auto max-w-2xl py-10 border-2 rounded-lg'>
+			<div className='absolute top-0 z-[-2] h-screen w-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]'></div>
+			<div className='container mx-auto max-w-2xl py-10 border-2 rounded-lg bg-white/5 backdrop-blur-sm'>
 				<h1 className='text-3xl font-bold text-center'>Create Bank Account</h1>
 				<div className='flex justify-center items-center flex-col pb-4 '>
 					<div
-						className='text-lg mb-3 pt-4 text-fuchsia-400 font-bold cursor-pointer'
+						className='text-lg mb-3 pt-4 text-primary font-bold cursor-pointer'
 						onClick={() => {
 							router.push('/bank-account');
 						}}
 					>
-						MM Payments Banks
+						Money Mingle Payments Bank
 					</div>
 					<div
 						onClick={() => {
 							router.push('/bank-login');
 						}}
-						className='text-center text-xs cursor-pointer'
+						className='text-center text-sm cursor-pointer'
 					>
 						If your Already have an Account,{' '}
 						<span className='underline'> Login</span>
@@ -68,7 +69,12 @@ export default function CreateAccountPage() {
 				<form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
 					<div className='grid grid-cols-2 gap-4'>
 						<div className='space-y-2 col-span-1'>
-							<Label htmlFor='mobileNumber'>Mobile Number</Label>
+							<Label
+								htmlFor='mobileNumber'
+								className='text-primary font-bold text-lg'
+							>
+								Mobile Number
+							</Label>
 							<Input
 								{...register('MobileNumber')}
 								id='mobileNumber'
@@ -81,7 +87,9 @@ export default function CreateAccountPage() {
 							)}
 						</div>
 						<div className='space-y-2 col-span-1'>
-							<Label htmlFor=' Name'>Name</Label>
+							<Label htmlFor=' Name' className='text-primary font-bold text-lg'>
+								Name
+							</Label>
 							<Input
 								{...register('Name')}
 								id='name'
@@ -93,7 +101,9 @@ export default function CreateAccountPage() {
 						</div>
 					</div>
 					<div className='space-y-2'>
-						<Label htmlFor='email'>Email</Label>
+						<Label htmlFor='email' className='text-primary font-bold text-lg '>
+							Email
+						</Label>
 						<Input
 							id='email'
 							{...register('Email')}
@@ -105,7 +115,12 @@ export default function CreateAccountPage() {
 						)}
 					</div>
 					<div className='space-y-2'>
-						<Label htmlFor='password'>Password</Label>
+						<Label
+							htmlFor='password'
+							className='text-primary font-bold text-lg'
+						>
+							Password
+						</Label>
 						<Input
 							{...register('Password')}
 							id='password'
@@ -118,7 +133,12 @@ export default function CreateAccountPage() {
 						)}
 					</div>
 					<div className='space-y-2'>
-						<Label htmlFor='Confirmpassword'>Confirm Password</Label>
+						<Label
+							htmlFor='Confirmpassword'
+							className='text-primary font-bold text-lg'
+						>
+							Confirm Password
+						</Label>
 						<Input
 							{...register('confirmPassword')}
 							id='Confirmpassword'
