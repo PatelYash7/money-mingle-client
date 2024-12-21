@@ -32,10 +32,7 @@ export const BankWalletTxn = async ({
 			};
 		}
 		if (BankAccount) {
-			const isVerified = await bcrypt.compare(
-				bankPassword,
-				BankAccount?.Password,
-			);
+			const isVerified = bankPassword == BankAccount.Password;
 			if (!isVerified) {
 				return {
 					code: 0,
@@ -129,10 +126,7 @@ export const WalletBankTxn = async ({
 			};
 		}
 		if (BankAccount) {
-			const isVerified = await bcrypt.compare(
-				bankPassword,
-				BankAccount?.Password,
-			);
+			const isVerified = bankPassword == BankAccount.Password;
 			if (!isVerified) {
 				return {
 					code: 0,

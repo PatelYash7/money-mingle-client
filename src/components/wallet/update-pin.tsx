@@ -49,7 +49,7 @@ export const UpdatePin = ({ id }: { id: string }) => {
 						pattern='[0-9]*'
 						maxLength={6}
 						onChange={(e) => setPin(Number(e.target.value))}
-						placeholder='Enter new PIN'
+						placeholder='Enter 6-digit PIN'
 					/>
 				</div>
 				<div className='space-y-2'>
@@ -69,8 +69,8 @@ export const UpdatePin = ({ id }: { id: string }) => {
 					<div className=' flex justify-center'>
 						<Loader />
 					</div>
-				:	<Button type='submit' className=' text-white w-full'>
-						Update PIN
+				:	<Button type='submit' className=' font-light text-lg text-white '>
+						Update PIN safasdfas
 					</Button>
 				}
 			</form>

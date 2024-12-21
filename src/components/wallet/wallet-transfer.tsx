@@ -222,6 +222,9 @@ export function WalletTransfer({ User }: { User: UserWithWallet }) {
 									${Number(User.Wallet?.Balance) / 100}
 								</div>
 							</div>
+							{User.Wallet?.Balance == 0 && (
+								<div>Please add money to your wallet from bank</div>
+							)}
 						</CardContent>
 					</Card>
 				</div>
