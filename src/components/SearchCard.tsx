@@ -16,10 +16,10 @@ export const SearchCard = ({
 					{item.picture ?
 						<Image
 							src={item.picture}
-							width={48}
-							height={48}
-							className='h-12 w-16 flex justify-center items-center rounded-full'
-							alt='img'
+							width={28}
+							height={28}
+							className='h-16 w-16 font-bold text-3xl flex justify-center items-center rounded-full bg-primary-foreground'
+							alt={item.Name.charAt(0)}
 						/>
 					:	<div className='px-5 py-3 rounded-full bg-blue-600 text-3xl font-bold'>
 							{item.Name.charAt(0)}
@@ -35,7 +35,7 @@ export const SearchCard = ({
 			<div>
 				<Button
 					onClick={handlePayNow}
-					className=' bg-green-500 rounded-2xl font-bold'
+					className=' bg-primary text-white rounded-3xl font-bold'
 				>
 					Pay Now
 				</Button>

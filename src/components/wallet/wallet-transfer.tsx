@@ -26,15 +26,16 @@ export function WalletTransfer({ User }: { User: UserWithWallet }) {
 	const [userData, setUserData] = useState<User[]>();
 	const PaymentUserValue = useRecoilValue(PaymentUser);
 	const [selectedUser, setSelectedUser] = useState<User>();
-	const debouncedValue = useDedounce({ value: searchValue, timer: 1000 });
+	const debouncedValue = useDedounce({ value: searchValue, timer: 500 });
 	useEffect(() => {
-		if (PaymentUser) {
+		if (PaymentUserValue) {
 			setIsOpen(false);
 			setIsModalOpen(true);
 			setSelectedUser(PaymentUserValue);
 		}
 		const search = async () => {
 			const result = await searchUser({ value: debouncedValue });
+			console.log(result)
 			if (result.code == 1 && result.data?.length) {
 				setUserData(result.data);
 				setError('');
@@ -49,7 +50,7 @@ export function WalletTransfer({ User }: { User: UserWithWallet }) {
 			setIsOpen(false);
 		}
 		// @ts-ignore
-	}, [searchValue]);
+	}, [debouncedValue]);
 	return (
 		<div className='w-full py-4'>
 			<h1 className='text-4xl py-4 font-bold text-primary'>Wallet Transfer</h1>

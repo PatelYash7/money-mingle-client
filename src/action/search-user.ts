@@ -5,13 +5,13 @@ import { getServerSession } from 'next-auth';
 
 export const searchUser = async ({ value }: { value: string }) => {
 	const session = await getServerSession(authOptions);
-	const result = await prisma.user.findMany({
+	let result = await prisma.user.findMany({
 		where: {
 			AND: [
 				{
 					OR: [
 						{ MobileNumber: { startsWith: value } },
-						{ Name: { startsWith: value } },
+						{ Name: { startsWith: value,mode:'insensitive' } },
 						{ Email: { startsWith: value } },
 					],
 				},
@@ -27,7 +27,19 @@ export const searchUser = async ({ value }: { value: string }) => {
 			Wallet: true,
 		},
 	});
-	if (result) {
+	if (result.length < 5) {
+		result = await prisma.user.findMany({
+		  where: {
+			NOT: {
+			  id: session?.user.id,
+			},
+		  },
+		  include: {
+			Wallet: true,
+		  },
+		});
+	  }
+	if (result.length >0) {
 		return {
 			code: 1,
 			data: result,
