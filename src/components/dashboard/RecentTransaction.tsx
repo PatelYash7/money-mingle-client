@@ -25,7 +25,7 @@ export const RecentTransaction = () => {
 	}, [Transactions.state]);
 	const router = useRouter();
 	return (
-		<Card className='  '>
+		<Card className=''>
 			<CardHeader>
 				<CardTitle className='underline text-primary'>
 					Recent Transaction

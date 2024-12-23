@@ -23,9 +23,9 @@ const fontBody = Space_Mono({
 
 export default function RootLayout({
 	children,
-}: Readonly<{
+}: {
 	children: React.ReactNode;
-}>) {
+}) {
 	return (
 		<html lang='en'>
 			<body
@@ -38,6 +38,7 @@ export default function RootLayout({
 					disableTransitionOnChange
 				>
 					{children}
+					<div id='modal-root' />
 					<Toaster />
 				</Providers>
 			</body>

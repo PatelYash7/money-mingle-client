@@ -40,7 +40,7 @@ export default function SignUpPage() {
 		resolver: zodResolver(UserSchemaSignup),
 	});
 	return (
-		<div className=' min-h-screen py-8 flex items-center justify-center'>
+		<div className=' min-h-screen py-8 flex items-center justify-center mx-6'>
 			<div className='fixed py-8 top-0 z-[-2] min-h-screen w-full bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]'></div>
 			<Card className='w-full max-w-md bg-[#111] text-white border-none shadow-2xl'>
 				<CardHeader className='space-y-1 text-center'>

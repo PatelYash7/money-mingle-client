@@ -25,7 +25,7 @@ export function Footer() {
 			<div className='container px-4 md:px-6 py-6'>
 				<div className='flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0'>
 					<div className='text-sm text-primary-foreground cursor-default'>
-						© 2024 Zenpay. All rights reserved.
+						© 2024 MoneyMingle. All rights reserved.
 					</div>
 					<div className='flex space-x-4'>
 						<Link

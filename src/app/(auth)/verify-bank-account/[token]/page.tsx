@@ -1,5 +1,4 @@
 import { VerifyBankAccount } from '@/action/verify-bank-account';
-import { EnterPin } from '@/components/enter-pin';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
 
@@ -7,7 +6,8 @@ export default async function Page({ params }: { params: { token: string } }) {
 	const result = await VerifyBankAccount({ token: params.token });
 	if (result?.code == 1 && result.data) {
 		return (
-			<div className='h-screen flex justify-center items-center bg-background'>
+			<div className='h-screen flex justify-center items-center px-4'>
+				<div className='absolute top-0 z-[-2] h-screen w-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]'></div>
 				<Card className='bg-white/5 backdrop-blur-sm'>
 					<CardHeader>
 						<CardTitle className='text-primary'>
@@ -36,8 +36,9 @@ export default async function Page({ params }: { params: { token: string } }) {
 		);
 	}
 	return (
-		<div className='h-screen flex justify-center items-center bg-primary'>
-			<Card className='bg-primary-foreground'>
+		<div className='h-screen flex justify-center items-center  px-4'>
+			<div className='absolute top-0 z-[-2] h-screen w-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]'></div>
+			<Card className='bg-white/5 backdrop-blur-sm'>
 				<CardHeader>
 					<CardTitle>Invalid Url</CardTitle>
 				</CardHeader>

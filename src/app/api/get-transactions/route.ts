@@ -14,16 +14,15 @@ export const GET = async () => {
 				Sender: true,
 				Receiver: true,
 			},
+			orderBy: {
+				timestamp: 'desc',
+			},
 		});
 		if (response) {
-			const sortedResponse = response.sort(
-				(a, b) =>
-					new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime(),
-			);
 			return NextResponse.json({
 				code: 1,
 				message: 'success',
-				data: sortedResponse,
+				data: response,
 			});
 		}
 		return NextResponse.json({

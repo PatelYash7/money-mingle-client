@@ -41,29 +41,21 @@ export const PayAgain = () => {
 				</CardTitle>
 			</CardHeader>
 			<CardContent className='space-y-4'>
-				{loading &&
-					Array.from({ length: 5 }).map((_, i) => (
-						<div key={i} className='flex justify-between'>
-							<div className='flex items-center gap-4'>
-								<div>
-									<Skeleton className='h-12 w-12 rounded-full' />
-								</div>
-								<div className='w-full space-y-2'>
-									<Skeleton className='w-48 h-4' />
-									<Skeleton className='w-20 h-2' />
+				<div className='grid grid-cols-3 sm:grid-cols-5 gap-4'>
+					{loading &&
+						Array.from({ length: 5 }).map((_, i) => (
+							<div
+								key={i}
+								className='flex flex-col items-center gap-4 border justify-center rounded-3xl border-primary-foreground p-2 sm:p-5'
+							>
+								<Skeleton className='sm:h-20 h-10 w-10 sm:w-20 rounded-full' />
+								<div className='text-2xl font-bold text-blue-400'>
+									<Skeleton className='h-2 sm:h-4  w-10 sm:w-20 rounded-full' />
 								</div>
 							</div>
-							<div>
-								<Link
-									href={'/wallet-transfer'}
-									className='px-4 py-2 bg-green-500 rounded-2xl font-bold'
-								>
-									Pay Now
-								</Link>
-							</div>
-						</div>
-					))}
-				<div className='grid grid-cols-5 '>
+						))}
+				</div>
+				<div className='grid grid-cols-3 sm:grid-cols-5 gap-4'>
 					{Users &&
 						Users.map((item: TransactionsWithReciever, i) => (
 							<div
@@ -74,12 +66,17 @@ export const PayAgain = () => {
 								}}
 								className='flex cursor-pointer flex-col justify-center items-center'
 							>
-								<div className='flex flex-col items-center justify-center rounded-full p-5'>
-									<div className='text-3xl font-bold rounded-full border px-6 py-5 bg-blue-500'>
-										{item.Receiver.Name.charAt(0) +
-											item.Receiver.Name.charAt(item.Receiver.Name.length - 1)}
-									</div>
-									<div className='text-2xl font-bold text-blue-400'>
+								<div className='flex flex-col items-center border justify-center gap-4 rounded-3xl border-primary-foreground p-2 sm:p-5'>
+									{item.Receiver.picture && (
+										<Image
+											src={item.Receiver.picture}
+											alt={item.Receiver.Name.charAt(0)}
+											width={28}
+											height={28}
+											className='rounded-full sm:h-20  text-3xl font-semibold w-10 h-10 sm:w-20 border'
+										/>
+									)}
+									<div className='text-base  sm:text-2xl font-bold text-blue-400'>
 										{item.Receiver.Name.split(' ')[0]} ..
 									</div>
 								</div>

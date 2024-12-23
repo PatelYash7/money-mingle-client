@@ -6,7 +6,7 @@ export default async function Page({ params }: { params: { token: string } }) {
 	const result = await VerifyWallet({ token: params.token });
 	if (result?.code == 1 && result.id) {
 		return (
-			<div className='h-screen flex justify-center items-center bg-background'>
+			<div className='h-screen flex justify-center items-center bg-background px-4'>
 				<Card className='bg-white/5 backdrop-blur-sm'>
 					<CardHeader>
 						<CardTitle className='text-primary'>

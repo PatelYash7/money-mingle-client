@@ -7,18 +7,19 @@ import { HowItWorks } from '@/components/landing/how-it-works';
 import { TestimonialsSection } from '@/components/landing/testimonials-section';
 import { FloatingNav } from '@/components/ui/floating-navbar';
 import { IconHome } from '@tabler/icons-react';
+import { LayoutDashboard } from 'lucide-react';
 
 export default function Home() {
 	const navItems = [
 		{
 			name: 'Home',
 			link: '/',
-			icon: <IconHome className='h-4 w-4 text-neutral-500 dark:text-white' />,
+			icon: <IconHome className='h-4 w-4 text-primary' />,
 		},
 		{
 			name: 'Dashboard',
 			link: '/dashboard',
-			icon: <IconHome className='h-4 w-4 text-neutral-500 dark:text-white' />,
+			icon: <LayoutDashboard className='h-4 w-4 text-primary' />,
 		},
 	];
 	return (

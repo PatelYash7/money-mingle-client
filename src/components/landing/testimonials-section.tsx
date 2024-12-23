@@ -2,7 +2,7 @@ import { Card, CardContent } from '@/components/ui/card';
 
 export function TestimonialsSection() {
 	return (
-		<section className='relative py-16   rounded-3xl'>
+		<section className='relative py-16   rounded-3xl sm:px-0'>
 			<div className='absolute inset-0 rounded-3xl -z-10 h-full w-full items-center [background:radial-gradient(125%_125%_at_50%_50%,#fff_30%,#63e_100%)] dark:[background:radial-gradient(125%_125%_at_50%_50%,#000_20%,#63e_100%)]'></div>
 
 			<div className='container px-4 md:px-6'>
@@ -19,7 +19,9 @@ export function TestimonialsSection() {
 								recommend!"
 							</p>
 							<div className='flex items-center space-x-4'>
-								<div className='rounded-full bg-black text-white flex justify-center items-center w-10 h-10'>TB</div>
+								<div className='rounded-full bg-black text-white flex justify-center items-center w-10 h-10'>
+									TB
+								</div>
 								<div>
 									<p className='text-sm font-medium'>Finance Executive</p>
 									<p className='text-sm text-muted-foreground'>TechTOnions</p>

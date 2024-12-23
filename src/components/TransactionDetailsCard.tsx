@@ -21,16 +21,16 @@ export const TransactionDetailsCard = ({
 	const amountColor = isReceiver ? 'text-green-600' : 'text-red-600';
 
 	return (
-		<div className='border-2 shadow-md rounded-lg px-4 py-3'>
+		<div className='border-2 border-primary shadow-md rounded-lg px-4 py-3'>
 			<div className='flex items-center justify-between'>
 				<div className='flex items-center space-x-3'>
 					{otherUser.picture ?
 						<Image
 							src={otherUser.picture}
-							alt={otherUser.Name}
+							alt={otherUser.Name.charAt(0)}
 							width={40}
 							height={40}
-							className='rounded-full'
+							className='rounded-full  text-3xl bg-primary flex justify-center items-center sm:h-20 h-16 w-16 sm:w-20'
 						/>
 					:	<User
 							className={` ${isReceiver ? 'text-green-600' : 'text-red-600'} h-10 w-10 text-gray-400`}
@@ -46,7 +46,9 @@ export const TransactionDetailsCard = ({
 					</div>
 				</div>
 				<div className='text-right'>
-					<p className={`font-bold ${amountColor} text-4xl`}>₹{Txn.Amount}</p>
+					<p className={`font-bold ${amountColor} text-2xl sm:text-4xl`}>
+						₹{Txn.Amount}
+					</p>
 					<p className='text-sm text-gray-500'>
 						{formatDistanceToNow(new Date(Txn.timestamp), { addSuffix: true })}
 					</p>

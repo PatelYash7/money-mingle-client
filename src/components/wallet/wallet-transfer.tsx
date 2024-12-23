@@ -18,6 +18,7 @@ import { useRouter } from 'next/navigation';
 import { SearchCard } from '../SearchCard';
 import { useRecoilValue } from 'recoil';
 import { PaymentUser } from '@/store/PaymentUser';
+import { map } from 'zod';
 export function WalletTransfer({ User }: { User: UserWithWallet }) {
 	const [isOpen, setIsOpen] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,7 +36,6 @@ export function WalletTransfer({ User }: { User: UserWithWallet }) {
 		}
 		const search = async () => {
 			const result = await searchUser({ value: debouncedValue });
-			console.log(result)
 			if (result.code == 1 && result.data?.length) {
 				setUserData(result.data);
 				setError('');
@@ -66,7 +66,7 @@ export function WalletTransfer({ User }: { User: UserWithWallet }) {
 						/>
 					}
 				</div>
-			:	<div className='grid grid-cols-3  space-x-4 '>
+			:	<div className='grid grid-cols-1 sm:grid-cols-3 gap-4 sm:space-x-4 '>
 					<Card className='col-span-2'>
 						<CardHeader>
 							<CardTitle>Send Money </CardTitle>
@@ -100,116 +100,30 @@ export function WalletTransfer({ User }: { User: UserWithWallet }) {
 								: error ?
 									<div className='text-center'>{error}</div>
 								:	<>
-										<div className='flex justify-between'>
-											<div className='flex items-center gap-4'>
-												<div>
-													<Skeleton className='h-12 w-12 rounded-full' />
+										{Array.from({ length: 4 }).map((_, i: any) => (
+											<div key={i} className='flex justify-between'>
+												<div className='flex items-center gap-4'>
+													<div>
+														<Skeleton className='sm:h-12 h-6 w-6  sm:w-12 rounded-full' />
+													</div>
+													<div className='w-full space-y-2'>
+														<Skeleton className='w-48 h-4' />
+														<Skeleton className='w-20  h-2' />
+													</div>
 												</div>
-												<div className='w-full space-y-2'>
-													<Skeleton className='w-48 h-4' />
-													<Skeleton className='w-20 h-2' />
-												</div>
-											</div>
-											<div>
-												<Button
-													onClick={() => {
-														setIsOpen(false);
-														setIsModalOpen(true);
-													}}
-													className=' bg-green-500 rounded-2xl font-bold'
-												>
-													Pay Now
-												</Button>
-											</div>
-										</div>
-										<div className='flex justify-between'>
-											<div className='flex items-center gap-4'>
-												<div>
-													<Skeleton className='h-12 w-12 rounded-full' />
-												</div>
-												<div className='w-full space-y-2'>
-													<Skeleton className='w-48 h-4' />
-													<Skeleton className='w-20 h-2' />
+												<div className='sm:block hidden'>
+													<Button
+														onClick={() => {
+															setIsOpen(false);
+															setIsModalOpen(true);
+														}}
+														className=' bg-green-500 rounded-2xl font-bold'
+													>
+														Pay Now
+													</Button>
 												</div>
 											</div>
-											<div>
-												<Button
-													onClick={() => {
-														setIsOpen(false);
-														setIsModalOpen(true);
-													}}
-													className='px-4 py-1 bg-green-500 rounded-2xl font-bold'
-												>
-													Pay Now
-												</Button>
-											</div>
-										</div>
-										<div className='flex justify-between'>
-											<div className='flex items-center gap-4'>
-												<div>
-													<Skeleton className='h-12 w-12 rounded-full' />
-												</div>
-												<div className='w-full space-y-2'>
-													<Skeleton className='w-48 h-4' />
-													<Skeleton className='w-20 h-2' />
-												</div>
-											</div>
-											<div>
-												<Button
-													onClick={() => {
-														setIsOpen(false);
-														setIsModalOpen(true);
-													}}
-													className='px-4 py-1 bg-green-500 rounded-2xl font-bold'
-												>
-													Pay Now
-												</Button>
-											</div>
-										</div>
-										<div className='flex justify-between'>
-											<div className='flex items-center gap-4'>
-												<div>
-													<Skeleton className='h-12 w-12 rounded-full' />
-												</div>
-												<div className='w-full space-y-2'>
-													<Skeleton className='w-48 h-4' />
-													<Skeleton className='w-20 h-2' />
-												</div>
-											</div>
-											<div>
-												<Button
-													onClick={() => {
-														setIsOpen(false);
-														setIsModalOpen(true);
-													}}
-													className='px-4 py-1 bg-green-500 rounded-2xl font-bold'
-												>
-													Pay Now
-												</Button>
-											</div>
-										</div>
-										<div className='flex justify-between'>
-											<div className='flex items-center gap-4'>
-												<div>
-													<Skeleton className='h-12 w-12 rounded-full' />
-												</div>
-												<div className='w-full space-y-2'>
-													<Skeleton className='w-48 h-4' />
-													<Skeleton className='w-20 h-2' />
-												</div>
-											</div>
-											<div>
-												<Button
-													onClick={() => {
-														setIsOpen(false);
-														setIsModalOpen(true);
-													}}
-													className='px-4 py-1 bg-green-500 rounded-2xl font-bold'
-												>
-													Pay Now
-												</Button>
-											</div>
-										</div>
+										))}
 									</>
 								}
 							</div>
@@ -273,12 +187,12 @@ function TransferForm({ User, SetUser }: { SetUser: () => void; User: User }) {
 					{User.picture ?
 						<Image
 							src={User.picture}
-							alt='img'
+							alt={User.Name.charAt(0)}
 							height={56}
 							width={56}
-							className='rounded-full justify-center flex items-center'
+							className='bg-primary text-3xl font-semibold h-16 w-16 rounded-full justify-center flex items-center'
 						/>
-					:	<div className='bg-blue-600 px-6 py-4 rounded-full font-bold  text-3xl'>
+					:	<div className='bg-primary px-6 py-4 rounded-full font-bold  text-3xl'>
 							{User.Name.charAt(0)}
 						</div>
 					}

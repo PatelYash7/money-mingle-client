@@ -20,3 +20,8 @@ export const userAtom = atom<UserType | null>({
 	key: 'UserAtom',
 	default: userSelector,
 });
+
+export const userNumber = atom<String | null>({
+	key: 'UserNumber',
+	default: null,
+});

@@ -61,7 +61,8 @@ export default function Page() {
 	if (session.data?.user.id) {
 		return (
 			<div className='flex justify-center items-center min-h-screen'>
-				<Card className=' min-w-96'>
+				<div className='absolute top-0 z-[-2] h-screen w-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]'></div>
+				<Card className=' backdrop-blur-sm bg-white/5  min-w-96'>
 					<CardHeader>
 						<CardTitle>Change Pin</CardTitle>
 					</CardHeader>

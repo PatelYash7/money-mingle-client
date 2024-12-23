@@ -1,25 +1,33 @@
 'use client';
 
-import { userSelector } from '@/store/user';
-import { useRecoilValueLoadable } from 'recoil';
+import { userNumber, userSelector } from '@/store/user';
+import { useRecoilState, useRecoilValueLoadable } from 'recoil';
 import { Skeleton } from '../ui/skeleton';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import Link from 'next/link';
 import { ArrowDownFromLine, ArrowUpFromLine } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { UserType } from '@/types/type';
+import { useRouter } from 'next/navigation';
 
 export const Hero = () => {
 	const [loading, setLoading] = useState(false);
 	const [User, setUser] = useState<UserType>();
 	const user = useRecoilValueLoadable(userSelector);
+	const router = useRouter();
+	const [usernumber, setuserNumber] = useRecoilState(userNumber);
+
 	useEffect(() => {
 		if (user.state == 'loading') {
 			setLoading(true);
 		}
 		if (user.state == 'hasValue' && user.contents) {
 			setLoading(false);
+			setuserNumber(user.contents.MobileNumber);
 			setUser(user.contents);
+			if (!usernumber && !user.contents.MobileNumber) {
+				router.push('/add-number');
+			}
 		}
 	}, [user.state]);
 	if (loading) {
@@ -50,18 +58,18 @@ export const Hero = () => {
 									</div>
 								</div>
 							)}
-							<div className=' flex gap-4 w-full items-center justify-center'>
+							<div className=' flex gap-4 w-full items-center justify-center py-4'>
 								<Link
 									href={'/wallet-transfers'}
-									className='bg-red-600 flex gap-2 font-bold px-4 py-2 rounded-2xl text-center'
+									className='bg-red-600 flex gap-2 justify-center items-center font-bold px-4 py-2 rounded-2xl text-center'
 								>
-									<ArrowUpFromLine /> Send Money
+									<ArrowUpFromLine className='sm:block hidden' /> Send Money
 								</Link>
 								<Link
 									href={'/bank-transfers'}
-									className='bg-green-600 flex font-bold px-4 py-2 rounded-2xl text-center'
+									className='bg-green-600 flex font-bold px-4 py-2 rounded-2xl justify-center items-center text-center'
 								>
-									<ArrowDownFromLine /> Add Money
+									<ArrowDownFromLine className='sm:block hidden' /> Add Money
 								</Link>
 							</div>
 						</>

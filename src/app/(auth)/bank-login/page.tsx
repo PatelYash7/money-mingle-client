@@ -31,7 +31,7 @@ export default function CreateAccountPage() {
 		}
 	};
 	return (
-		<div className='flex justify-center items-center h-screen'>
+		<div className='flex justify-center items-center h-screen px-4'>
 			<div className='absolute top-0 z-[-2] h-screen w-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1.5px,#00091d_1.5px)] bg-[size:20px_20px]'></div>
 
 			<div className='container mx-auto bg-white/5 border-primary backdrop-blur-sm max-w-lg py-10 border-2 rounded-lg'>

@@ -1,44 +1,50 @@
 'use client';
 import { addNumber } from '@/action/add-number';
 import { handleToast } from '@/components/handle-toast';
+import { Modal } from '@/components/modal';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import { Loader } from '@/components/ui/Loader';
+import { userNumber } from '@/store/user';
+import { IconCancel } from '@tabler/icons-react';
+import { Cross } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 
 export default function Page() {
 	const router = useRouter();
 	const session = useSession();
 	const [mobile, setMobileNumber] = useState('');
+	const [UserNumber, setUserNumber] = useRecoilState(userNumber);
+	const [loading, setLoading] = useState(false);
 	const handleSubmit = async () => {
 		if (session.data?.user.id) {
+			setLoading(true);
 			const response = await addNumber({
 				id: session.data?.user.id,
 				MobileNumber: mobile,
 			});
 			if (response) {
-				router.push('/');
-				handleToast({
-					title: 'Success',
-					description: response.message,
-					className: 'bg-green-700',
-				});
+				setLoading(false);
+				router.push('/dashboard');
+				setUserNumber(mobile);
 			}
 		}
 	};
 	return (
-		<div className='min-h-screen flex items-center justify-center bg-black bg-[linear-gradient(rgba(0,0,0,.5)_2px,transparent_2px),linear-gradient(90deg,rgba(0,0,0,.5)_2px,transparent_2px)] bg-[size:50px_50px]'>
-			<Card className='w-full max-w-md bg-[#111] text-white border-none shadow-2xl'>
-				<CardHeader className='space-y-1 text-center'>
+		<Modal>
+			<Card className='w-full max-w-md  text-white '>
+				<CardHeader className='space-y-1 text-center relative'>
 					<h1
 						onClick={() => {
 							router.push('/');
 						}}
 						className='text-3xl cursor-pointer font-bold tracking-tight mb-2'
 					>
-						Moeny Mingle
+						Money Mingle
 					</h1>
 					<p className='text-sm text-gray-400'>
 						Mobile Number is required for Wallet Transfer.
@@ -47,7 +53,12 @@ export default function Page() {
 				</CardHeader>
 				<CardContent className='space-y-4'>
 					<div className='space-y-4'>
-						<div className='space-y-2'>
+						{UserNumber ?
+							<div className='text-green-500 text-center text-base'>
+								Mobile Number Added
+							</div>
+						:	null}
+						<div className={`space-y-2 ${UserNumber ? 'hidden' : 'block'}`}>
 							<label
 								htmlFor='number'
 								className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
@@ -65,16 +76,21 @@ export default function Page() {
 								/>{' '}
 							</div>
 						</div>
-						<Button
-							type='submit'
-							onClick={handleSubmit}
-							className='w-full bg-blue-600 hover:bg-blue-700 text-white'
-						>
-							Add Number
-						</Button>
+						{loading ?
+							<div className='flex justify-center items-center'>
+								<Loader />{' '}
+							</div>
+						:	<Button
+								type='submit'
+								onClick={handleSubmit}
+								className='w-full bg-blue-600 hover:bg-blue-700 text-white'
+							>
+								Add Number
+							</Button>
+						}
 					</div>
 				</CardContent>
 			</Card>
-		</div>
+		</Modal>
 	);
 }

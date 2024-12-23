@@ -37,7 +37,7 @@ export default function Component() {
 		}
 	};
 	return (
-		<div className='min-h-screen flex items-center justify-center '>
+		<div className='min-h-screen flex items-center justify-center mx-4 '>
 			<div className='absolute top-0 z-[-2] h-screen w-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]'></div>
 			<Card className='w-full max-w-md  text-white border-none shadow-2xl bg-white/5 backdrop-blur-sm'>
 				<CardHeader className='space-y-1 text-center'>

@@ -54,7 +54,7 @@ export const FloatingNav = ({
 							)}
 						>
 							<span className='block sm:hidden'>{navItem.icon}</span>
-							<span className='hidden sm:block text-sm font-semibold text-black dark:text-white'>
+							<span className='hidden sm:block text-sm font-semibold text-primary'>
 								{navItem.name}
 							</span>
 						</Link>
@@ -66,12 +66,13 @@ export const FloatingNav = ({
 							active={active}
 							item={session.data.user.name.split(' ')[0]}
 						>
-							<div className='flex flex-col space-y-2 text-sm'>
+							<div className='flex  flex-col space-y-2 text-sm'>
 								<HoveredLink href={'/profile'}>Profile</HoveredLink>
 								<div
 									onClick={() => {
 										signOut();
 									}}
+									className='text-primary'
 								>
 									<HoveredLink>Logout</HoveredLink>
 								</div>
@@ -83,7 +84,7 @@ export const FloatingNav = ({
 							}}
 							className='border text-sm font-semibold relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full'
 						>
-							<span>Login</span>{' '}
+							<span className='text-primary'>Login</span>{' '}
 						</button>
 					}
 					<ModeToggle />
@@ -115,7 +116,7 @@ export const MenuItem = ({
 		<div onMouseEnter={() => setActive(item)} className='relative '>
 			<motion.p
 				transition={{ duration: 0.3 }}
-				className='cursor-pointer text-black hover:opacity-[0.9] dark:text-white'
+				className='cursor-pointer text-primary font-semibold hover:opacity-[0.9] '
 			>
 				{item}
 			</motion.p>
@@ -130,7 +131,7 @@ export const MenuItem = ({
 							<motion.div
 								transition={transition}
 								layoutId='active' // layoutId ensures smooth animation
-								className='bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl'
+								className=' backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl'
 							>
 								<motion.div
 									layout // layout ensures smooth animation
@@ -157,14 +158,14 @@ export const HoveredLink = ({
 		return (
 			<Link
 				href={href}
-				className='text-neutral-700  font-semibold  dark:text-neutral-200 hover:text-black '
+				className='text-primary  font-semibold  hover:text-primary-foreground '
 			>
 				{children}
 			</Link>
 		);
 	}
 	return (
-		<div className='text-neutral-700 cursor-pointer font-semibold dark:text-neutral-200 hover:text-black '>
+		<div className='text-primary cursor-pointer font-semibold hover:text-primary-foreground'>
 			{children}
 		</div>
 	);

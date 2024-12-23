@@ -38,8 +38,9 @@ export const ForgotPassword = ({ email }: { email: string }) => {
 		}
 	};
 	return (
-		<div className='flex justify-center items-center min-h-screen'>
-			<Card className=' min-w-96'>
+		<div className='flex justify-center items-center min-h-screen relative px-4'>
+			<div className='absolute top-0 z-[-2] h-screen w-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]'></div>
+			<Card className=' min-w-96 backdrop-blur-sm bg-white/5'>
 				<CardHeader>
 					<CardTitle
 						className=' cursor-pointer'

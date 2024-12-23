@@ -1,6 +1,5 @@
 import prisma from '@/db';
 import { sendEmail } from '@/lib/sendEmail';
-import { TokenType } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
 import { v4 } from 'uuid';
 

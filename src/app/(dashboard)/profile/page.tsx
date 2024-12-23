@@ -13,7 +13,7 @@ import { Label } from '@/components/ui/label';
 export default async function Page() {
 	const User = await getUser();
 	return (
-		<div className='h-screen flex justify-center items-center'>
+		<div className='sm:h-screen flex justify-center items-center'>
 			<Card>
 				<CardHeader>
 					<CardTitle className='text-center font-bold'>USER PROFILE</CardTitle>

@@ -11,7 +11,7 @@ export const searchUser = async ({ value }: { value: string }) => {
 				{
 					OR: [
 						{ MobileNumber: { startsWith: value } },
-						{ Name: { startsWith: value,mode:'insensitive' } },
+						{ Name: { startsWith: value, mode: 'insensitive' } },
 						{ Email: { startsWith: value } },
 					],
 				},
@@ -29,17 +29,18 @@ export const searchUser = async ({ value }: { value: string }) => {
 	});
 	if (result.length < 5) {
 		result = await prisma.user.findMany({
-		  where: {
-			NOT: {
-			  id: session?.user.id,
+			where: {
+				isVerified: true,
+				NOT: {
+					id: session?.user.id,
+				},
 			},
-		  },
-		  include: {
-			Wallet: true,
-		  },
+			include: {
+				Wallet: true,
+			},
 		});
-	  }
-	if (result.length >0) {
+	}
+	if (result.length > 0) {
 		return {
 			code: 1,
 			data: result,

@@ -76,12 +76,12 @@ export default function Home() {
 						</p>
 						<div className='flex justify-center gap-4'>
 							<Link
-								className='bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-2xl'
+								className='bg-green-500 hover:bg-green-600 z-0 text-white py-2 px-4 rounded-2xl'
 								href={'/bank-account/create-account'}
 							>
 								Get Started
 							</Link>
-							<Link href={'/'} className='bg-primary px-4 py-2 rounded-2xl'>
+							<Link href={'/'} className='bg-primary px-4 py-2 z-0 rounded-2xl'>
 								Wallets
 							</Link>
 						</div>
@@ -177,7 +177,7 @@ export default function Home() {
 							Join Money Mingle today and experience the future of banking.
 						</p>
 						<Link
-							href={'/create-account'}
+							href={'/bank-account/create-account'}
 							className='px-4 py-2 bg-green-600 text-white rounded-3xl'
 						>
 							Sign Up Now
