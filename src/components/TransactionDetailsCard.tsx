@@ -21,16 +21,16 @@ export const TransactionDetailsCard = ({
 	const amountColor = isReceiver ? 'text-green-600' : 'text-red-600';
 
 	return (
-		<div className='border-2 border-primary shadow-md rounded-lg px-4 py-3'>
+		<div className={`border-2 shadow-md rounded-lg px-2 py-2 ${isReceiver ? 'bg-gradient-to-t from-transparent to-green-500/15':'bg-gradient-to-t from-transparent to-red-500/20'}`}>
 			<div className='flex items-center justify-between'>
-				<div className='flex items-center space-x-3'>
+				<div className='flex items-center space-x-2'>
 					{otherUser.picture ?
 						<Image
 							src={otherUser.picture}
 							alt={otherUser.Name.charAt(0)}
 							width={40}
 							height={40}
-							className='rounded-full  text-3xl bg-primary flex justify-center items-center sm:h-20 h-16 w-16 sm:w-20'
+							className='rounded-full text-2xl bg-primary flex justify-center items-center sm:h-16 h-12 w-12 sm:w-16'
 						/>
 					:	<User
 							className={` ${isReceiver ? 'text-green-600' : 'text-red-600'} h-10 w-10 text-gray-400`}
@@ -46,7 +46,7 @@ export const TransactionDetailsCard = ({
 					</div>
 				</div>
 				<div className='text-right'>
-					<p className={`font-bold ${amountColor} text-2xl sm:text-4xl`}>
+					<p className={`font-bold ${amountColor} text-xl sm:text-3xl`}>
 						₹{Txn.Amount}
 					</p>
 					<p className='text-sm text-gray-500'>
@@ -54,7 +54,7 @@ export const TransactionDetailsCard = ({
 					</p>
 				</div>
 			</div>
-			<div className='mt-3 flex items-center justify-between'>
+			<div className='mt-1 flex items-center justify-between'>
 				<p className='text-sm text-gray-600'>
 					Note:-
 					<span className='text-gray-800 dark:text-gray-300 font-semibold'>
@@ -66,22 +66,22 @@ export const TransactionDetailsCard = ({
 						<ArrowDownLeft
 							strokeWidth={3}
 							size={24}
-							className='h-8 font-bold w-8'
+							className='h-6 font-bold w-6'
 						/>
 					:	<ArrowUpRight
 							size={24}
 							strokeWidth={3}
-							className='h-8 font-bold w-8'
+							className='h-6 font-bold w-6'
 						/>
 					}
 				</div>
 			</div>
 			<p
-				className={`mt-2 text-base font-bold ${isReceiver ? 'text-green-600' : 'text-red-600'}`}
+				className={`mt-2 text-sm font-bold ${isReceiver ? 'text-green-600' : 'text-red-600'}`}
 			>
 				{transactionType}
 			</p>
-			<p className={`mt-2 text-base text-gray-400`}>id: {Txn.id}</p>
+			<p className={`mt-1 text-sm text-gray-400`}>id: {Txn.id}</p>
 		</div>
 	);
 };

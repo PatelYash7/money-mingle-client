@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Wallet" ALTER COLUMN "Balance" SET DEFAULT 100000;

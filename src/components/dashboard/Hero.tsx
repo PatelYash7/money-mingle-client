@@ -47,7 +47,7 @@ export const Hero = () => {
 							<div className='flex-col'>
 								<div className='text-base text-gray-400'> Wallet Balance</div>
 								<div className='text-4xl font-bold tracking-wider'>
-									${String(Number(User.Wallet.Balance) / 100)}
+									₹{String(Number(User.Wallet.Balance) / 100)}
 								</div>
 							</div>
 							{!User.Wallet.pin && (

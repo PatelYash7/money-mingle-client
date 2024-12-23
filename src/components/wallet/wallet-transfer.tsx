@@ -170,6 +170,7 @@ function TransferForm({ User, SetUser }: { SetUser: () => void; User: User }) {
 			});
 			setLoading(false);
 			router.push('/dashboard');
+			window.location.reload();
 		} else {
 			handleToast({
 				title: 'Failed',

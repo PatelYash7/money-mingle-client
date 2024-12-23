@@ -26,7 +26,7 @@ export default function SignUpPage() {
 			redirect: false,
 		});
 		if (res?.ok) {
-			router.push('/');
+			router.push('/dashboard');
 		} else {
 			setError('If you have account, please try signin');
 		}
@@ -64,7 +64,7 @@ export default function SignUpPage() {
 						className='w-full border-primary shadow-primary-foreground border-2 shadow bg-[#222] hover:bg-[#333] text-white'
 						variant='outline'
 						onClick={() => {
-							signIn('google', { callbackUrl: '/' });
+							signIn('google', { callbackUrl: '/dashboard' });
 						}}
 					>
 						<FcGoogle className='mr-2 h-4 w-4' />

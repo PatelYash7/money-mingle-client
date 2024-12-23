@@ -44,7 +44,7 @@ model Wallet {
   userId           String             @unique
   pin              String?
   user             User               @relation(fields: [userId], references: [id])
-  Balance          Int             @default(0)
+  Balance          Int                @default(100000)
   BankToWalletTrxn BankToWalletTrxn[]
 }
 
@@ -66,6 +66,7 @@ model BankToWalletTrxn {
   Token    String?
   BankId   String
   WalletId String
+  timestamp DateTime @default(now()) 
   TxnType  TransactionType
   Bank     BankAccount @relation(fields: [BankId], references: [id])
   Wallet   Wallet      @relation(fields: [WalletId], references: [id])

@@ -30,8 +30,7 @@ export default function Component() {
 			redirect: false,
 		});
 		if (res?.ok) {
-			router.push('/');
-			window.location.replace('/');
+			router.push('/dashboard');
 		} else {
 			setError('Invalid email or password. Please try again.');
 		}

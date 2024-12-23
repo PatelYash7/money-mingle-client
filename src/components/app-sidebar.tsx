@@ -9,16 +9,25 @@ import {
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
+	SidebarMenuSub,
+	SidebarMenuSubItem,
 } from '@/components/ui/sidebar';
 import {
 	ArrowRightLeft,
 	Calendar,
+	ChevronDown,
+	Dot,
 	Landmark,
 	LayoutDashboard,
 	List,
 	User,
 } from 'lucide-react';
 import Link from 'next/link';
+import {
+	Collapsible,
+	CollapsibleContent,
+	CollapsibleTrigger,
+} from './ui/collapsible';
 
 const items = [
 	{
@@ -63,17 +72,59 @@ export function AppSidebar() {
 						</SidebarGroupLabel>
 					</Link>
 					<SidebarGroupContent className='mt-4'>
-						<SidebarMenu className=' space-y-4'>
-							{items.map((item) => (
-								<SidebarMenuItem className='' key={item.title}>
-									<SidebarMenuButton asChild>
-										<a href={item.url}>
-											<item.icon />
-											<span>{item.title}</span>
-										</a>
-									</SidebarMenuButton>
-								</SidebarMenuItem>
-							))}
+						<SidebarMenu className=' space-y-3'>
+							{items.map((item) => {
+								if (item.title == 'Transactions') {
+									return (
+										<Collapsible key={948491} className='group/collapsible'>
+											<SidebarMenuItem>
+												<CollapsibleTrigger
+													asChild
+													className='text-sm flex justify-between w-full text-white  font-bold'
+												>
+													<SidebarMenuButton>
+														<div className='flex gap-2 items-center'>
+															<List className='text-sm h-5 w-5 font-light' />
+															Transactions
+														</div>
+														<ChevronDown className='ml-auto font-bold transition-transform group-data-[state=open]/collapsible:rotate-180' />
+													</SidebarMenuButton>
+												</CollapsibleTrigger>
+											</SidebarMenuItem>
+											<CollapsibleContent className=' py-2'>
+												<SidebarMenuSub className=' space-y-2'>
+													<SidebarMenuSubItem>
+														<a
+															href={'/transactions/bank'}
+															className=''
+														>
+															<span>Bank Transactions</span>
+														</a>
+													</SidebarMenuSubItem>
+													<SidebarMenuSubItem>
+														<a
+															href={'/transactions/wallet'}
+															className=''
+														>
+															<span>Wallet Transactions</span>
+														</a>
+													</SidebarMenuSubItem>
+												</SidebarMenuSub>
+											</CollapsibleContent>
+										</Collapsible>
+									);
+								}
+								return (
+									<SidebarMenuItem className='' key={item.title}>
+										<SidebarMenuButton asChild>
+											<a href={item.url}>
+												<item.icon />
+												<span>{item.title}</span>
+											</a>
+										</SidebarMenuButton>
+									</SidebarMenuItem>
+								);
+							})}
 						</SidebarMenu>
 					</SidebarGroupContent>
 				</SidebarGroup>

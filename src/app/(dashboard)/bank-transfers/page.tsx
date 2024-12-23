@@ -37,6 +37,7 @@ export default function Page() {
 					className: 'bg-green-600',
 				});
 				router.push('/dashboard');
+				window.location.reload();
 			} else {
 				handleToast({
 					title: 'Failed',
@@ -58,6 +59,7 @@ export default function Page() {
 					className: 'bg-green-600',
 				});
 				router.push('/dashboard');
+				window.location.reload();
 			} else {
 				handleToast({
 					title: 'Failed',
