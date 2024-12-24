@@ -28,8 +28,12 @@ export type TransactionsWithUsers = Prisma.TransactionsGetPayload<{
 }>;
 export type BankTransactions = Prisma.BankToWalletTrxnGetPayload<{
 	include: {
-	Bank:true,
-	Wallet:true	
+		Bank: true;
+		Wallet: {
+			include: {
+				user: true;
+			};
+		};
 	};
 }>;
 

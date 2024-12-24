@@ -21,7 +21,9 @@ export const TransactionDetailsCard = ({
 	const amountColor = isReceiver ? 'text-green-600' : 'text-red-600';
 
 	return (
-		<div className={`border-2 shadow-md rounded-lg px-2 py-2 ${isReceiver ? 'bg-gradient-to-t from-transparent to-green-500/15':'bg-gradient-to-t from-transparent to-red-500/20'}`}>
+		<div
+			className={`border-2 shadow-md rounded-lg px-2 py-2 ${isReceiver ? 'bg-gradient-to-t from-transparent to-green-500/15' : 'bg-gradient-to-t from-transparent to-red-500/20'}`}
+		>
 			<div className='flex items-center justify-between'>
 				<div className='flex items-center space-x-2'>
 					{otherUser.picture ?

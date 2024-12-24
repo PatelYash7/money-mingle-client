@@ -1,8 +1,12 @@
 'use client';
 
+import { BankTransactionCard } from '@/components/BankTransactions';
 import { TransactionDetailsCard } from '@/components/TransactionDetailsCard';
 import { Skeleton } from '@/components/ui/skeleton';
-import { BankTransactionSelector, transactionsSelector } from '@/store/transaction';
+import {
+	BankTransactionSelector,
+	transactionsSelector,
+} from '@/store/transaction';
 import { BankTransactions, TransactionsWithUsers } from '@/types/type';
 import { useEffect, useState } from 'react';
 import { useRecoilValueLoadable } from 'recoil';
@@ -20,7 +24,7 @@ export default function Page() {
 			setTransaction(Transaction.contents);
 		}
 	}, [Transaction.state]);
-    console.log(transactions)
+	console.log(transactions);
 	return (
 		<div className='py-8'>
 			<div className='text-2xl sm:text-4xl font-bold text-primary'>
@@ -54,11 +58,12 @@ export default function Page() {
 							</div>
 						</div>
 					))}
-				{/* {transactions &&
-					transactions.length > 0 &&
-					Transaction.contents.map((item: TransactionsWithUsers, i: any) => (
-						<TransactionDetailsCard key={i} Txn={item} />
-					))} */}
+
+				{transactions && transactions?.length > 0 ?
+					transactions.map((item, i) => (
+						<BankTransactionCard key={i} transaction={item} />
+					))
+				:	<div>No Transactions to show</div>}
 			</div>
 		</div>
 	);

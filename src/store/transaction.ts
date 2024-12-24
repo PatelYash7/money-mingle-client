@@ -15,13 +15,13 @@ export const transactionsSelector = selector<TransactionsWithUsers[]>({
 });
 
 export const BankTransactionSelector = selector<BankTransactions[]>({
-	key:'BankTxnSelector',
-	get:async()=>{
+	key: 'BankTxnSelector',
+	get: async () => {
 		try {
 			const result = await axios.get('/api/get-bank-transactions');
 			return result.data.data;
 		} catch (error) {
 			return [];
 		}
-	}
-})
+	},
+});

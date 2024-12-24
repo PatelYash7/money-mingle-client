@@ -77,16 +77,23 @@ export default function Page() {
 					<CardTitle className='text-primary'>
 						Transfer Money with Bank
 					</CardTitle>
-					<CardContent className=' space-y-2 pb-0 pt-4 pl-0'>
-						<div>If you dont have bank account?</div>
-						<Button
-							onClick={() => {
-								router.push('/bank-account/create-account');
-							}}
-							className='text-white'
-						>
-							Create Bank Account
-						</Button>
+					<CardContent className=' flex flex-col sm:flex sm:gap-0 gap-4  sm:flex-row justify-between items-center pb-0 pt-4 pl-0'>
+						<div className='space-y-2 '>
+							<div>If you dont have bank account?</div>
+							<Button
+								onClick={() => {
+									router.push('/bank-account/create-account');
+								}}
+								className='text-white'
+							>
+								Create Bank Account
+							</Button>
+						</div>
+						<div className='border p-3 rounded-3xl'>
+							<h2>Test Account Credentials</h2>
+							<div>Account Number : 11111111</div>
+							<div>password: Test@12345</div>
+						</div>
 					</CardContent>
 				</CardHeader>
 				<CardContent>

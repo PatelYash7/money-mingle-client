@@ -23,7 +23,8 @@ export const config = {
 		'/dashboard',
 		'/bank-transfers',
 		'/profile',
+		'/add-number',
 		'/wallet-transfers',
-		'/transactions',
+		'/transactions/:path*',
 	],
 };

@@ -80,9 +80,9 @@ export function AppSidebar() {
 											<SidebarMenuItem>
 												<CollapsibleTrigger
 													asChild
-													className='text-sm flex justify-between w-full text-white  font-bold'
+													className='text-sm flex justify-between w-full  font-bold'
 												>
-													<SidebarMenuButton>
+													<SidebarMenuButton className='dark:text-white text-black'>
 														<div className='flex gap-2 items-center'>
 															<List className='text-sm h-5 w-5 font-light' />
 															Transactions
@@ -92,20 +92,14 @@ export function AppSidebar() {
 												</CollapsibleTrigger>
 											</SidebarMenuItem>
 											<CollapsibleContent className=' py-2'>
-												<SidebarMenuSub className=' space-y-2'>
+												<SidebarMenuSub className='dark:text-white text-black space-y-2'>
 													<SidebarMenuSubItem>
-														<a
-															href={'/transactions/bank'}
-															className=''
-														>
+														<a href={'/transactions/bank'} className=''>
 															<span>Bank Transactions</span>
 														</a>
 													</SidebarMenuSubItem>
 													<SidebarMenuSubItem>
-														<a
-															href={'/transactions/wallet'}
-															className=''
-														>
+														<a href={'/transactions/wallet'} className=''>
 															<span>Wallet Transactions</span>
 														</a>
 													</SidebarMenuSubItem>
