@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Loader } from '@/components/ui/Loader';
 import {
 	Select,
 	SelectGroup,
@@ -22,8 +23,10 @@ export default function Page() {
 	const [bankAccount, setBankAccount] = useState('');
 	const [bankPassword, setBankPassword] = useState('');
 	const [amount, setAmount] = useState('');
+	const [loading, setLoading] = useState(false);
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
+		setLoading(true);
 		if (transfer == 'BanktoWallet') {
 			const response = await BankWalletTxn({
 				amount: Number(amount),
@@ -36,9 +39,11 @@ export default function Page() {
 					description: response.message,
 					className: 'bg-green-600',
 				});
+				setLoading(false);
 				router.push('/dashboard');
 				window.location.reload();
 			} else {
+				setLoading(false);
 				handleToast({
 					title: 'Failed',
 					description: response.message,
@@ -58,6 +63,7 @@ export default function Page() {
 					description: response.message,
 					className: 'bg-green-600',
 				});
+				setLoading(false);
 				router.push('/dashboard');
 				window.location.reload();
 			} else {
@@ -66,6 +72,7 @@ export default function Page() {
 					description: response.message,
 					className: 'bg-red-600',
 				});
+				setLoading(false);
 			}
 		}
 	};
@@ -168,13 +175,17 @@ export default function Page() {
 						</div>
 
 						<div className='py-4'>
-							<Button
-								onClick={handleSubmit}
-								type='submit'
-								className='px-4 font-bold text-lg text-white'
-							>
-								Submit
-							</Button>
+							{loading ?
+								<Loader />
+							:	<Button
+									onClick={handleSubmit}
+									type='submit'
+									disabled={loading}
+									className='px-4 font-bold text-lg text-white'
+								>
+									Submit
+								</Button>
+							}
 						</div>
 					</form>
 				</CardContent>

@@ -134,7 +134,7 @@ export function WalletTransfer({ User }: { User: UserWithWallet }) {
 							<div className='flex flex-col gap-2'>
 								<div className='text-xl font-bold'>Wallet Balance</div>
 								<div className='text-2xl'>
-									${Number(User.Wallet?.Balance) / 100}
+								₹{Number(User.Wallet?.Balance) / 100}
 								</div>
 							</div>
 							{User.Wallet?.Balance == 0 && (
